@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn2qyl7daun8j"]
+
+[ext_resource type="Script" path="res://rts_view/rts_view.gd" id="1_0d23u"]
+
+[node name="RtsView" type="Node3D"]
+script = ExtResource("1_0d23u")
+
+[node name="head" type="Node3D" parent="."]
+
+[node name="head_camera" type="Camera3D" parent="head"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="bottom_menu" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/bottom_menu"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="Control/bottom_menu/HBoxContainer"]
+layout_mode = 2
+text = "button
+"
+
+[node name="Button2" type="Button" parent="Control/bottom_menu/HBoxContainer"]
+layout_mode = 2
+text = "button
+"
+
+[node name="Button3" type="Button" parent="Control/bottom_menu/HBoxContainer"]
+layout_mode = 2
+text = "button
+"
+
+[node name="Button4" type="Button" parent="Control/bottom_menu/HBoxContainer"]
+layout_mode = 2
+text = "button
+"
+
+[node name="object_selection_menu" type="Control" parent="Control/bottom_menu"]
+anchors_preset = 0
+offset_top = -52.0
+offset_right = 896.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Object" type="Control" parent="Control/bottom_menu/object_selection_menu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

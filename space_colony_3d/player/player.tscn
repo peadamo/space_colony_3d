@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx3s2f1kg1r7p"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_s2uyd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fabli"]
+radius = 0.375
+height = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bincg"]
+radius = 0.375
+height = 1.5
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_s2uyd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_fabli")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bincg")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.073, 0)
+
+[node name="head_camera" type="Camera3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63031, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
