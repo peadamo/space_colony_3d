@@ -1,22 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://jra8nqg480i0"]
+[gd_scene load_steps=5 format=3 uid="uid://jra8nqg480i0"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jxcdw"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[ext_resource type="Texture2D" uid="uid://b1rgen1cqseew" path="res://assets/HDR/hdr.png" id="1_wpbnk"]
 
-[sub_resource type="Sky" id="Sky_mn4ik"]
-sky_material = SubResource("ProceduralSkyMaterial_jxcdw")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_soobv"]
+panorama = ExtResource("1_wpbnk")
+filter = false
 
-[sub_resource type="Environment" id="Environment_onuib"]
+[sub_resource type="Sky" id="Sky_0cp0v"]
+sky_material = SubResource("PanoramaSkyMaterial_soobv")
+
+[sub_resource type="Environment" id="Environment_652a6"]
 background_mode = 2
-sky = SubResource("Sky_mn4ik")
-tonemap_mode = 2
-glow_enabled = true
+sky = SubResource("Sky_0cp0v")
+tonemap_mode = 3
+tonemap_exposure = 0.53
 
 [node name="WorldBase" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_onuib")
+environment = SubResource("Environment_652a6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
