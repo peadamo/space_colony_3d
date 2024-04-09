@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce6bsgqsh0vlw"]
+
+[ext_resource type="PackedScene" uid="uid://ckviwv8cil4k0" path="res://assets/3d_models/ship/space_colony_ship_meshes.glb" id="1_nqrsq"]
+[ext_resource type="Script" path="res://assets/3d_models/ship/space_colony_ship_meshes.gd" id="2_2lpos"]
+
+[node name="space_colony_ship_meshes" instance=ExtResource("1_nqrsq")]
+script = ExtResource("2_2lpos")
+
+[node name="floor_00" parent="." index="0"]
+visible = false
+
+[node name="wall_00" parent="." index="1"]
+visible = false
+
+[connection signal="mouse_entered" from="floor_00/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dn2qyl7daun8j"]
+[gd_scene load_steps=3 format=3 uid="uid://dn2qyl7daun8j"]
 
 [ext_resource type="Script" path="res://rts_view/rts_view.gd" id="1_0d23u"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_l05rw"]
 
 [node name="RtsView" type="Node3D"]
 script = ExtResource("1_0d23u")
@@ -8,6 +10,14 @@ script = ExtResource("1_0d23u")
 [node name="head" type="Node3D" parent="."]
 
 [node name="head_camera" type="Camera3D" parent="head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="head/head_camera"]
+target_position = Vector3(0, 0, -100)
+collision_mask = 2
+
+[node name="raycast_timer" type="Timer" parent="head/head_camera/RayCast3D"]
+wait_time = 0.1
+autostart = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -62,13 +72,60 @@ text = "button
 "
 
 [node name="object_selection_menu" type="Control" parent="Control/bottom_menu"]
-anchors_preset = 0
-offset_top = -52.0
-offset_right = 896.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(900, 100)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 900.0
+grow_vertical = 0
 mouse_filter = 2
 
-[node name="Object" type="Control" parent="Control/bottom_menu/object_selection_menu"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ColorRect" type="ColorRect" parent="Control/bottom_menu/object_selection_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.305882)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/bottom_menu/object_selection_menu"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="Control/bottom_menu/object_selection_menu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Floor"
+
+[node name="Button2" type="Button" parent="Control/bottom_menu/object_selection_menu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Wall
+"
+
+[node name="Button3" type="Button" parent="Control/bottom_menu/object_selection_menu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Door"
+
+[node name="pointer" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_l05rw")
+
+[connection signal="timeout" from="head/head_camera/RayCast3D/raycast_timer" to="." method="_on_raycast_timer_timeout"]
+[connection signal="pressed" from="Control/bottom_menu/object_selection_menu/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/bottom_menu/object_selection_menu/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Control/bottom_menu/object_selection_menu/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]

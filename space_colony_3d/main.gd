@@ -15,3 +15,6 @@ func _input(event):
 		else :
 			player.set_control_on()
 			rts_view.set_control_off()
+
+
+
