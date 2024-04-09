@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://3x8a3jaof3im"]
+
+[ext_resource type="PackedScene" uid="uid://cn61oqflx210m" path="res://assets/3d_models/ship/main_console/main_console.glb" id="1_ikei5"]
+
+[node name="main_console" instance=ExtResource("1_ikei5")]

@@ -11,7 +11,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		$head.rotate_y(-event.relative.x*mouse_sensitivity)
 		$head/head_camera.rotate_x(-event.relative.y*mouse_sensitivity)
-		$head/head_camera.rotation.x=clamp($head/head_camera.rotation.x,-0.9,1)
+		$head/head_camera.rotation.x=clamp($head/head_camera.rotation.x,deg_to_rad(-89.9),1)
 
 func _physics_process(delta):
 	if !is_on_floor():

@@ -12,6 +12,7 @@ sky_material = SubResource("PanoramaSkyMaterial_soobv")
 [sub_resource type="Environment" id="Environment_652a6"]
 background_mode = 2
 sky = SubResource("Sky_0cp0v")
+ambient_light_color = Color(0.654902, 0.654902, 0.654902, 1)
 tonemap_mode = 3
 tonemap_exposure = 0.53
 
