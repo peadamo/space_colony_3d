@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dui7tvtw8rfkc"]
+[gd_scene load_steps=5 format=3 uid="uid://dtqvp86peevcc"]
 
-[ext_resource type="PackedScene" uid="uid://cn7m4mhl15rvf" path="res://assets/3d_models/ship/main_console/panel.tscn" id="1_nalon"]
-[ext_resource type="Script" path="res://assets/3d_models/ship/main_console/panel_content.gd" id="1_x5l3i"]
-[ext_resource type="PackedScene" uid="uid://mnt378ul7dg2" path="res://assets/3d_models/ship/main_console/Ship_blueprint.tscn" id="3_yb078"]
+[ext_resource type="Script" path="res://assets/3d_models/ship/main_console/panel_content.gd" id="1_7qky7"]
+[ext_resource type="PackedScene" uid="uid://tnvrpltkoy2t" path="res://assets/3d_models/ship/main_console/main_console_menu_selection_screen.tscn" id="2_iryry"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_w72nq"]
 resource_local_to_scene = true
@@ -11,17 +10,14 @@ size = Vector2(1, 0.563)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8e43c"]
 size = Vector3(1, 0.56958, 0.0286407)
 
-[node name="PanelContent" type="Node3D"]
-script = ExtResource("1_x5l3i")
+[node name="main_console_menu_selection" type="Node3D"]
+script = ExtResource("1_7qky7")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(1152, 648)
 size_2d_override = Vector2i(1152, 648)
 
-[node name="Panel" parent="SubViewport" instance=ExtResource("1_nalon")]
-visible = false
-
-[node name="ShipBlueprint" parent="SubViewport" instance=ExtResource("3_yb078")]
+[node name="ShipBlueprint" parent="SubViewport" instance=ExtResource("2_iryry")]
 
 [node name="Quad" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_w72nq")

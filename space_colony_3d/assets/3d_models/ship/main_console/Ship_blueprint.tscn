@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://mnt378ul7dg2"]
+
+[ext_resource type="Texture2D" uid="uid://clotq8h8egwd2" path="res://assets/tilesets/neo_zero_tiles_and_buildings_01.png" id="1_mc4en"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ajtbp"]
+texture = ExtResource("1_mc4en")
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+9:8/0 = 0
+8:8/0 = 0
+7:8/0 = 0
+6:8/0 = 0
+5:8/0 = 0
+4:8/0 = 0
+3:8/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ucbyw"]
+sources/0 = SubResource("TileSetAtlasSource_ajtbp")
+
+[node name="ShipBlueprint" type="Control"]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.309804, 0.690196, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -34.5
+offset_right = 228.0
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "esto es un bluprint"
+horizontal_alignment = 1
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(577, 326)
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_ucbyw")
+format = 2

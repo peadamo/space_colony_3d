@@ -36,3 +36,11 @@ func rotate_item(val):
 	else:
 		item_rotation = 0
 	
+
+func get_used_cells():
+	var used_cells = grid_ship_walls.get_used_cells()
+	return used_cells
+
+func get_cell_item(cell : Vector3i):
+	var item = grid_ship_walls.get_cell_item(cell)
+	return item

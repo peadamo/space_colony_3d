@@ -1,23 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://3x8a3jaof3im"]
+[gd_scene load_steps=9 format=3 uid="uid://3x8a3jaof3im"]
 
 [ext_resource type="PackedScene" uid="uid://cn61oqflx210m" path="res://assets/3d_models/ship/main_console/main_console.glb" id="1_ikei5"]
 [ext_resource type="Script" path="res://assets/3d_models/ship/main_console/main_console.gd" id="2_b0svd"]
 [ext_resource type="PackedScene" uid="uid://dui7tvtw8rfkc" path="res://assets/3d_models/ship/main_console/panel_content.tscn" id="2_iu0ws"]
 [ext_resource type="Script" path="res://scripts/interactive_object.gd" id="3_tfwke"]
+[ext_resource type="PackedScene" uid="uid://dtqvp86peevcc" path="res://assets/3d_models/ship/main_console/main_console_menu_selection.tscn" id="5_qcfwr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q5rtl"]
 size = Vector3(2.02979, 1.59082, 2.97845)
 
+[sub_resource type="QuadMesh" id="QuadMesh_ctbor"]
+resource_local_to_scene = true
+size = Vector2(1, 0.563)
+
+[sub_resource type="QuadMesh" id="QuadMesh_e3uwy"]
+resource_local_to_scene = true
+size = Vector2(1, 0.563)
+
 [node name="main_console" instance=ExtResource("1_ikei5")]
 script = ExtResource("2_b0svd")
 
-[node name="PanelContent" parent="." index="1" instance=ExtResource("2_iu0ws")]
-transform = Transform3D(-6.11726e-08, 0, 1.39947, 0, 1.39947, 0, -1.39947, 0, -6.11726e-08, -0.337327, 1.15719, 0)
-
-[node name="PanelContent2" parent="." index="2" instance=ExtResource("2_iu0ws")]
-transform = Transform3D(2.67394e-15, -1.39947, -6.11726e-08, -6.11726e-08, -6.11726e-08, 1.39947, -1.39947, 0, -6.11726e-08, 0.0814685, 0.761795, 0)
-
-[node name="interactive_object" type="Node3D" parent="." index="3"]
+[node name="interactive_object" type="Node3D" parent="." index="1"]
 script = ExtResource("3_tfwke")
 
 [node name="interactive_object_detector" type="Area3D" parent="interactive_object" index="0" groups=["interactive_object"]]
@@ -26,5 +29,28 @@ script = ExtResource("3_tfwke")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.514893, 0.782715, -0.0127869)
 shape = SubResource("BoxShape3D_q5rtl")
 
-[node name="on_use_position_marker" type="Marker3D" parent="." index="4"]
+[node name="on_use_position_marker" type="Marker3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.376, 0.762, 0)
+
+[node name="screens" type="Node3D" parent="." index="3"]
+
+[node name="PanelContent" parent="screens" index="0" instance=ExtResource("2_iu0ws")]
+transform = Transform3D(-1.13169e-07, 0, 2.58902, 0, 2.58902, 0, -2.58902, 0, -1.13169e-07, -0.337327, 1.50126, 0)
+
+[node name="Quad" parent="screens/PanelContent" index="1"]
+mesh = SubResource("QuadMesh_ctbor")
+
+[node name="PanelContent2" parent="screens" index="1" instance=ExtResource("2_iu0ws")]
+transform = Transform3D(2.67394e-15, -1.39947, -6.11726e-08, -6.11726e-08, -6.11726e-08, 1.39947, -1.39947, 0, -6.11726e-08, 0.0814685, 0.761795, 0)
+
+[node name="main_console_menu_selection" parent="screens" index="2" instance=ExtResource("5_qcfwr")]
+transform = Transform3D(-2.7947e-08, -0.452091, 0.452091, 0, 0.452091, 0.452091, -0.639353, 1.97615e-08, -1.97615e-08, 0.881447, 0.626836, 1.6575e-08)
+
+[node name="ShipBlueprint" parent="screens/main_console_menu_selection/SubViewport" index="0" node_paths=PackedStringArray("console_controller")]
+console_controller = NodePath("../../../..")
+
+[node name="Quad" parent="screens/main_console_menu_selection" index="1"]
+mesh = SubResource("QuadMesh_e3uwy")
+
+[editable path="screens/PanelContent"]
+[editable path="screens/main_console_menu_selection"]
