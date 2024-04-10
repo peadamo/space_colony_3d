@@ -35,7 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.376, 0.762, 0)
 [node name="screens" type="Node3D" parent="." index="3"]
 
 [node name="PanelContent" parent="screens" index="0" instance=ExtResource("2_iu0ws")]
-transform = Transform3D(-1.13169e-07, 0, 2.58902, 0, 2.58902, 0, -2.58902, 0, -1.13169e-07, -0.337327, 1.50126, 0)
+transform = Transform3D(-1.50938e-07, 0, 3.45307, 0, 3.45307, 0, -3.45307, 0, -1.50938e-07, -0.337327, 1.77044, 0)
 
 [node name="Quad" parent="screens/PanelContent" index="1"]
 mesh = SubResource("QuadMesh_ctbor")

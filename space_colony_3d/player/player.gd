@@ -25,6 +25,20 @@ func _unhandled_input(event):
 		if Input.is_action_just_released("move_head"):
 			can_move_head=false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+			
+		if Input.is_action_just_pressed("use_object"):
+			can_move_head_default = true
+			can_move_head=true
+			can_move=true
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			
+	if Input.is_action_just_pressed("use_object"):
+		print("apreto la e")
+		
+		if looking_at_interactive_object:
+			interactive_object_in_view.use_object($".")
+			print("entra a la consola fucksaodkalks")
+			
 
 func _physics_process(delta):
 	if !is_on_floor():
@@ -52,15 +66,21 @@ func _physics_process(delta):
 	
 	
 @onready var ray_cast_3d : RayCast3D = $head/head_camera/RayCast3D
+
 var interactive_object_in_view
+var looking_at_interactive_object=false
 
 func raycast_process():
 	var raycastCollide=ray_cast_3d.get_collider()
 	if raycastCollide != null:
 		if raycastCollide.is_in_group("interactive_object"):
 			interactive_object_in_view=raycastCollide.get_parent().get_parent()
-			interactive_object_in_view.use_object($".")
-			print(interactive_object_in_view)
+			$Control/Label.visible=true
+			looking_at_interactive_object=true
+		else :
+			looking_at_interactive_object=false
+			$Control/Label.visible=false
+			
 	
 
 func set_control_on():

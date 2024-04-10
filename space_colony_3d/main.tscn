@@ -19,6 +19,9 @@ script = ExtResource("1_gaq2m")
 
 [node name="BaseShip" parent="." instance=ExtResource("1_bhptd")]
 
+[node name="ShipBlueprint" parent="BaseShip/main_console/screens/PanelContent/SubViewport" index="1" node_paths=PackedStringArray("game_controller")]
+game_controller = NodePath("../../../../../..")
+
 [node name="Quad" parent="BaseShip/main_console/screens/PanelContent" index="1"]
 mesh = SubResource("QuadMesh_xss24")
 
@@ -26,7 +29,7 @@ mesh = SubResource("QuadMesh_xss24")
 mesh = SubResource("QuadMesh_ibqnm")
 
 [node name="Player" parent="." instance=ExtResource("2_i8058")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11765, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45636, 0)
 
 [node name="WorldBase" parent="." instance=ExtResource("3_04yyn")]
 
@@ -41,4 +44,5 @@ current = true
 [editable path="BaseShip/main_console/screens/PanelContent"]
 [editable path="BaseShip/main_console/screens/PanelContent/SubViewport/ShipBlueprint"]
 [editable path="BaseShip/main_console/screens/main_console_menu_selection"]
+[editable path="Player"]
 [editable path="RtsView"]
