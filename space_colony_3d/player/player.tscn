@@ -11,6 +11,7 @@ radius = 0.175
 height = 1.5
 
 [node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.762075, 0)
 script = ExtResource("1_s2uyd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -24,6 +25,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.073, 0)
 
 [node name="head_camera" type="Camera3D" parent="head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63031, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="head/head_camera"]
+target_position = Vector3(0, 0, -3)
+collide_with_areas = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

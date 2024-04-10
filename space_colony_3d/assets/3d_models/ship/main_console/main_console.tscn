@@ -1,5 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://3x8a3jaof3im"]
+[gd_scene load_steps=6 format=3 uid="uid://3x8a3jaof3im"]
 
 [ext_resource type="PackedScene" uid="uid://cn61oqflx210m" path="res://assets/3d_models/ship/main_console/main_console.glb" id="1_ikei5"]
+[ext_resource type="Script" path="res://assets/3d_models/ship/main_console/main_console.gd" id="2_b0svd"]
+[ext_resource type="PackedScene" uid="uid://dui7tvtw8rfkc" path="res://assets/3d_models/ship/main_console/panel_content.tscn" id="2_iu0ws"]
+[ext_resource type="Script" path="res://scripts/interactive_object.gd" id="3_tfwke"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q5rtl"]
+size = Vector3(2.02979, 1.59082, 2.97845)
 
 [node name="main_console" instance=ExtResource("1_ikei5")]
+script = ExtResource("2_b0svd")
+
+[node name="PanelContent" parent="." index="1" instance=ExtResource("2_iu0ws")]
+transform = Transform3D(-6.11726e-08, 0, 1.39947, 0, 1.39947, 0, -1.39947, 0, -6.11726e-08, -0.337327, 1.15719, 0)
+
+[node name="PanelContent2" parent="." index="2" instance=ExtResource("2_iu0ws")]
+transform = Transform3D(2.67394e-15, -1.39947, -6.11726e-08, -6.11726e-08, -6.11726e-08, 1.39947, -1.39947, 0, -6.11726e-08, 0.0814685, 0.761795, 0)
+
+[node name="interactive_object" type="Node3D" parent="." index="3"]
+script = ExtResource("3_tfwke")
+
+[node name="interactive_object_detector" type="Area3D" parent="interactive_object" index="0" groups=["interactive_object"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_object/interactive_object_detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.514893, 0.782715, -0.0127869)
+shape = SubResource("BoxShape3D_q5rtl")
+
+[node name="on_use_position_marker" type="Marker3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.376, 0.762, 0)
