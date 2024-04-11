@@ -3,12 +3,18 @@ var mouse_sensitivity=0.002
 var gravity=9.8
 var jump_velocity=5
 var speed=10
-var control_on=false
+var control_on=true
 @onready var head_camera:Camera3D = $head/head_camera
 
 var can_move=true
 var can_move_head=true
 var can_move_head_default=true
+@onready var radial_menu = $Control/RadialMenu
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	radial_menu.visible=false
+
 
 func _unhandled_input(event):
 	if can_move_head:
@@ -39,6 +45,16 @@ func _unhandled_input(event):
 			interactive_object_in_view.use_object($".")
 			print("entra a la consola fucksaodkalks")
 			
+	if Input.is_action_just_pressed("show_radial_menu"):
+		can_move_head=false
+		radial_menu.visible=true
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		
+	if Input.is_action_just_released("show_radial_menu"):
+		can_move_head=true
+		
+		radial_menu.visible=false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
 	if !is_on_floor():

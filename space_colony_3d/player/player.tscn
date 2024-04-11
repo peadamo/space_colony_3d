@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx3s2f1kg1r7p"]
+[gd_scene load_steps=5 format=3 uid="uid://cx3s2f1kg1r7p"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_s2uyd"]
+[ext_resource type="PackedScene" uid="uid://b8ecti2dhsooi" path="res://GUI/radial_menu.tscn" id="2_3cnl1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_fabli"]
 radius = 0.375
@@ -73,3 +74,6 @@ grow_vertical = 2
 text = "press E"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="RadialMenu" parent="Control" instance=ExtResource("2_3cnl1")]
+layout_mode = 1

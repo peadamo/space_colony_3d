@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwiiv7d2riq4w"]
+[gd_scene load_steps=7 format=3 uid="uid://dwiiv7d2riq4w"]
 
 [ext_resource type="PackedScene" uid="uid://ekjo00nueopf" path="res://ship/base_ship.tscn" id="1_bhptd"]
 [ext_resource type="Script" path="res://main.gd" id="1_gaq2m"]
 [ext_resource type="PackedScene" uid="uid://cx3s2f1kg1r7p" path="res://player/player.tscn" id="2_i8058"]
 [ext_resource type="PackedScene" uid="uid://jra8nqg480i0" path="res://world/world_base.tscn" id="3_04yyn"]
-[ext_resource type="PackedScene" uid="uid://dn2qyl7daun8j" path="res://rts_view/rts_view.tscn" id="5_gmiai"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_xss24"]
 resource_local_to_scene = true
@@ -33,16 +32,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45636, 0)
 
 [node name="WorldBase" parent="." instance=ExtResource("3_04yyn")]
 
-[node name="RtsView" parent="." instance=ExtResource("5_gmiai")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-
-[node name="head_camera" parent="RtsView/head" index="0"]
-current = true
-
 [editable path="BaseShip"]
 [editable path="BaseShip/main_console"]
 [editable path="BaseShip/main_console/screens/PanelContent"]
 [editable path="BaseShip/main_console/screens/PanelContent/SubViewport/ShipBlueprint"]
 [editable path="BaseShip/main_console/screens/main_console_menu_selection"]
 [editable path="Player"]
-[editable path="RtsView"]
