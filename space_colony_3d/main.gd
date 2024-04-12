@@ -1,6 +1,5 @@
 extends Node
 
-@onready var rts_view = $RtsView
 
 
 

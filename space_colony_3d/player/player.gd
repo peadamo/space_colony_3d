@@ -80,7 +80,6 @@ func _physics_process(delta):
 	
 	raycast_process()
 	
-	
 @onready var ray_cast_3d : RayCast3D = $head/head_camera/RayCast3D
 
 var interactive_object_in_view
@@ -107,3 +106,54 @@ func set_control_on():
 func set_control_off():
 	control_on=false
 	head_camera.current=false
+	
+@onready var pointer_mesh_ref = $pointer_mesh_ref
+	
+func calc_pointer_ref_position():
+	var new_position=update_pointer_pos()
+	var value_x_sign=1
+	if new_position.x<0:
+		value_x_sign=-1
+	var value_x_module=new_position.x*value_x_sign
+	var value_x=(floor(value_x_module)+0.5)*value_x_sign
+	
+	var value_z_sign=1
+	if new_position.z<0:
+		value_z_sign=-1
+	var value_z_module=new_position.z*value_z_sign
+	var value_z=(floor(value_z_module)+0.5)*value_z_sign
+	
+	var value_y_sign=1
+	if new_position.y<0:
+		value_y_sign=-1
+	var value_y_module=new_position.y*value_y_sign
+	var value_y=(floor(value_y_module)+0.5)*value_y_sign
+	
+	var cal_corrected_position = Vector3(value_x,value_y,value_z)
+	
+	print(new_position)
+	print(corrected_position)
+	
+	if cal_corrected_position != corrected_position:
+		corrected_position=cal_corrected_position
+		update_mesh_ref_position()
+		
+var corrected_position
+func update_mesh_ref_position():
+	pointer_mesh_ref.global_position=corrected_position
+	
+func update_pointer_pos():
+	var spaceState=get_world_3d().direct_space_state
+	var mousePos = Vector2(1152.0/2,648.0/2)
+	var camera = get_tree().root.get_camera_3d()
+	var rayOrigin = camera.project_ray_origin(mousePos)
+	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) *2000
+	var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd,1)
+	var rayArray = spaceState.intersect_ray(Parameters)
+	if rayArray.has("position"):
+		return rayArray["position"]
+	return Vector3.ZERO
+
+
+func _on__1_sec_timeout():
+	calc_pointer_ref_position()

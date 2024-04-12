@@ -4,7 +4,7 @@ extends Control
 var menu_items : Array = []
 var mouse_angle
 func _ready():
-	for i in 5:
+	for i in 4:
 		menu_items.append(str("item-",i))
 	set_up_items_layout()
 		
@@ -45,11 +45,21 @@ var initial_image_pos=Vector2(0,-180)
 
 @onready var item_images = $item_images
 
+
+var images_file_paths=[
+"res://GUI/door_icon.png",
+"res://GUI/food_icon.png",
+"res://GUI/podHangar_icon.png",
+"res://GUI/wall_icon.png",
+]
+
 func load_item_content(radial_dist,i):
 	
 	var item_image = load("res://GUI/item_image.tscn")
 	item_images.add_child(item_image.instantiate())
 	var last_item = item_images.get_child(-1)
+	last_item.set_image(images_file_paths[i])
+	
 	var rotation_angle=deg_to_rad(90)
 	var rotated = initial_image_pos.rotated(radial_dist/2+radial_dist*i)
 	

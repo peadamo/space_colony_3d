@@ -4,6 +4,15 @@ extends Node3D
 @onready var grid_ship_walls = $grid_ship_walls
 
 
+func _ready():
+	
+	var grid_cells=grid_ship_walls.get_used_cells()
+	for cell in grid_cells:
+		var pos = grid_ship_floor.map_to_local(cell)
+		print(pos)
+		
+		
+		
 func put_door(income_pos):
 	var prop_position=income_pos
 	#prop_position.x=int(prop_position.x)

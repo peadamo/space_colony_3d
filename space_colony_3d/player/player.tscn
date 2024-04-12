@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx3s2f1kg1r7p"]
+[gd_scene load_steps=6 format=3 uid="uid://cx3s2f1kg1r7p"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_s2uyd"]
 [ext_resource type="PackedScene" uid="uid://b8ecti2dhsooi" path="res://GUI/radial_menu.tscn" id="2_3cnl1"]
@@ -10,6 +10,8 @@ height = 1.5
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bincg"]
 radius = 0.175
 height = 1.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_dwi3t"]
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.762075, 0)
@@ -77,3 +79,13 @@ vertical_alignment = 2
 
 [node name="RadialMenu" parent="Control" instance=ExtResource("2_3cnl1")]
 layout_mode = 1
+
+[node name="pointer_mesh_ref" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.172713, 0, 0, 0, 0.172713, 0, 0, 0, 0.172713, 0, 0, 0)
+mesh = SubResource("SphereMesh_dwi3t")
+
+[node name="0_1sec" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="0_1sec" to="." method="_on__1_sec_timeout"]
