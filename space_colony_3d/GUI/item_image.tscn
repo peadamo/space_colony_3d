@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://djt28xd7o7u44"]
+[gd_scene load_steps=2 format=3 uid="uid://djt28xd7o7u44"]
 
 [ext_resource type="Script" path="res://GUI/item_image.gd" id="1_n38ty"]
-[ext_resource type="Texture2D" uid="uid://dt3ih55tvf5lq" path="res://GUI/food_icon.png" id="1_tt2e8"]
 
 [node name="item_container" type="Node2D"]
 script = ExtResource("1_n38ty")
 
-[node name="item_image" type="Sprite2D" parent="."]
-texture = ExtResource("1_tt2e8")
+[node name="Label" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "WALLS"
+horizontal_alignment = 1
+vertical_alignment = 1

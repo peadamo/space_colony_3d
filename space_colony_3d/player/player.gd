@@ -39,11 +39,11 @@ func _unhandled_input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
 	if Input.is_action_just_pressed("use_object"):
-		print("apreto la e")
+		#print("apreto la e")
 		
 		if looking_at_interactive_object:
 			interactive_object_in_view.use_object($".")
-			print("entra a la consola fucksaodkalks")
+			#print("entra a la consola fucksaodkalks")
 			
 	if Input.is_action_just_pressed("show_radial_menu"):
 		can_move_head=false
@@ -111,31 +111,35 @@ func set_control_off():
 	
 func calc_pointer_ref_position():
 	var new_position=update_pointer_pos()
-	var value_x_sign=1
-	if new_position.x<0:
-		value_x_sign=-1
-	var value_x_module=new_position.x*value_x_sign
-	var value_x=(floor(value_x_module)+0.5)*value_x_sign
+	#var value_x_sign=1
+	#if new_position.x<0:
+		#value_x_sign=-1
+	#var value_x_module=new_position.x*value_x_sign
+	#var value_x=(floor(value_x_module)+0.5)*value_x_sign
+	#
+	#var value_z_sign=1
+	#if new_position.z<0:
+		#value_z_sign=-1
+	#var value_z_module=new_position.z*value_z_sign
+	#var value_z=(floor(value_z_module)+0.5)*value_z_sign
+	#
+	#var value_y_sign=1
+	#if new_position.y<0:
+		#value_y_sign=-1
+	#var value_y_module=new_position.y*value_y_sign
+	#var value_y=(floor(value_y_module)+0.5)*value_y_sign
+	#
+	#var cal_corrected_position = Vector3(value_x,value_y,value_z)
 	
-	var value_z_sign=1
-	if new_position.z<0:
-		value_z_sign=-1
-	var value_z_module=new_position.z*value_z_sign
-	var value_z=(floor(value_z_module)+0.5)*value_z_sign
+	#print(new_position)
+	#print(corrected_position)
 	
-	var value_y_sign=1
-	if new_position.y<0:
-		value_y_sign=-1
-	var value_y_module=new_position.y*value_y_sign
-	var value_y=(floor(value_y_module)+0.5)*value_y_sign
-	
-	var cal_corrected_position = Vector3(value_x,value_y,value_z)
-	
-	print(new_position)
-	print(corrected_position)
-	
-	if cal_corrected_position != corrected_position:
-		corrected_position=cal_corrected_position
+	#if cal_corrected_position != corrected_position:
+		#corrected_position=cal_corrected_position
+		#update_mesh_ref_position()
+		
+	if new_position != corrected_position:
+		corrected_position=new_position
 		update_mesh_ref_position()
 		
 var corrected_position
@@ -148,7 +152,7 @@ func update_pointer_pos():
 	var camera = get_tree().root.get_camera_3d()
 	var rayOrigin = camera.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) *2000
-	var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd,1)
+	var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd)
 	var rayArray = spaceState.intersect_ray(Parameters)
 	if rayArray.has("position"):
 		return rayArray["position"]
