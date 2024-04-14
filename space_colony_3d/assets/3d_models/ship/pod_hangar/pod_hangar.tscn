@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dktydfpr4ehfp"]
+
+[ext_resource type="PackedScene" uid="uid://b3rarn1075ax6" path="res://assets/3d_models/ship/pod_hangar/pod_hangar.glb" id="1_fdv1x"]
+[ext_resource type="Material" uid="uid://bfg2bieb2602b" path="res://shaders_and_materials/prop_blueprint_red.tres" id="2_ilttt"]
+[ext_resource type="Script" path="res://custom_nodes/blue_print_controller.gd" id="2_ip3ef"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nuojq"]
+size = Vector3(2.97778, 2.13626, 3.9845)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jllgq"]
+size = Vector3(2.99609, 2.12936, 2.92627)
+
+[node name="pod_hangar" instance=ExtResource("1_fdv1x")]
+
+[node name="Pod" parent="meshes" index="0"]
+material_override = ExtResource("2_ilttt")
+
+[node name="bluePrint_controller" type="Node3D" parent="." index="1" node_paths=PackedStringArray("mesh_container")]
+script = ExtResource("2_ip3ef")
+mesh_container = NodePath("../meshes")
+
+[node name="blueprint_area_col_detector" type="Area3D" parent="bluePrint_controller" index="0" groups=["blueprint_area"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bluePrint_controller/blueprint_area_col_detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00671387, 1.08043, -0.496399)
+shape = SubResource("BoxShape3D_nuojq")
+
+[node name="Timer" type="Timer" parent="bluePrint_controller" index="1"]
+wait_time = 0.1
+autostart = true
+
+[node name="object_collider" type="StaticBody3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="object_collider" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00585938, 1.0807, 0.0407715)
+shape = SubResource("BoxShape3D_jllgq")
+disabled = true
+
+[connection signal="timeout" from="bluePrint_controller/Timer" to="bluePrint_controller" method="_on_timer_timeout"]

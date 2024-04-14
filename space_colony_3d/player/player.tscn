@@ -75,8 +75,9 @@ text = "press E"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="RadialMenu" parent="Control" instance=ExtResource("2_3cnl1")]
+[node name="RadialMenu" parent="Control" node_paths=PackedStringArray("player") instance=ExtResource("2_3cnl1")]
 layout_mode = 1
+player = NodePath("../..")
 
 [node name="pointer_mesh_ref" type="Marker3D" parent="."]
 

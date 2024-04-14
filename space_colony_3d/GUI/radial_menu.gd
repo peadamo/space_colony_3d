@@ -1,44 +1,84 @@
 extends Control
-
+@export var player:CharacterBody3D
 var menu_items : Array = []
 var mouse_angle
 var screen_center
+var is_radial_menu_on=false
 
 func _ready():
 	screen_center = get_viewport_rect().size/2
-	load_menu("start_menu")
 
 
 
-var start_menu : Array = ["WALL","SYSTEM","FOOD","AIRLOCK","STORAGE"]
+var start_menu : Array = ["WALL","SYSTEM","FOOD","AIRLOCK","STORAGE","VITAL SUPPORT"]
+var food_menu : Array = ["DISPENSER_ALGAS","COCINA","MESA CULTIVO CHICA", "MESA CULTIVO MEDIANA", "MESA CULTIVO GRANDE", "GENERADOR DE CO2"]
+var airlock_menu : Array = ["Pod Hangar", "Shuttle Hangar","X1 Airlock","Space Suit Locker"]
 var current_menu
 
 func load_menu(menu):
-	var menu_to_load
+	
+	var menu_to_load : Array
 	match menu:
 		"start_menu":
-			menu_to_load=start_menu
+			menu_to_load.append_array(start_menu)
+		"food_menu":
+			menu_to_load.append_array(food_menu)
+		"airlock_menu":
+			menu_to_load.append_array(airlock_menu)
 	current_menu=menu_to_load
 	menu_items.clear()
 	menu_items=menu_to_load
-	set_up_items_layout()
+	CUSTOM.clear_node_children(item_images)
+	CUSTOM.clear_node_children(separators_bars)
+	set_up_items_layout(menu_items)
 
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		mouse_angle= screen_center.angle_to_point(event.position)+deg_to_rad(90)
-		if mouse_angle<0:
-			mouse_angle+=deg_to_rad(360)
-		rotate_position_marker()
-		get_selected_item_by_angle()
+	if is_radial_menu_on:
+		if event is InputEventMouseMotion:
+			mouse_angle= screen_center.angle_to_point(event.position)+deg_to_rad(90)
+			if mouse_angle<0:
+				mouse_angle+=deg_to_rad(360)
+			rotate_position_marker()
+			get_selected_item_by_angle()
+			
+		if event is InputEventMouseButton:
+			if event.button_index==1 and event.pressed:
+				run_action_selected_menu()
+
+func run_action_selected_menu():
+	var item_menu=current_menu[selected_item]
+	match item_menu:
+		"WALL":
+			pass
+		"SYSTEM":
+			pass
+		"FOOD":
+			load_menu("food_menu")
+		"AIRLOCK":
+			load_menu("airlock_menu")
+		"STORAGE":
+			pass
+		"VITAL SUPPORT":
+			pass
+#airlock MENU ITEMS:
+		"Pod Hangar":
+			player.load_blueprint("Pod Hangar")
+		"Shuttle Hangar":
+			pass
+		"X1 Airlock":
+			pass
+		"Space Suit Locker":
+			pass
 
 	
 var actual_angle=0.0
 @onready var separators_bars = $separators_bars
 var radial_Area_break_points:Array=[]
 
-func set_up_items_layout():
-	var items_count = menu_items.size()
+func set_up_items_layout(new_menu_items):
+	radial_Area_break_points.clear()
+	var items_count = new_menu_items.size()
 	var radial_dist = deg_to_rad(360)/items_count
 	for i in items_count:
 		var separator_bar_scne = load("res://GUI/separator_bar.tscn")
@@ -74,11 +114,10 @@ func get_selected_item_by_angle():
 			item=i
 	if item != selected_item:
 		selected_item=item
-		resalt_selected_item()
-	
-func resalt_selected_item():
-	var all_items=item_images.get_children()
-	for item in all_items:
-		item.scale=Vector2(1,1)
 		
-	all_items[selected_item].scale=Vector2(2,2)
+		for child in item_images.get_children():
+			child.scale=Vector2(1,1)
+		item_images.get_children()[item].scale=Vector2(2,2)
+	
+	
+

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://uu6h8ub57hye"]
+
+[ext_resource type="Script" path="res://custom_nodes/blue_print_controller.gd" id="1_gnsib"]
+
+[node name="bluePrint_controller" type="Node3D"]
+script = ExtResource("1_gnsib")

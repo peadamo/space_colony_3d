@@ -9,7 +9,6 @@ func _ready():
 	var grid_cells=grid_ship_walls.get_used_cells()
 	for cell in grid_cells:
 		var pos = grid_ship_floor.map_to_local(cell)
-		print(pos)
 		
 		
 		
@@ -53,3 +52,8 @@ func get_used_cells():
 func get_cell_item(cell : Vector3i):
 	var item = grid_ship_walls.get_cell_item(cell)
 	return item
+
+
+
+@onready var ship_buildings = $ship_buildings
+

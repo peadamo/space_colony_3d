@@ -6,7 +6,7 @@ extends Node
 
 var ship_tilemap : Array =[]
 @onready var base_ship = $BaseShip
-@onready var tile_map = $BaseShip/main_console/screens/PanelContent/SubViewport/ShipBlueprint/TileMap
+@onready var tile_map = $BaseShip/ship_buildings/main_console/screens/PanelContent/SubViewport/ShipBlueprint/TileMap
 
 func update_tile_map():
 	var all_ship_used_cells=base_ship.get_used_cells()
