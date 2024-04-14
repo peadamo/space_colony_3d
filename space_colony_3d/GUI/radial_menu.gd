@@ -50,7 +50,7 @@ func run_action_selected_menu():
 	var item_menu=current_menu[selected_item]
 	match item_menu:
 		"WALL":
-			pass
+			player.load_blueprint("basic_wall")
 		"SYSTEM":
 			pass
 		"FOOD":

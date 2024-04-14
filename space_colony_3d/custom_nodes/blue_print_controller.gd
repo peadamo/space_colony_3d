@@ -9,6 +9,8 @@ func _ready():
 	set_mesh_material_override(PROP_BLUEPRINT_GREEN)
 const PROP_BLUEPRINT_GREEN = preload("res://shaders_and_materials/prop_blueprint_green.tres")
 const PROP_BLUEPRINT_RED = preload("res://shaders_and_materials/prop_blueprint_red.tres")
+const PROP_BLUEPRINT_SKYBLUE = preload("res://shaders_and_materials/prop_blueprint_skyblue.tres")
+
 func process_object_meshes():
 	var meshInstances=mesh_container.get_children()
 	for meshInstance:MeshInstance3D in meshInstances:
@@ -51,8 +53,18 @@ func _on_timer_timeout():
 
 	if has_collisions:
 		set_mesh_material_override(PROP_BLUEPRINT_RED)
-		#print(blueprint_area_col_detector.get_overlapping_areas())
-		#print(blueprint_area_col_detector.get_overlapping_bodies())
 		
 	else:
 		set_mesh_material_override(PROP_BLUEPRINT_GREEN)
+@onready var timer = $Timer
+@onready var collision_shape_3d = $"../object_collider/CollisionShape3D"
+		
+func blueprint_placed():
+	timer.stop()
+	set_mesh_material_override(PROP_BLUEPRINT_SKYBLUE)
+	blueprint_area_col_detector.add_to_group("blue_print")
+	
+func build():
+	collision_shape_3d.disabled=false
+	set_mesh_material_override(null)
+	queue_free()

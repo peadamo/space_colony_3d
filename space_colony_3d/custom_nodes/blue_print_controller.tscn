@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://uu6h8ub57hye"]
+[gd_scene load_steps=3 format=3 uid="uid://uu6h8ub57hye"]
 
 [ext_resource type="Script" path="res://custom_nodes/blue_print_controller.gd" id="1_gnsib"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fokfb"]
+
 [node name="bluePrint_controller" type="Node3D"]
 script = ExtResource("1_gnsib")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="blueprint_area_col_detector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="blueprint_area_col_detector"]
+shape = SubResource("BoxShape3D_fokfb")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://0l23hf2ey7oi"]
+
+[ext_resource type="PackedScene" uid="uid://cx8056bj1qhtw" path="res://assets/3d_models/ship/basic_wall/basic_wall.glb" id="1_wa81i"]
+[ext_resource type="PackedScene" uid="uid://uu6h8ub57hye" path="res://custom_nodes/blue_print_controller.tscn" id="2_erl1s"]
+[ext_resource type="Script" path="res://assets/3d_models/ship/basic_wall/basic_wall.gd" id="2_vvsdk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dih80"]
+size = Vector3(0.95, 2.95, 0.95)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i5elv"]
+size = Vector3(1, 3, 1)
+
+[node name="basic_wall" instance=ExtResource("1_wa81i")]
+script = ExtResource("2_vvsdk")
+
+[node name="bluePrint_controller" parent="." index="1" node_paths=PackedStringArray("mesh_container") instance=ExtResource("2_erl1s")]
+mesh_container = NodePath("../mesh")
+
+[node name="CollisionShape3D" parent="bluePrint_controller/blueprint_area_col_detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_dih80")
+
+[node name="object_collider" type="StaticBody3D" parent="." index="2" groups=["building"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="object_collider" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_i5elv")
+disabled = true
+
+[editable path="bluePrint_controller"]

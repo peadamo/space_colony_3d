@@ -1,39 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://dktydfpr4ehfp"]
+[gd_scene load_steps=9 format=3 uid="uid://dktydfpr4ehfp"]
 
 [ext_resource type="PackedScene" uid="uid://b3rarn1075ax6" path="res://assets/3d_models/ship/pod_hangar/pod_hangar.glb" id="1_fdv1x"]
-[ext_resource type="Material" uid="uid://bfg2bieb2602b" path="res://shaders_and_materials/prop_blueprint_red.tres" id="2_ilttt"]
-[ext_resource type="Script" path="res://custom_nodes/blue_print_controller.gd" id="2_ip3ef"]
+[ext_resource type="Script" path="res://assets/3d_models/ship/pod_hangar/pod_hangar.gd" id="2_t8j7t"]
+[ext_resource type="PackedScene" uid="uid://bxuhpqx7bacrn" path="res://assets/3d_models/ship/pod/pod.tscn" id="4_p3f20"]
+[ext_resource type="PackedScene" uid="uid://uu6h8ub57hye" path="res://custom_nodes/blue_print_controller.tscn" id="4_s62g5"]
+[ext_resource type="Script" path="res://assets/3d_models/ship/pod_hangar/hangar_door_interactor.gd" id="5_3hmj6"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nuojq"]
-size = Vector3(2.97778, 2.13626, 3.9845)
+[sub_resource type="BoxShape3D" id="BoxShape3D_g3oky"]
+size = Vector3(2.95, 1.95, 3.95)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jllgq"]
-size = Vector3(2.99609, 2.12936, 2.92627)
+size = Vector3(2.9, 2.5, 2.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4dlyl"]
+size = Vector3(1, 1.8808, 0.0898438)
 
 [node name="pod_hangar" instance=ExtResource("1_fdv1x")]
+script = ExtResource("2_t8j7t")
 
-[node name="Pod" parent="meshes" index="0"]
-material_override = ExtResource("2_ilttt")
-
-[node name="bluePrint_controller" type="Node3D" parent="." index="1" node_paths=PackedStringArray("mesh_container")]
-script = ExtResource("2_ip3ef")
+[node name="bluePrint_controller" parent="." index="1" node_paths=PackedStringArray("mesh_container") instance=ExtResource("4_s62g5")]
 mesh_container = NodePath("../meshes")
 
-[node name="blueprint_area_col_detector" type="Area3D" parent="bluePrint_controller" index="0" groups=["blueprint_area"]]
+[node name="CollisionShape3D" parent="bluePrint_controller/blueprint_area_col_detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004, 1, -0.493)
+shape = SubResource("BoxShape3D_g3oky")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bluePrint_controller/blueprint_area_col_detector" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00671387, 1.08043, -0.496399)
-shape = SubResource("BoxShape3D_nuojq")
-
-[node name="Timer" type="Timer" parent="bluePrint_controller" index="1"]
-wait_time = 0.1
-autostart = true
-
-[node name="object_collider" type="StaticBody3D" parent="." index="2"]
+[node name="object_collider" type="StaticBody3D" parent="." index="2" groups=["building"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="object_collider" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00585938, 1.0807, 0.0407715)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("BoxShape3D_jllgq")
 disabled = true
 
-[connection signal="timeout" from="bluePrint_controller/Timer" to="bluePrint_controller" method="_on_timer_timeout"]
+[node name="objecet_props" type="Node3D" parent="." index="3"]
+
+[node name="pod_container" type="Marker3D" parent="objecet_props" index="0"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.00264, 0)
+
+[node name="pod" parent="objecet_props/pod_container" index="0" instance=ExtResource("4_p3f20")]
+
+[node name="hangar_door" type="Node3D" parent="objecet_props" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.45471)
+
+[node name="hangar_door_interactor" type="Area3D" parent="objecet_props/hangar_door" index="0" groups=["hangar_door"]]
+script = ExtResource("5_3hmj6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="objecet_props/hangar_door/hangar_door_interactor" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01065, -0.0244141)
+shape = SubResource("BoxShape3D_4dlyl")
+
+[editable path="bluePrint_controller"]
