@@ -42,11 +42,14 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.0
 [node name="hangar_door" type="Node3D" parent="objecet_props" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.45471)
 
-[node name="hangar_door_interactor" type="Area3D" parent="objecet_props/hangar_door" index="0" groups=["hangar_door"]]
+[node name="hangar_door_interactor" type="Area3D" parent="objecet_props/hangar_door" index="0" node_paths=PackedStringArray("pod") groups=["hangar_door"]]
+monitorable = false
 script = ExtResource("5_3hmj6")
+pod = NodePath("../../pod_container/pod")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="objecet_props/hangar_door/hangar_door_interactor" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01065, -0.0244141)
 shape = SubResource("BoxShape3D_4dlyl")
 
 [editable path="bluePrint_controller"]
+[editable path="objecet_props/pod_container/pod"]

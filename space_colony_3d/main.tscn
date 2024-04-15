@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://ekjo00nueopf" path="res://ship/base_ship.tscn" id="1_bhptd"]
 [ext_resource type="Script" path="res://main.gd" id="1_gaq2m"]
+[ext_resource type="PackedScene" uid="uid://cx3s2f1kg1r7p" path="res://player/player.tscn" id="2_i8058"]
 [ext_resource type="PackedScene" uid="uid://jra8nqg480i0" path="res://world/world_base.tscn" id="3_04yyn"]
-[ext_resource type="PackedScene" uid="uid://bxuhpqx7bacrn" path="res://assets/3d_models/ship/pod/pod.tscn" id="4_7crs0"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_gaq2m")
@@ -12,7 +12,7 @@ script = ExtResource("1_gaq2m")
 
 [node name="BaseShip" parent="." instance=ExtResource("1_bhptd")]
 
-[node name="pod" parent="." instance=ExtResource("4_7crs0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5337, 0)
+[node name="Player" parent="." node_paths=PackedStringArray("ship") instance=ExtResource("2_i8058")]
+ship = NodePath("../BaseShip")
 
 [editable path="BaseShip"]

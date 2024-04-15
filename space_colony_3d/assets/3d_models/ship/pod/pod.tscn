@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxuhpqx7bacrn"]
+[gd_scene load_steps=7 format=3 uid="uid://bxuhpqx7bacrn"]
 
 [ext_resource type="Script" path="res://assets/3d_models/ship/pod/pod.gd" id="1_h06qc"]
-[ext_resource type="PackedScene" uid="uid://cx3s2f1kg1r7p" path="res://player/player.tscn" id="2_exwec"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xl4ni"]
 resource_name = "Material.007"
@@ -84,16 +83,33 @@ script = ExtResource("1_h06qc")
 
 [node name="pod_x" type="Node3D" parent="pod_y"]
 
+[node name="giroscope_start" type="Node3D" parent="pod_y/pod_x"]
+
+[node name="giroscope_front" type="Node3D" parent="pod_y/pod_x/giroscope_start"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="giroscope_up" type="Node3D" parent="pod_y/pod_x/giroscope_start"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="giroscope_down" type="Node3D" parent="pod_y/pod_x/giroscope_start"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="giroscope_back" type="Node3D" parent="pod_y/pod_x/giroscope_start"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="giroscope_left" type="Node3D" parent="pod_y/pod_x/giroscope_start"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="giroscope_rigth" type="Node3D" parent="pod_y/pod_x/giroscope_start"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
 [node name="Pod_001" type="MeshInstance3D" parent="pod_y/pod_x"]
 mesh = SubResource("ArrayMesh_sjdoq")
 skeleton = NodePath("")
 
 [node name="player_holder" type="Marker3D" parent="pod_y/pod_x"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.41288, 0)
-
-[node name="Player" parent="pod_y/pod_x/player_holder" instance=ExtResource("2_exwec")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.56422, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ktr8x")
-
-[editable path="pod_y/pod_x/player_holder/Player"]
+disabled = true

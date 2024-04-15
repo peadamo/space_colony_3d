@@ -52,6 +52,9 @@ func _on_timer_timeout():
 		has_collisions=true
 
 	if has_collisions:
+		#print(blueprint_area_col_detector.get_overlapping_areas())
+		#print(blueprint_area_col_detector.get_overlapping_bodies())
+		
 		set_mesh_material_override(PROP_BLUEPRINT_RED)
 		
 	else:
