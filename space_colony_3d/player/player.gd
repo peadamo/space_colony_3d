@@ -84,18 +84,14 @@ func _unhandled_input(event):
 				
 				if Input.is_action_just_pressed("left_click"):
 					is_showing_blue_print_to_build=false
-					print("construyo el blueprint")
 					var blueprint_node=pointer_mesh_ref.get_child(-1)
 					blueprint_node.blue_print_controller.blueprint_placed()
-					print(ship)
-					print(ship.ship_buildings)
 					
 					blueprint_node.reparent(ship.ship_buildings)
 					load_blueprint(actual_blueprint,is_floor_blue_print)
 				if Input.is_action_just_pressed("rigth_click"):
 					is_showing_blue_print_to_build=false
 					
-					print("borro el blueprint")
 					
 					CUSTOM.clear_node_children(pointer_mesh_ref)
 					can_show_radial_menu=true
@@ -198,7 +194,6 @@ func calc_pointer_ref_position():
 			value_x_sign=-1
 		var value_x_module=new_position.x*value_x_sign
 		var value_x_decimal=value_x_module-floor(value_x_module)
-		print(value_x_decimal)
 		if value_x_decimal>0.5:
 			value_x=(floor(value_x_module)+1)*value_x_sign
 		else:

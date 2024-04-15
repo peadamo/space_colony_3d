@@ -6,6 +6,7 @@ extends Node
 
 var ship_tilemap : Array =[]
 @onready var base_ship = $BaseShip
+
 #@onready var tile_map = $BaseShip/ship_buildings/main_console/screens/PanelContent/SubViewport/ShipBlueprint/TileMap
 #
 #func update_tile_map():

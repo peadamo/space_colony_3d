@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct585afdtbxpq"]
+
+[ext_resource type="PackedScene" uid="uid://c43lnc51ompbc" path="res://assets/3d_models/ship/roof/roof_00.glb" id="1_8t54c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chcgu"]
+size = Vector3(1, 0.1, 1)
+
+[node name="roof_00" instance=ExtResource("1_8t54c")]
+
+[node name="mesh_004" parent="." index="0" groups=["mesh_container"]]
+
+[node name="object_collider" type="StaticBody3D" parent="." index="1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="object_collider" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05, 0)
+shape = SubResource("BoxShape3D_chcgu")

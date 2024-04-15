@@ -9,12 +9,14 @@ var is_on_use=false
 func start():
 	is_on_use=true
 
-
 func _unhandled_input(event):
 	if is_on_use:
 		if event is InputEventMouseMotion:
 			pod_y.rotate_y(-event.relative.x*mouse_sensitivity)
 			pod_x.rotate_x(-event.relative.y*mouse_sensitivity)
+		
+		if Input.is_action_pressed("x_ray_vision"):
+			ship.active_xView_vision()
 		
 @onready var giroscope_start = $pod_y/pod_x/giroscope_start
 @onready var giroscope_front = $pod_y/pod_x/giroscope_start/giroscope_front
@@ -24,13 +26,11 @@ func _unhandled_input(event):
 @onready var giroscope_left = $pod_y/pod_x/giroscope_start/giroscope_left
 @onready var giroscope_rigth = $pod_y/pod_x/giroscope_start/giroscope_rigth
 
-
 @onready var ship = get_tree().current_scene.base_ship
 
 
 
 func _physics_process(delta):
-	print(ship)
 	if is_on_use:
 	
 		var start_pos=giroscope_start.global_position
