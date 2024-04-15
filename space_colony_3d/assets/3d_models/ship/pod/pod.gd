@@ -25,9 +25,12 @@ func _unhandled_input(event):
 @onready var giroscope_rigth = $pod_y/pod_x/giroscope_start/giroscope_rigth
 
 
+@onready var ship = get_tree().current_scene.base_ship
+
 
 
 func _physics_process(delta):
+	print(ship)
 	if is_on_use:
 	
 		var start_pos=giroscope_start.global_position

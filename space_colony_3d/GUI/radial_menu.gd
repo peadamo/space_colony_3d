@@ -50,7 +50,7 @@ func run_action_selected_menu():
 	var item_menu=current_menu[selected_item]
 	match item_menu:
 		"WALL":
-			player.load_blueprint("basic_wall")
+			player.load_blueprint("basic_wall",true)
 		"SYSTEM":
 			pass
 		"FOOD":
@@ -63,7 +63,7 @@ func run_action_selected_menu():
 			pass
 #airlock MENU ITEMS:
 		"Pod Hangar":
-			player.load_blueprint("Pod Hangar")
+			player.load_blueprint("Pod Hangar",true)
 		"Shuttle Hangar":
 			pass
 		"X1 Airlock":

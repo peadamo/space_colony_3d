@@ -37,21 +37,4 @@ var ship_tilemap : Array =[]
 	#print(level_0_cell_item)
 	#
 	#
-@onready var grid_ship_walls : GridMap = $BaseShip/grid_ship_walls
-@onready var grid_ship_roof = $BaseShip/grid_ship_roof
-	
-func add_ship_hull_cell(tilemap_cell,is_wall):
-	#print("grid_cell", )
-	if is_wall:
-		grid_ship_walls.set_cell_item(Vector3i(tilemap_cell.x,0,tilemap_cell.y),1,0)
-	else :
-		grid_ship_walls.set_cell_item(Vector3i(tilemap_cell.x,0,tilemap_cell.y),0,0)
-	
-	grid_ship_roof.set_cell_item(Vector3i(tilemap_cell.x,0,tilemap_cell.y),4,0)
-	
-	
-func remove_ship_hull_cell(tilemap_cell):
-	grid_ship_walls.set_cell_item(Vector3i(tilemap_cell.x,0,tilemap_cell.y),-1,0)
-	grid_ship_roof.set_cell_item(Vector3i(tilemap_cell.x,0,tilemap_cell.y),-1,0)
-	
 	

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmwsmloxtkv6b"]
+
+[ext_resource type="PackedScene" uid="uid://dgw6ba7jgnqwc" path="res://assets/3d_models/ship/floor/space_colony_ship.glb" id="1_e5wvl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bje3s"]
+size = Vector3(1, 0.2, 1)
+
+[node name="floor_00" instance=ExtResource("1_e5wvl")]
+
+[node name="object_collider" type="StaticBody3D" parent="." index="1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="object_collider" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_bje3s")

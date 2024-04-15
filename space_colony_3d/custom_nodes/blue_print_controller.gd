@@ -6,7 +6,9 @@ var object_meshes:Array=[]
 
 func _ready():
 	process_object_meshes()
+	
 	set_mesh_material_override(PROP_BLUEPRINT_GREEN)
+	
 const PROP_BLUEPRINT_GREEN = preload("res://shaders_and_materials/prop_blueprint_green.tres")
 const PROP_BLUEPRINT_RED = preload("res://shaders_and_materials/prop_blueprint_red.tres")
 const PROP_BLUEPRINT_SKYBLUE = preload("res://shaders_and_materials/prop_blueprint_skyblue.tres")
