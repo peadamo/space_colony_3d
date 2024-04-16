@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxuhpqx7bacrn"]
+[gd_scene load_steps=8 format=3 uid="uid://bxuhpqx7bacrn"]
 
 [ext_resource type="Script" path="res://assets/3d_models/ship/pod/pod.gd" id="1_h06qc"]
 
@@ -76,6 +76,8 @@ shadow_mesh = SubResource("ArrayMesh_kux6n")
 [sub_resource type="SphereShape3D" id="SphereShape3D_ktr8x"]
 radius = 1.16487
 
+[sub_resource type="SphereMesh" id="SphereMesh_salg6"]
+
 [node name="pod" type="CharacterBody3D"]
 script = ExtResource("1_h06qc")
 
@@ -119,3 +121,6 @@ spot_angle = 63.1717
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ktr8x")
 disabled = true
+
+[node name="pointer_mesh_ref" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_salg6")
