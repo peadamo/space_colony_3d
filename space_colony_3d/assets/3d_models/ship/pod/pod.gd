@@ -39,6 +39,9 @@ func _unhandled_input(event):
 				pointer_mesh_ref.add_child(HULL_BLUEPRINT_WITH_WALL.instantiate())
 			else:
 				CUSTOM.clear_node_children(pointer_mesh_ref)
+				
+		if Input.is_action_just_pressed("delete_internal_hull_walls"):
+			ship.update_hull_walls()
 		
 		
 		

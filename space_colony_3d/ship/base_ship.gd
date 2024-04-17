@@ -87,54 +87,60 @@ func add_hull_wall(pos):
 	var last_roof=roof.get_child(-1)
 	last_roof.global_position=pos
 	
+	update_hull_walls()
+	
 func _ready():
 	update_hull_walls()
 	
+	
+	
 func update_hull_walls():
+	#print("ejecute delete internal hull walls")
 	var floor_cells=$floor.get_children()
 	var floor_cells_position : Array = []
 	
 	for cell in floor_cells:
 		floor_cells_position.append(cell.global_position)
+		
 	
 	var no_border_cells : Array = []
-	
+	var exist_counter=0
 	for cell in floor_cells_position:
+		
+		var brother_cells : Array = [
+			Vector3(cell.x + 1, 0 , cell.z + 1),
+			Vector3(cell.x + 1, 0 , cell.z + 0),
+			Vector3(cell.x + 1, 0 , cell.z - 1),
+			
+			Vector3(cell.x - 1, 0 , cell.z + 1),
+			Vector3(cell.x - 1, 0 , cell.z + 0),
+			Vector3(cell.x - 1, 0 , cell.z - 1),
+			
+			Vector3(cell.x + 0, 0 , cell.z + 1),
+			Vector3(cell.x + 0, 0 , cell.z + 0),
+			Vector3(cell.x + 0, 0 , cell.z - 1),
+			
+		]
+		
 		var is_border_cell = false
 		
-		if !floor_cells_position.has(Vector3(cell.x+1,cell.y,cell.z)):
-			is_border_cell=true
-			print(is_border_cell)
-
-		if !floor_cells_position.has(Vector3(cell.x-1,cell.y,cell.z)):
-			is_border_cell=true
-			print(is_border_cell)
-
-		if !floor_cells_position.has(Vector3(cell.x+1,cell.y+1,cell.z)):
-			is_border_cell=true
-			print(is_border_cell)
-
-		if !floor_cells_position.has(Vector3(cell.x-1,cell.y+1,cell.z)):
-			is_border_cell=true
-			print(is_border_cell)
-
-		if !floor_cells_position.has(Vector3(cell.x,cell.y+1,cell.z)):
-			is_border_cell=true
-			print(is_border_cell)
-
-		if !floor_cells_position.has(Vector3(cell.x+1,cell.y-1,cell.z)):
-			is_border_cell=true
-			print(is_border_cell)
-
-		if !floor_cells_position.has(Vector3(cell.x-1,cell.y-1,cell.z)):
-			is_border_cell=true
-			print(is_border_cell)
-	
-		if !floor_cells_position.has(Vector3(cell.x,cell.y-1,cell.z)):
-			is_border_cell=true
-			print(is_border_cell)
-			
-		if !is_border_cell:
-			no_border_cells.append(cell)
+		for bcell in brother_cells:
+			var exist = floor_cells_position.has(bcell)
+			if exist == false:
+				is_border_cell=true
+			else:
+				exist_counter+=1
 		
-	print(no_border_cells)
+		if is_border_cell == false:
+			
+			no_border_cells.append(cell)
+	
+	print(exist_counter)
+	var wall_cells = $hull_walls.get_children()
+	
+	for wall_cell in wall_cells:
+		var cell_pos = wall_cell.global_position
+		if no_border_cells.has(cell_pos):
+			wall_cell.queue_free()
+			
+	
