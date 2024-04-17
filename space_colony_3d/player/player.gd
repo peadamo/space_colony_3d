@@ -52,14 +52,23 @@ func _unhandled_input(event):
 			can_move_head=false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
-		if Input.is_action_just_pressed("use_object"):
-			can_move_head_default = true
-			can_move_head=true
-			can_move=true
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		#if Input.is_action_just_pressed("use_object"):
+			#can_move_head_default = true
+			#can_move_head=true
+			#can_move=true
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			
+			
+			
+	if Input.is_action_just_pressed("use_object"):
+		if looking_at_prebuild_object:
+			print("builddd")
+			interactive_object_in_view.build()
+			looking_at_prebuild_object=false
 			
 	if is_in_pod:
 		pass
+		
 	else:
 		
 		if Input.is_action_just_pressed("use_object"):
@@ -67,9 +76,7 @@ func _unhandled_input(event):
 			if looking_at_interactive_object:
 				interactive_object_in_view.use_object($".")
 				
-			if looking_at_prebuild_object:
-				interactive_object_in_view.build()
-				looking_at_prebuild_object=false
+
 				
 			if looking_at_hangar:
 				interactive_object_in_view.enter_pod($".")

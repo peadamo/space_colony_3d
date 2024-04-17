@@ -30,7 +30,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63031, 0)
 current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="head/head_camera"]
-target_position = Vector3(0, 0, -3)
+target_position = Vector3(0, 0, -30)
 collide_with_areas = true
 
 [node name="Control" type="Control" parent="."]

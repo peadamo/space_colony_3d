@@ -559,6 +559,8 @@ collision_layer = 2
 collision_mask = 2
 size = Vector3(50, 1, 50)
 
+[node name="hull_blueprint" type="Node3D" parent="."]
+
 [editable path="floor/floor_02"]
 [editable path="hull_walls/hull_wall"]
 [editable path="roof/roof_00"]

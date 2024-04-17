@@ -1,6 +1,9 @@
 extends Node3D
 
 @export var mesh_container : Node3D
+@export var mesh_container_01 : Node3D
+@export var mesh_container_02 : Node3D
+
 var object_meshes:Array=[]
 
 
@@ -14,9 +17,20 @@ const PROP_BLUEPRINT_RED = preload("res://shaders_and_materials/prop_blueprint_r
 const PROP_BLUEPRINT_SKYBLUE = preload("res://shaders_and_materials/prop_blueprint_skyblue.tres")
 
 func process_object_meshes():
-	var meshInstances=mesh_container.get_children()
-	for meshInstance:MeshInstance3D in meshInstances:
-		object_meshes.append(meshInstance)
+	if mesh_container != null:
+		var meshInstances=mesh_container.get_children()
+		for meshInstance:MeshInstance3D in meshInstances:
+			object_meshes.append(meshInstance)
+			
+	if mesh_container_01 != null:
+		var meshInstances=mesh_container_01.get_children()
+		for meshInstance:MeshInstance3D in meshInstances:
+			object_meshes.append(meshInstance)
+
+	if mesh_container_02 != null:
+		var meshInstances=mesh_container_02.get_children()
+		for meshInstance:MeshInstance3D in meshInstances:
+			object_meshes.append(meshInstance)
 
 
 func set_mesh_material_override(new_material):
@@ -62,7 +76,8 @@ func _on_timer_timeout():
 	else:
 		set_mesh_material_override(PROP_BLUEPRINT_GREEN)
 @onready var timer = $Timer
-@onready var collision_shape_3d = $"../object_collider/CollisionShape3D"
+@onready var collision_shape_3d = $blueprint_area_col_detector/CollisionShape3D
+
 		
 func blueprint_placed():
 	timer.stop()

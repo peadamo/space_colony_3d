@@ -9,11 +9,22 @@ var is_on_use=false
 func start():
 	is_on_use=true
 var x_ray_on=false
+var blue_print_on=false
+
+const HULL_BLUEPRINT_WITH_WALL = preload("res://assets/3d_models/ship/hull_blueprint/hull_blueprint_with_wall.tscn")
+
 func _unhandled_input(event):
 	if is_on_use:
 		if event is InputEventMouseMotion:
 			pod_y.rotate_y(-event.relative.x*mouse_sensitivity)
 			pod_x.rotate_x(-event.relative.y*mouse_sensitivity)
+		
+		if event is InputEventMouseButton:
+			if event.button_index==1 and event.pressed:
+				ship.add_hull_wall_blueprint(pointer_mesh_ref.global_position)
+				
+			#if event.button_index==2 and event.pressed:
+				#CUSTOM.clear_node_children(pointer_mesh_ref)
 		
 		if Input.is_action_pressed("x_ray_vision"):
 			x_ray_on=!x_ray_on
@@ -21,6 +32,16 @@ func _unhandled_input(event):
 				ship.active_xView_vision()
 			else:
 				ship.inactive_xView_vision()
+				
+		if Input.is_action_pressed("add_hull_block"):
+			blue_print_on=!blue_print_on
+			if blue_print_on:
+				pointer_mesh_ref.add_child(HULL_BLUEPRINT_WITH_WALL.instantiate())
+			else:
+				CUSTOM.clear_node_children(pointer_mesh_ref)
+		
+		
+		
 		
 @onready var giroscope_start = $pod_y/pod_x/giroscope_start
 @onready var giroscope_front = $pod_y/pod_x/giroscope_start/giroscope_front

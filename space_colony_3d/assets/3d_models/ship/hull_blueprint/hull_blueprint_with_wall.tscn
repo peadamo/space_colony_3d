@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://omdfdrtep8i0"]
+
+[ext_resource type="Script" path="res://assets/3d_models/ship/hull_blueprint/hull_blueprint_with_wall.gd" id="1_jdm3q"]
+[ext_resource type="PackedScene" uid="uid://dw2hj4rfx36dk" path="res://assets/3d_models/ship/hull_wall/hull_wall.tscn" id="1_y76aw"]
+[ext_resource type="PackedScene" uid="uid://cmwsmloxtkv6b" path="res://assets/3d_models/ship/floor/floor_00.tscn" id="2_ffufa"]
+[ext_resource type="PackedScene" uid="uid://ct585afdtbxpq" path="res://assets/3d_models/ship/roof/roof_00.tscn" id="3_jbw7g"]
+[ext_resource type="PackedScene" uid="uid://uu6h8ub57hye" path="res://custom_nodes/blue_print_controller.tscn" id="4_b16tf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ftge7"]
+size = Vector3(0.9, 3.3, 0.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0347u"]
+size = Vector3(1, 3.3, 1)
+
+[node name="HullBlueprintWithWall" type="Node3D"]
+script = ExtResource("1_jdm3q")
+
+[node name="hull_wall" parent="." instance=ExtResource("1_y76aw")]
+
+[node name="CollisionShape3D" parent="hull_wall/object_collider" index="0"]
+disabled = true
+
+[node name="floor_00" parent="." instance=ExtResource("2_ffufa")]
+
+[node name="CollisionShape3D" parent="floor_00/object_collider" index="0"]
+disabled = true
+
+[node name="roof_00" parent="." instance=ExtResource("3_jbw7g")]
+
+[node name="CollisionShape3D" parent="roof_00/object_collider" index="0"]
+disabled = true
+
+[node name="bluePrint_controller" parent="." node_paths=PackedStringArray("mesh_container", "mesh_container_01", "mesh_container_02") instance=ExtResource("4_b16tf")]
+mesh_container = NodePath("../hull_wall/mesh_001")
+mesh_container_01 = NodePath("../floor_00/mesh_002")
+mesh_container_02 = NodePath("../roof_00/mesh_004")
+
+[node name="CollisionShape3D" parent="bluePrint_controller/blueprint_area_col_detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
+shape = SubResource("BoxShape3D_ftge7")
+
+[node name="build_detector_Area" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="build_detector_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
+shape = SubResource("BoxShape3D_0347u")
+
+[editable path="hull_wall"]
+[editable path="floor_00"]
+[editable path="roof_00"]
+[editable path="bluePrint_controller"]
