@@ -27,6 +27,11 @@ func _ready():
 func _set_viewport_mat(_display_mesh : MeshInstance3D, _sub_viewport : SubViewport, _surface_id : int = 0):
 	var _mat : StandardMaterial3D = StandardMaterial3D.new()
 	_mat.albedo_texture = _sub_viewport.get_texture()
+	#_mat.emission_enabled = true
+	#_mat.emission = Color(1.0 , 1.0 , 1.0 , 1.0)
+	#_mat.emission_energy_multiplier = 0.1
+	
+	
 	_display_mesh.set_surface_override_material(_surface_id, _mat)
 
 

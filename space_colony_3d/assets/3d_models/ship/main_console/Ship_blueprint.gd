@@ -1,21 +1,27 @@
 extends Control
 @onready var main = get_tree().current_scene
 var main_children
-var ship
+@onready var ship = get_tree().current_scene.base_ship
+
 
 func _ready():
-	main_children=main.get_children()
-	for child in main_children:
-		if child.is_in_group("baseShip"):
-			ship=child
-	get_ship_floor_cells()
-var ship_floor_cells:Array=[]
+	update_tilemap()
+			
+	
+	
+func update_tilemap():
+	tile_map.clear_layer(0)
+	var shipCells = ship.get_used_cells()
+	for cell in shipCells:
+		if cell.floor:
+			var tile_pos = Vector2i(int(cell.pos.x), int(cell.pos.z))
+			var tilemap_cell_code = Vector2i(15,1)
+			print("is floos")
+			tile_map.set_cell(0,tile_pos,0,tilemap_cell_code)
+				
+				
 
-func get_ship_floor_cells():
-	var floor_nodes=ship.ship_get_floor_nodes()
-	for node in floor_nodes:
-		var node_pos=node.position
-		ship_floor_cells.append(Vector2(node_pos.x,node_pos.z))
+
 var mouse_position : Vector2 
 
 
@@ -29,6 +35,8 @@ func _input(event):
 			write_tile()
 
 var is_add_cell=true
+
+
 func write_tile():
 	var click_position=mouse_position
 	click_position.x-=560

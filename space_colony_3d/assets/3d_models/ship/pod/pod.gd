@@ -3,6 +3,8 @@ var mouse_sensitivity=0.002
 @onready var pod_y = $pod_y
 @onready var pod_x = $pod_y/pod_x
 @onready var pod = $"."
+@onready var ship = get_tree().current_scene.base_ship
+
 var speed=10
 var is_on_use=false
 @onready var player_holder = $pod_y/pod_x/player_holder
@@ -14,6 +16,7 @@ var blue_print_on=false
 const HULL_BLUEPRINT_WITH_WALL = preload("res://assets/3d_models/ship/hull_blueprint/hull_blueprint_with_wall.tscn")
 
 func _unhandled_input(event):
+	
 	if is_on_use:
 		if event is InputEventMouseMotion:
 			pod_y.rotate_y(-event.relative.x*mouse_sensitivity)
@@ -41,6 +44,7 @@ func _unhandled_input(event):
 				CUSTOM.clear_node_children(pointer_mesh_ref)
 				
 		if Input.is_action_just_pressed("delete_internal_hull_walls"):
+			$pod_y/pod_x/screens/PanelContent/SubViewport/ShipBlueprint.update_tilemap()
 			ship.update_hull_walls()
 		
 		
@@ -54,7 +58,6 @@ func _unhandled_input(event):
 @onready var giroscope_left = $pod_y/pod_x/giroscope_start/giroscope_left
 @onready var giroscope_rigth = $pod_y/pod_x/giroscope_start/giroscope_rigth
 
-@onready var ship = get_tree().current_scene.base_ship
 
 
 
@@ -137,17 +140,18 @@ func calc_pointer_ref_position():
 		value_y_sign=-1
 	var value_y_module=new_position.y*value_y_sign
 	var value_y_decimal=value_y_module-floor(value_y_module)
+	
 	if value_y_decimal>0.5:
 		value_y=(floor(value_y_module)+1)*value_y_sign
 	else:
 		value_y=(floor(value_y_module))*value_y_sign
 		
 	if value_y>0:
-		value_y-=0.5
+		value_y-=0.5	
 	
-	var cal_corrected_position = Vector3(value_x,value_y,value_z)
+	var cal_corrected_position = Vector3i(int(value_x),int(value_y),int(value_z))
 	
-	
+	print(cal_corrected_position)
 	
 	if cal_corrected_position != corrected_position:
 		corrected_position=cal_corrected_position

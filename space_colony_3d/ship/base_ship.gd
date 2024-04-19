@@ -74,10 +74,16 @@ func add_hull_wall_blueprint(position):
 	
 	
 func add_hull_wall(pos):
+	var shipCell = ship_cells[shipCells_get_position_index(pos)]
 	
 	hull_walls.add_child(HULL_WALL.instantiate())
 	var last_wall=hull_walls.get_child(-1)
 	last_wall.global_position=pos
+	
+	shipCell.hull=true
+	shipCell.hull_wall_node=last_wall
+	
+	shipCell.floor=true
 	
 	floor.add_child(FLOOR_00.instantiate())
 	var last_floor=floor.get_child(-1)
@@ -87,60 +93,91 @@ func add_hull_wall(pos):
 	var last_roof=roof.get_child(-1)
 	last_roof.global_position=pos
 	
+	print("construido  ",pos , shipCell)
+	
 	update_hull_walls()
 	
+	
+var ship_cells : Array = []
+var ship_max_size = 52
 func _ready():
-	update_hull_walls()
+	
+	for x in ship_max_size+1:
+		var x_val = -ship_max_size/2 + x
+		for z in ship_max_size+1:
+			var z_val = -ship_max_size/2 + z
+			ship_cells.append({"pos": Vector3(x_val,0,z_val), "hull" : false, "hull_wall_node" : null, "floor" : false})
+				
+	get_used_cells()
+		
+	#update_hull_walls()
+	
+	
+func get_used_cells():
+	
+	var wall_cells= $hull_walls.get_children()
+	for wall in wall_cells:
+		var wall_pos = wall.global_position
+		ship_cells[shipCells_get_position_index(wall_pos)].hull = true
+		ship_cells[shipCells_get_position_index(wall_pos)].hull_wall_node = wall
+		
+		
+	var floor_cells = $floor.get_children()
+	for flo in floor_cells:
+		var floor_pos = flo.global_position
+		ship_cells[shipCells_get_position_index(floor_pos)].floor = true
+	
+	return ship_cells
+	
 	
 	
 	
 func update_hull_walls():
-	#print("ejecute delete internal hull walls")
-	var floor_cells=$floor.get_children()
-	var floor_cells_position : Array = []
-	
-	for cell in floor_cells:
-		floor_cells_position.append(cell.global_position)
+	var total_hull=0
+
+	for i in ship_cells.size():
 		
-	
-	var no_border_cells : Array = []
-	var exist_counter=0
-	for cell in floor_cells_position:
+		var cell = ship_cells[i]
+		if cell.floor:
+			#print(cell)
+			pass
 		
-		var brother_cells : Array = [
-			Vector3(cell.x + 1, 0 , cell.z + 1),
-			Vector3(cell.x + 1, 0 , cell.z + 0),
-			Vector3(cell.x + 1, 0 , cell.z - 1),
-			
-			Vector3(cell.x - 1, 0 , cell.z + 1),
-			Vector3(cell.x - 1, 0 , cell.z + 0),
-			Vector3(cell.x - 1, 0 , cell.z - 1),
-			
-			Vector3(cell.x + 0, 0 , cell.z + 1),
-			Vector3(cell.x + 0, 0 , cell.z + 0),
-			Vector3(cell.x + 0, 0 , cell.z - 1),
-			
-		]
 		
-		var is_border_cell = false
 		
-		for bcell in brother_cells:
-			var exist = floor_cells_position.has(bcell)
-			if exist == false:
-				is_border_cell=true
-			else:
-				exist_counter+=1
-		
-		if is_border_cell == false:
-			
-			no_border_cells.append(cell)
+		if cell.hull:
+			total_hull+=1
+			var cp=cell.pos
+			var closer_cells : Array = [
+				shipCells_get_position_index(Vector3(cp.x + 0 , 0 , cp.z + 1)),
+				shipCells_get_position_index(Vector3(cp.x + 0 , 0 , cp.z + 0)),
+				shipCells_get_position_index(Vector3(cp.x + 0 , 0 , cp.z - 1)),
+				shipCells_get_position_index(Vector3(cp.x - 1 , 0 , cp.z + 1)),
+				shipCells_get_position_index(Vector3(cp.x - 1 , 0 , cp.z + 0)),
+				shipCells_get_position_index(Vector3(cp.x - 1 , 0 , cp.z - 1)),
+				shipCells_get_position_index(Vector3(cp.x + 1 , 0 , cp.z + 1)),
+				shipCells_get_position_index(Vector3(cp.x + 1 , 0 , cp.z + 0)),
+				shipCells_get_position_index(Vector3(cp.x + 1 , 0 , cp.z - 1)),
+			]
+			var closer_floor_count=0
+			for closerCell in closer_cells:
+				if ship_cells[closerCell].floor:
+					closer_floor_count+=1
+					
+			#print(cp,"-",closer_floor_count)
+			if closer_floor_count == 9:
+				cell.hull_wall_node.queue_free()
+				cell.hull=false
+	#print(total_hull)
 	
-	print(exist_counter)
-	var wall_cells = $hull_walls.get_children()
+func shipCells_get_position_index(cell_pos:Vector3):
 	
-	for wall_cell in wall_cells:
-		var cell_pos = wall_cell.global_position
-		if no_border_cells.has(cell_pos):
-			wall_cell.queue_free()
-			
+	var cell_index = null
 	
+	for i in ship_cells.size():
+		var cell = ship_cells[i]
+		cell_pos=Vector3(floor(cell_pos.x),0,floor(cell_pos.z))
+		if cell.pos == cell_pos:
+			cell_index = i
+			break
+	
+	return cell_index
