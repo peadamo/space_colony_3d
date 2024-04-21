@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dktydfpr4ehfp"]
+[gd_scene load_steps=14 format=3 uid="uid://dktydfpr4ehfp"]
 
 [ext_resource type="PackedScene" uid="uid://b3rarn1075ax6" path="res://assets/3d_models/ship/pod_hangar/pod_hangar.glb" id="1_fdv1x"]
 [ext_resource type="Script" path="res://assets/3d_models/ship/pod_hangar/pod_hangar.gd" id="2_t8j7t"]
 [ext_resource type="PackedScene" uid="uid://bxuhpqx7bacrn" path="res://assets/3d_models/ship/pod/pod.tscn" id="4_p3f20"]
 [ext_resource type="PackedScene" uid="uid://uu6h8ub57hye" path="res://custom_nodes/blue_print_controller.tscn" id="4_s62g5"]
 [ext_resource type="Script" path="res://assets/3d_models/ship/pod_hangar/hangar_door_interactor.gd" id="5_3hmj6"]
+[ext_resource type="Shader" path="res://shaders_and_materials/area_marker.gdshader" id="6_h5t1k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g3oky"]
 size = Vector3(2.95, 1.95, 3.95)
@@ -12,8 +13,24 @@ size = Vector3(2.95, 1.95, 3.95)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jllgq"]
 size = Vector3(2.9, 2.5, 2.9)
 
+[sub_resource type="QuadMesh" id="QuadMesh_av10c"]
+resource_local_to_scene = true
+size = Vector2(1, 0.563)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_4dlyl"]
 size = Vector3(1, 1.8808, 0.0898438)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2m5pt"]
+size = Vector3(2.9, 2.5, 2.9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8wj2"]
+render_priority = 0
+shader = ExtResource("6_h5t1k")
+shader_parameter/zone_color = Color(0.964706, 0.384314, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqilt"]
+material = SubResource("ShaderMaterial_r8wj2")
+size = Vector3(3, 2.5, 3)
 
 [node name="pod_hangar" instance=ExtResource("1_fdv1x")]
 script = ExtResource("2_t8j7t")
@@ -39,6 +56,9 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.0
 
 [node name="pod" parent="objecet_props/pod_container" index="0" instance=ExtResource("4_p3f20")]
 
+[node name="Quad" parent="objecet_props/pod_container/pod/pod_y/pod_x/screens/PanelContent" index="1"]
+mesh = SubResource("QuadMesh_av10c")
+
 [node name="hangar_door" type="Node3D" parent="objecet_props" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.45471)
 
@@ -51,5 +71,19 @@ pod = NodePath("../../pod_container/pod")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01065, -0.0244141)
 shape = SubResource("BoxShape3D_4dlyl")
 
+[node name="landing_area" type="Area3D" parent="." index="4"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="landing_area" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.49696, 0)
+shape = SubResource("BoxShape3D_2m5pt")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="landing_area" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+mesh = SubResource("BoxMesh_dqilt")
+
+[connection signal="body_entered" from="landing_area" to="." method="_on_landing_area_body_entered"]
+
 [editable path="bluePrint_controller"]
 [editable path="objecet_props/pod_container/pod"]
+[editable path="objecet_props/pod_container/pod/pod_y/pod_x/screens/PanelContent"]
