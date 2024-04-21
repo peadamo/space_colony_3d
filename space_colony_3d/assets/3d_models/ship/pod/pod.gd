@@ -40,6 +40,7 @@ func _unhandled_input(event):
 			blue_print_on=!blue_print_on
 			if blue_print_on:
 				pointer_mesh_ref.add_child(HULL_BLUEPRINT_WITH_WALL.instantiate())
+				
 			else:
 				CUSTOM.clear_node_children(pointer_mesh_ref)
 				
@@ -149,9 +150,8 @@ func calc_pointer_ref_position():
 	if value_y>0:
 		value_y-=0.5	
 	
-	var cal_corrected_position = Vector3i(int(value_x),int(value_y),int(value_z))
+	var cal_corrected_position = Vector3( value_x,  value_y,  value_z)
 	
-	print(cal_corrected_position)
 	
 	if cal_corrected_position != corrected_position:
 		corrected_position=cal_corrected_position
@@ -163,3 +163,4 @@ var is_floor_blue_print=true
 
 func update_mesh_ref_position():
 	pointer_mesh_ref.global_position=Vector3(corrected_position.x,0,corrected_position.z)
+	#ship.shipCells_get_position_index(corrected_position)

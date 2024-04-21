@@ -74,16 +74,12 @@ func add_hull_wall_blueprint(position):
 	
 	
 func add_hull_wall(pos):
-	var shipCell = ship_cells[shipCells_get_position_index(pos)]
 	
 	hull_walls.add_child(HULL_WALL.instantiate())
 	var last_wall=hull_walls.get_child(-1)
 	last_wall.global_position=pos
 	
-	shipCell.hull=true
-	shipCell.hull_wall_node=last_wall
-	
-	shipCell.floor=true
+
 	
 	floor.add_child(FLOOR_00.instantiate())
 	var last_floor=floor.get_child(-1)
@@ -93,9 +89,13 @@ func add_hull_wall(pos):
 	var last_roof=roof.get_child(-1)
 	last_roof.global_position=pos
 	
+	var shipCell = ship_cells[shipCells_get_position_index(pos,true)]
+	shipCell.hull=true
+	shipCell.hull_wall_node=last_wall
+	shipCell.floor=true
 	print("construido  ",pos , shipCell)
 	
-	update_hull_walls()
+	#update_hull_walls()
 	
 	
 var ship_cells : Array = []
@@ -169,15 +169,30 @@ func update_hull_walls():
 				cell.hull=false
 	#print(total_hull)
 	
-func shipCells_get_position_index(cell_pos:Vector3):
-	
+func shipCells_get_position_index(cell_pos:Vector3, log:bool = false):
 	var cell_index = null
+	cell_pos.x = round(cell_pos.x)
+	cell_pos.y = round(cell_pos.y)
+	cell_pos.z = round(cell_pos.z)
+	
+	
+	
+	
 	
 	for i in ship_cells.size():
 		var cell = ship_cells[i]
-		cell_pos=Vector3(floor(cell_pos.x),0,floor(cell_pos.z))
+		#cell_pos=Vector3(cell_pos.x,cell_pos.y,cell_pos.z)
 		if cell.pos == cell_pos:
 			cell_index = i
 			break
 	
+	if cell_index == null :
+		print(" x : ",cell_pos.x," y : ",cell_pos.y," z : ",cell_pos.z)
+		cell_index = 0
+		
+	if log:
+		print("get_index",cell_pos,ship_cells[cell_index])
 	return cell_index
+
+
+
