@@ -23,6 +23,20 @@ func get_into_pod():
 	$head.rotation.y=deg_to_rad(180)
 	$head/head_camera.rotation=Vector3.ZERO
 	
+	
+	
+	
+func leave_pod(pos):
+	can_move=true
+	can_move_head=true
+	can_move_head_default=true
+	is_in_pod=false
+	collision_shape_3d.disabled=false
+	
+	global_position=pos
+	rotation=Vector3.ZERO
+	#$head.rotation=Vector3.ZERO
+	#$head/head_camera.rotation=Vector3.ZERO
 
 @onready var radial_menu = $Control/RadialMenu
 func _ready():
@@ -67,6 +81,11 @@ func _unhandled_input(event):
 			looking_at_prebuild_object=false
 			
 	if is_in_pod:
+		if Input.is_action_just_pressed("use_object"):
+			if looking_at_interactive_object:
+				interactive_object_in_view.use_object()
+				print("player use interactive object")
+		
 		pass
 		
 	else:
@@ -159,10 +178,10 @@ var looking_at_hangar=false
 func raycast_process():
 	var raycastCollide=ray_cast_3d.get_collider()
 	if raycastCollide != null:
-		$Control/debug.text = str(raycastCollide)		
+		$Control/debug.text = str(raycastCollide)
 		
 		if raycastCollide.is_in_group("interactive_object"):
-			interactive_object_in_view=raycastCollide.get_parent().get_parent()
+			interactive_object_in_view=raycastCollide
 			$Control/Label.visible=true
 			$Control/Label.text="Use"
 			looking_at_interactive_object=true

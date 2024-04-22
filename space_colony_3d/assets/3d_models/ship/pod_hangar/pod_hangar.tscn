@@ -54,12 +54,17 @@ disabled = true
 [node name="pod_container" type="Marker3D" parent="objecet_props" index="0"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.00264, 0)
 
-[node name="pod" parent="objecet_props/pod_container" index="0" instance=ExtResource("4_p3f20")]
+[node name="pod" parent="objecet_props/pod_container" index="0" node_paths=PackedStringArray("hangar_marker", "hangar_landed_marker") instance=ExtResource("4_p3f20")]
+hangar_marker = NodePath("../../hangar_preland_marker")
+hangar_landed_marker = NodePath("..")
 
 [node name="Quad" parent="objecet_props/pod_container/pod/pod_y/pod_x/screens/PanelContent" index="1"]
 mesh = SubResource("QuadMesh_av10c")
 
-[node name="hangar_door" type="Node3D" parent="objecet_props" index="1"]
+[node name="hangar_preland_marker" type="Marker3D" parent="objecet_props" index="1"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1.5, 0)
+
+[node name="hangar_door" type="Node3D" parent="objecet_props" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.45471)
 
 [node name="hangar_door_interactor" type="Area3D" parent="objecet_props/hangar_door" index="0" node_paths=PackedStringArray("pod") groups=["hangar_door"]]
@@ -70,6 +75,9 @@ pod = NodePath("../../pod_container/pod")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="objecet_props/hangar_door/hangar_door_interactor" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01065, -0.0244141)
 shape = SubResource("BoxShape3D_4dlyl")
+
+[node name="player_exit" type="Marker3D" parent="objecet_props" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32877, -1.94449)
 
 [node name="landing_area" type="Area3D" parent="." index="4"]
 

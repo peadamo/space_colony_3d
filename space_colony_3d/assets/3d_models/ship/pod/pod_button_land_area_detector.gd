@@ -6,4 +6,4 @@ extends Area3D
 func use_object():
 	print()
 	animation_player.play("button_press")
-	$"..".lunch_pod()
+	$"..".land_pod()

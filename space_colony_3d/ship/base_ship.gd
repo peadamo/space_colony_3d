@@ -194,5 +194,8 @@ func shipCells_get_position_index(cell_pos:Vector3, log:bool = false):
 		print("get_index",cell_pos,ship_cells[cell_index])
 	return cell_index
 
+@onready var player = $"../Player"
 
-
+func free_player(pos):
+	player.reparent($"..")
+	player.leave_pod(pos)

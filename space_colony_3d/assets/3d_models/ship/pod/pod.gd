@@ -4,6 +4,7 @@ var mouse_sensitivity=0.002
 @onready var pod_x = $pod_y/pod_x
 @onready var pod = $"."
 @onready var ship = get_tree().current_scene.base_ship
+@onready var pod_hangar = $"../../.."
 
 var speed=10
 var is_on_use=false
@@ -13,6 +14,19 @@ func start():
 	#is_on_use=true
 	pass
 	
+	
+var is_lunching=false
+func start_lunch():
+	print("pod starting _lunch")
+	is_lunching=true
+	
+var is_back_to_hangar = false
+func back_to_hangar():
+	print("back to hangar")
+	is_back_to_hangar=true
+	is_on_use=false
+	pass
+
 var x_ray_on=false
 var blue_print_on=false
 
@@ -50,10 +64,7 @@ func _unhandled_input(event):
 		if Input.is_action_just_pressed("delete_internal_hull_walls"):
 			$pod_y/pod_x/screens/PanelContent/SubViewport/ShipBlueprint.update_tilemap()
 			ship.update_hull_walls()
-		
-		
-		
-		
+
 @onready var giroscope_start = $pod_y/pod_x/giroscope_start
 @onready var giroscope_front = $pod_y/pod_x/giroscope_start/giroscope_front
 @onready var giroscope_up = $pod_y/pod_x/giroscope_start/giroscope_up
@@ -64,12 +75,46 @@ func _unhandled_input(event):
 
 
 
+@export var hangar_marker : Marker3D
+@export var hangar_landed_marker : Marker3D
 
 func _physics_process(delta):
-	if is_on_use:
+	velocity=Vector3.ZERO
 	
-		var start_pos=giroscope_start.global_position
-		var pod_orintation=Vector3.ZERO
+	var pod_orintation=Vector3.ZERO
+	var start_pos=giroscope_start.global_position
+	
+	
+	if is_back_to_hangar:
+		var hangar_pos= hangar_marker.global_position
+		var pod_pos = $".".global_position
+		var distance = pod_pos.distance_to(hangar_pos)
+		print("going to hangar, DISTANCE:",distance)
+		
+		if distance > 0.1:
+			var direction=pod_pos.direction_to(hangar_pos)
+			print("is to far, DIRECTION:",direction)
+			velocity=direction
+			look_at(Vector3(hangar_pos.x,pod_pos.y,hangar_pos.z))
+			
+		else:
+			is_back_to_hangar=false
+			rotation=Vector3.ZERO
+			pod_y.rotation=Vector3.ZERO
+			pod_x.rotation=Vector3.ZERO
+			
+			
+			position=Vector3.ZERO
+			pod_hangar.player_exit_pod()
+			
+	if is_lunching:
+		if $".".position.y > -3:
+			pod_orintation+=start_pos.direction_to(giroscope_down.global_position)
+			velocity=pod_orintation*delta*speed*10
+		else :
+			is_lunching=false
+			is_on_use=true
+	if is_on_use:
 		
 		if Input.is_action_pressed("move_foward"):
 			pod_orintation+=start_pos.direction_to(giroscope_front.global_position)
@@ -89,16 +134,11 @@ func _physics_process(delta):
 			#
 		#if Input.is_action_pressed("rotate_rigth"):
 			#pod_x.rotate_z(deg_to_rad(-1))
-			
-		var speed_multi=1
-		if Input.is_action_pressed("sprint"):
-			speed_multi=3
-			
-		velocity=pod_orintation*delta*speed*10*speed_multi
-			
-			
-		move_and_slide()
-		calc_pointer_ref_position()
+		
+		velocity=pod_orintation*delta*speed*10
+	
+	move_and_slide()
+	calc_pointer_ref_position()
 		
 		
 func update_pointer_pos():
@@ -167,3 +207,5 @@ var is_floor_blue_print=true
 func update_mesh_ref_position():
 	pointer_mesh_ref.global_position=Vector3(corrected_position.x,0,corrected_position.z)
 	#ship.shipCells_get_position_index(corrected_position)
+	
+	

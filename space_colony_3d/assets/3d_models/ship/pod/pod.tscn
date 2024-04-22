@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxuhpqx7bacrn"]
+[gd_scene load_steps=13 format=3 uid="uid://bxuhpqx7bacrn"]
 
 [ext_resource type="Script" path="res://assets/3d_models/ship/pod/pod.gd" id="1_h06qc"]
 [ext_resource type="PackedScene" uid="uid://dui7tvtw8rfkc" path="res://assets/3d_models/ship/main_console/panel_content.tscn" id="2_hm6cq"]
 [ext_resource type="PackedScene" uid="uid://dh0ajk36tgx7x" path="res://assets/3d_models/ship/pod/pod_button_lunch.tscn" id="3_rq1wq"]
+[ext_resource type="PackedScene" uid="uid://uqe8lpcykhbk" path="res://assets/3d_models/ship/pod/pod_button_land.tscn" id="4_6p4ck"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xl4ni"]
 resource_name = "Material.007"
@@ -140,8 +141,13 @@ mesh = SubResource("QuadMesh_ax0xb")
 
 [node name="props" type="Node3D" parent="pod_y/pod_x"]
 
-[node name="pod_button_lunch" parent="pod_y/pod_x/props" instance=ExtResource("3_rq1wq")]
+[node name="pod_button_lunch" parent="pod_y/pod_x/props" node_paths=PackedStringArray("pod") instance=ExtResource("3_rq1wq")]
 transform = Transform3D(1, 0, 0, 0, 0.854549, -0.51937, 0, 0.51937, 0.854549, 0, -0.334227, -0.86738)
+pod = NodePath("../../../..")
+
+[node name="pod_button_land" parent="pod_y/pod_x/props" node_paths=PackedStringArray("pod") instance=ExtResource("4_6p4ck")]
+transform = Transform3D(0.988367, -0.0923372, -0.120851, 0, 0.794605, -0.607126, 0.152089, 0.600063, 0.785362, 0.288216, -0.334, -0.867)
+pod = NodePath("../../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ktr8x")

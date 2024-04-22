@@ -7,10 +7,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jc4c"]
 size = Vector3(0.170349, 0.0485766, 0.165527)
 
-[sub_resource type="Animation" id="Animation_0711u"]
+[sub_resource type="Animation" id="Animation_qbj3b"]
 resource_name = "button_press"
-length = 0.1
-step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -18,13 +16,13 @@ tracks/0/path = NodePath("pod_button_lunch/pod_button_lunch_001:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
+"times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1.22224, 0), Vector3(0, 0.356698, 0), Vector3(0, 1.22224, 0)]
+"values": [Vector3(0, 1.22224, 0), Vector3(0, 0.296804, 0), Vector3(0, 1.22224, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_xydl1"]
+[sub_resource type="Animation" id="Animation_t0eiq"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -39,10 +37,10 @@ tracks/0/keys = {
 "values": [Vector3(0, 1.22224, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a1wsl"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqih"]
 _data = {
-"RESET": SubResource("Animation_xydl1"),
-"button_press": SubResource("Animation_0711u")
+"RESET": SubResource("Animation_t0eiq"),
+"button_press": SubResource("Animation_qbj3b")
 }
 
 [node name="pod_button_lunch" instance=ExtResource("1_881hk")]
@@ -51,15 +49,15 @@ script = ExtResource("2_tm5ni")
 [node name="pod_button_lunch_001" parent="pod_button_lunch" index="0"]
 transform = Transform3D(0.767419, 0, 0, 0, 0.767419, 0, 0, 0, 0.767419, 0, 1.22224, 0)
 
-[node name="interactive_object" type="Area3D" parent="." index="1" groups=["interactive_object"]]
+[node name="pod_button_lunch_area_detector" type="Area3D" parent="." index="1" groups=["interactive_object"]]
 monitorable = false
 script = ExtResource("3_1m2um")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_object" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pod_button_lunch_area_detector" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.15527e-05, 0.0696211, 0.000244098)
 shape = SubResource("BoxShape3D_1jc4c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
-"": SubResource("AnimationLibrary_a1wsl")
+"": SubResource("AnimationLibrary_lqqih")
 }

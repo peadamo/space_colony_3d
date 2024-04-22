@@ -1,8 +1,6 @@
 extends Node3D
+@export var pod :CharacterBody3D 
 
-@onready var animation_player = $"../AnimationPlayer"
-
-# Called when the node enters the scene tree for the first time.
-func use_object():
-	print()
-	animation_player.play("button_press")
+func lunch_pod():
+	print("lunch pod_button_pressed")
+	pod.start_lunch()
