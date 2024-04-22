@@ -7,21 +7,6 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jc4c"]
 size = Vector3(0.170349, 0.0485766, 0.165527)
 
-[sub_resource type="Animation" id="Animation_qbj3b"]
-resource_name = "button_press"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("pod_button_lunch/pod_button_lunch_001:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.22224, 0), Vector3(0, 0.296804, 0), Vector3(0, 1.22224, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_t0eiq"]
 length = 0.001
 tracks/0/type = "value"
@@ -35,6 +20,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 1.22224, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qbj3b"]
+resource_name = "button_press"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pod_button_lunch/pod_button_lunch_001:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.22224, 0), Vector3(0, 0.296804, 0), Vector3(0, 1.22224, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqih"]

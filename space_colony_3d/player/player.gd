@@ -20,7 +20,8 @@ func get_into_pod():
 	is_in_pod=true
 	collision_shape_3d.disabled=true
 	position=Vector3.ZERO
-	$head.rotation.y=deg_to_rad(180)
+	rotation=Vector3.ZERO
+	$head.rotation=Vector3.ZERO
 	$head/head_camera.rotation=Vector3.ZERO
 	
 	
@@ -61,8 +62,11 @@ func _unhandled_input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
 		if Input.is_action_just_released("move_head"):
-			$head.rotation.y=deg_to_rad(180)
-			$head/head_camera.rotation.x=0.0
+			
+			rotation=Vector3.ZERO
+			$head.rotation=Vector3.ZERO
+			$head/head_camera.rotation=Vector3.ZERO
+			
 			can_move_head=false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
