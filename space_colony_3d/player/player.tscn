@@ -79,6 +79,11 @@ vertical_alignment = 2
 layout_mode = 1
 player = NodePath("../..")
 
+[node name="debug" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="pointer_mesh_ref" type="Marker3D" parent="."]
 
 [node name="0_1sec" type="Timer" parent="."]

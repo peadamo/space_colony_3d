@@ -16,7 +16,6 @@ func update_tilemap():
 		if cell.floor:
 			var tile_pos = Vector2i(int(cell.pos.x), int(cell.pos.z))
 			var tilemap_cell_code = Vector2i(15,1)
-			print("is floos")
 			tile_map.set_cell(0,tile_pos,0,tilemap_cell_code)
 				
 				

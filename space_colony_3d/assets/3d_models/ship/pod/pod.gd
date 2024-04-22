@@ -8,8 +8,11 @@ var mouse_sensitivity=0.002
 var speed=10
 var is_on_use=false
 @onready var player_holder = $pod_y/pod_x/player_holder
+
 func start():
-	is_on_use=true
+	#is_on_use=true
+	pass
+	
 var x_ray_on=false
 var blue_print_on=false
 

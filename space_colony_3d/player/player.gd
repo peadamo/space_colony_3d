@@ -75,7 +75,7 @@ func _unhandled_input(event):
 			
 			if looking_at_interactive_object:
 				interactive_object_in_view.use_object($".")
-				
+				print("player use interactive object")
 
 				
 			if looking_at_hangar:
@@ -159,6 +159,8 @@ var looking_at_hangar=false
 func raycast_process():
 	var raycastCollide=ray_cast_3d.get_collider()
 	if raycastCollide != null:
+		$Control/debug.text = str(raycastCollide)		
+		
 		if raycastCollide.is_in_group("interactive_object"):
 			interactive_object_in_view=raycastCollide.get_parent().get_parent()
 			$Control/Label.visible=true
@@ -179,12 +181,12 @@ func raycast_process():
 			$Control/Label.text="E to use pod"
 			looking_at_hangar=true
 			interactive_object_in_view=raycastCollide
-	else :
-		looking_at_interactive_object=false
-		looking_at_prebuild_object=false
-		looking_at_building=false
-		looking_at_hangar=false
-		$Control/Label.visible=false
+		else :
+			looking_at_interactive_object=false
+			looking_at_prebuild_object=false
+			looking_at_building=false
+			looking_at_hangar=false
+			$Control/Label.visible=false
 			
 	
 
