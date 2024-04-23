@@ -22,6 +22,7 @@ CUSTOM="*res://scripts/CUSTOM.gd"
 
 [display]
 
+window/size/initial_screen=1
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 

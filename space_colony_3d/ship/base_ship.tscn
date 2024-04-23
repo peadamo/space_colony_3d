@@ -646,6 +646,13 @@ size = Vector3(50, 1, 50)
 
 [node name="hull_blueprint" type="Node3D" parent="."]
 
+[node name="Gases_blocks" type="Node3D" parent="."]
+
+[node name="ATM_updater" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="ATM_updater" to="." method="_on_atm_updater_timeout"]
+
 [editable path="floor/floor_02"]
 [editable path="hull_walls/hull_wall"]
 [editable path="roof/roof_00"]

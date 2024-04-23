@@ -100,6 +100,8 @@ func add_hull_wall(pos):
 	
 var ship_cells : Array = []
 var ship_max_size = 52
+
+
 func _ready():
 	
 	for x in ship_max_size+1:
@@ -108,10 +110,60 @@ func _ready():
 			var z_val = -ship_max_size/2 + z
 			ship_cells.append({"pos": Vector3(x_val,0,z_val), "hull" : false, "hull_wall_node" : null, "floor" : false})
 				
+				
 	get_used_cells()
-		
+	generate_ATM_cells()
 	#update_hull_walls()
 	
+var atm_cells : Array = []
+const ATM_BLOCK = preload("res://ship/atm_block.tscn")	
+@onready var gases_blocks = $Gases_blocks
+
+func generate_ATM_cells():
+	
+	
+	for x in ship_max_size+1:
+		var x_val = -ship_max_size/2 + x
+		for z in ship_max_size+1:
+			var z_val = -ship_max_size/2 + z
+			atm_cells.append({"pos":Vector3(x_val,0,z_val),"node":null,"nearCells":[],"oxi":0.0})
+	
+	for i in atm_cells.size():
+		var cell = atm_cells[i]
+		var ship_cell = ship_cells[i]
+		
+		if ship_cell.floor and !ship_cell.hull:
+			gases_blocks.add_child(ATM_BLOCK.instantiate())
+			var new_gas_block=gases_blocks.get_child(-1)
+			new_gas_block.position=cell.pos
+			cell.node=new_gas_block
+			
+		cell.nearCells.append(find_near_atm_cells(cell.pos.x -1 , cell.pos.y , cell.pos.z -1 ))
+		cell.nearCells.append(find_near_atm_cells(cell.pos.x , cell.pos.y , cell.pos.z -1 ))
+		cell.nearCells.append(find_near_atm_cells(cell.pos.x +1 , cell.pos.y , cell.pos.z -1 ))
+		cell.nearCells.append(find_near_atm_cells(cell.pos.x -1 , cell.pos.y , cell.pos.z +1 ))
+		cell.nearCells.append(find_near_atm_cells(cell.pos.x , cell.pos.y , cell.pos.z +1 ))
+		cell.nearCells.append(find_near_atm_cells(cell.pos.x +1 , cell.pos.y , cell.pos.z +1 ))
+		cell.nearCells.append(find_near_atm_cells(cell.pos.x -1 , cell.pos.y , cell.pos.z  ))
+		cell.nearCells.append(find_near_atm_cells(cell.pos.x +1 , cell.pos.y , cell.pos.z  ))
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+func find_near_atm_cells(x,y,z):
+	for i in atm_cells.size():
+		var cell = atm_cells[i]
+		if cell.pos == Vector3(x,y,z):
+			return i
+	return null
+	
+		
 	
 func get_used_cells():
 	
@@ -128,10 +180,6 @@ func get_used_cells():
 		ship_cells[shipCells_get_position_index(floor_pos)].floor = true
 	
 	return ship_cells
-	
-	
-	
-	
 func update_hull_walls():
 	var total_hull=0
 
@@ -168,7 +216,6 @@ func update_hull_walls():
 				cell.hull_wall_node.queue_free()
 				cell.hull=false
 	#print(total_hull)
-	
 func shipCells_get_position_index(cell_pos:Vector3, log:bool = false):
 	var cell_index = null
 	cell_pos.x = round(cell_pos.x)
@@ -193,9 +240,27 @@ func shipCells_get_position_index(cell_pos:Vector3, log:bool = false):
 	if log:
 		print("get_index",cell_pos,ship_cells[cell_index])
 	return cell_index
-
 @onready var player = $"../Player"
-
 func free_player(pos):
 	player.reparent($"..")
 	player.leave_pod(pos)
+func _on_atm_updater_timeout():
+	print("atm update")
+	var generate_oxi=true
+	for cell in atm_cells:
+		if cell.node != null:
+			if generate_oxi:
+				cell.oxi+=100
+				print(cell)
+				generate_oxi=false
+			
+			if cell.oxi > 0:
+				var oxivalue = cell.oxi/16
+				for i in cell.nearCells:
+					if i != null:
+						var ncell=atm_cells[i]
+						ncell.oxi += oxivalue
+						cell.oxi -= oxivalue
+			
+			cell.node.update_material(cell.oxi)
+		

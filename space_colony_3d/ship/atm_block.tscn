@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4ng75ob3a3w6"]
+
+[ext_resource type="Script" path="res://ship/atm_block.gd" id="1_t65xn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ekyjk"]
+transparency = 1
+albedo_color = Color(0, 0.776471, 0.960784, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uctkx"]
+material = SubResource("StandardMaterial3D_ekyjk")
+
+[node name="atm_block" type="Node3D"]
+script = ExtResource("1_t65xn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_uctkx")

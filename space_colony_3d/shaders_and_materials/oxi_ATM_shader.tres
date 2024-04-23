@@ -1,0 +1,12 @@
+[gd_resource type="Shader" format=3 uid="uid://cdnwm41mj3m2f"]
+
+[resource]
+code = "shader_type spatial;
+
+uniform vec4 zone_color : source_color;
+
+void fragment( )
+{
+	ALBEDO = zone_color.rgb;
+	ALPHA = sin(TIME) + VERTEX.y;
+}"
