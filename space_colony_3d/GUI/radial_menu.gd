@@ -13,6 +13,8 @@ func _ready():
 var start_menu : Array = ["WALL","SYSTEM","FOOD","AIRLOCK","STORAGE","VITAL SUPPORT"]
 var food_menu : Array = ["DISPENSER_ALGAS","COCINA","MESA CULTIVO CHICA", "MESA CULTIVO MEDIANA", "MESA CULTIVO GRANDE", "GENERADOR DE CO2"]
 var airlock_menu : Array = ["Pod Hangar", "Shuttle Hangar","X1 Airlock","Space Suit Locker"]
+var life_support_menu : Array = ["Oxygen Generator", "Thermal Regulators","Gas Scrubber","Air Vent"]
+
 var current_menu
 
 func load_menu(menu):
@@ -25,6 +27,12 @@ func load_menu(menu):
 			menu_to_load.append_array(food_menu)
 		"airlock_menu":
 			menu_to_load.append_array(airlock_menu)
+		"life_support_menu":
+			menu_to_load.append_array(life_support_menu)
+			
+			
+			
+			
 	current_menu=menu_to_load
 	menu_items.clear()
 	menu_items=menu_to_load
@@ -60,7 +68,7 @@ func run_action_selected_menu():
 		"STORAGE":
 			pass
 		"VITAL SUPPORT":
-			pass
+			load_menu("life_support_menu")
 #airlock MENU ITEMS:
 		"Pod Hangar":
 			player.load_blueprint("Pod Hangar",true)
@@ -70,6 +78,9 @@ func run_action_selected_menu():
 			pass
 		"Space Suit Locker":
 			pass
+#vital suport
+		"Oxygen Generator":
+			player.load_blueprint("Oxygen Generator",true)
 
 	
 var actual_angle=0.0

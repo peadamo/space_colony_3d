@@ -112,7 +112,9 @@ func _ready():
 				
 				
 	get_used_cells()
+	
 	generate_ATM_cells()
+	
 	#update_hull_walls()
 	
 var atm_cells : Array = []
@@ -247,7 +249,7 @@ func shipCells_get_position_index(cell_pos:Vector3, log:bool = false):
 func free_player(pos):
 	player.reparent($"..")
 	player.leave_pod(pos)
-var generate_oxi=true
+var generate_oxi=false
 
 func _on_atm_updater_timeout():
 	#print("atm update")
@@ -260,7 +262,7 @@ func _on_atm_updater_timeout():
 				cell.oxi+=3200*4
 				generate_oxi=false
 				
-			if cell.oxi > 0:
+			if cell.oxi > -1000:
 				var cells_to_share=0
 				for i in cell.nearCells:
 					if i != null:
@@ -280,14 +282,27 @@ func _on_atm_updater_timeout():
 			
 
 						
+			cell.node.update_material(cell.oxi)
 			#print(cell.oxi)
 			
 	var existing_ells=0
 	for cell in atm_cells:
 		if cell.exist:
-			cell.node.update_material(cell.oxi)
 			total_oxi+=cell.oxi
 			existing_ells+=1
 			
 			
-	print("total oxi: ",total_oxi, " - cells : ",existing_ells, " - oxi -er cell: ", total_oxi/existing_ells)
+	#print("total oxi: ",total_oxi, " - cells : ",existing_ells, " - oxi -er cell: ", total_oxi/existing_ells)
+
+func get_atm_cell_by_pos(pos :Vector3):
+	var cell_pos=pos
+	cell_pos.x = round(cell_pos.x)
+	cell_pos.y = 0.0
+	cell_pos.z = round(cell_pos.z)
+	
+	
+	for cell in atm_cells:
+		if cell.pos == cell_pos:
+			return cell
+	
+	return null

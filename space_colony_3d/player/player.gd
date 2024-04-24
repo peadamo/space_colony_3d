@@ -3,6 +3,8 @@ var mouse_sensitivity=0.002
 var gravity=9.8
 var jump_velocity=5
 var speed=10
+@onready var player = $"."
+
 @onready var head_camera:Camera3D = $head/head_camera
 
 @export var ship : Node3D
@@ -295,12 +297,17 @@ func update_pointer_pos():
 
 func _on__1_sec_timeout():
 	raycast_process()
-	pass
+	var ATM_cell = ship.get_atm_cell_by_pos($".".position)
+	if ATM_cell != null:
+		ATM_cell.oxi-=1
+		if ATM_cell.oxi < 50:
+			print("##### BAJO OXIDENO####")
 	
 
 var is_showing_blue_print_to_build=false
 const BASIC_WALL = preload("res://assets/3d_models/ship/basic_wall/basic_wall.tscn")	
 const POD_HANGAR = preload("res://assets/3d_models/ship/pod_hangar/pod_hangar.tscn")
+const OXIGEN_GENERATOR = preload("res://assets/3d_models/ship/oxigen_generator/oxigen_generator.tscn")
 var actual_blueprint=null
 
 func load_blueprint(blue_print,is_on_floor):
@@ -314,6 +321,8 @@ func load_blueprint(blue_print,is_on_floor):
 			blue_print_model=POD_HANGAR
 		"basic_wall":
 			blue_print_model=BASIC_WALL
+		"Oxygen Generator":
+			blue_print_model=OXIGEN_GENERATOR
 	if blue_print_model != null:
 		pointer_mesh_ref.add_child(blue_print_model.instantiate())
 		is_showing_blue_print_to_build=true
