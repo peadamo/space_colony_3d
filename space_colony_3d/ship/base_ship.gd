@@ -99,7 +99,7 @@ func add_hull_wall(pos):
 	
 	
 var ship_cells : Array = []
-var ship_max_size = 52
+var ship_max_size = 26
 
 
 func _ready():
@@ -126,7 +126,7 @@ func generate_ATM_cells():
 		var x_val = -ship_max_size/2 + x
 		for z in ship_max_size+1:
 			var z_val = -ship_max_size/2 + z
-			atm_cells.append({"pos":Vector3(x_val,0,z_val),"node":null,"nearCells":[],"oxi":0.0})
+			atm_cells.append({"exist":false ,"pos":Vector3(x_val,0,z_val),"node":null,"nearCells":[],"oxi":0.0})
 	
 	for i in atm_cells.size():
 		var cell = atm_cells[i]
@@ -137,6 +137,9 @@ func generate_ATM_cells():
 			var new_gas_block=gases_blocks.get_child(-1)
 			new_gas_block.position=cell.pos
 			cell.node=new_gas_block
+			cell.exist=true
+			
+			
 			
 		cell.nearCells.append(find_near_atm_cells(cell.pos.x -1 , cell.pos.y , cell.pos.z -1 ))
 		cell.nearCells.append(find_near_atm_cells(cell.pos.x , cell.pos.y , cell.pos.z -1 ))
@@ -244,23 +247,47 @@ func shipCells_get_position_index(cell_pos:Vector3, log:bool = false):
 func free_player(pos):
 	player.reparent($"..")
 	player.leave_pod(pos)
+var generate_oxi=true
+
 func _on_atm_updater_timeout():
-	print("atm update")
-	var generate_oxi=true
+	#print("atm update")
+	var total_oxi=0
 	for cell in atm_cells:
-		if cell.node != null:
-			if generate_oxi:
-				cell.oxi+=100
-				print(cell)
-				generate_oxi=false
+		
+		if cell.exist:
 			
+			if generate_oxi:
+				cell.oxi+=3200*4
+				generate_oxi=false
+				
 			if cell.oxi > 0:
-				var oxivalue = cell.oxi/16
+				var cells_to_share=0
 				for i in cell.nearCells:
 					if i != null:
 						var ncell=atm_cells[i]
-						ncell.oxi += oxivalue
-						cell.oxi -= oxivalue
+						if ncell.exist:
+							cells_to_share+=1
+							
+				var oxi_share = cell.oxi/(cells_to_share+1)
+				
+				for i in cell.nearCells:
+					if i != null:
+						var ncell=atm_cells[i]
+						if ncell.exist:
+							ncell.oxi += oxi_share
+							cell.oxi -= oxi_share
+							
 			
+
+						
+			#print(cell.oxi)
+			
+	var existing_ells=0
+	for cell in atm_cells:
+		if cell.exist:
 			cell.node.update_material(cell.oxi)
-		
+			total_oxi+=cell.oxi
+			existing_ells+=1
+			
+			
+	print("total oxi: ",total_oxi, " - cells : ",existing_ells, " - oxi -er cell: ", total_oxi/existing_ells)

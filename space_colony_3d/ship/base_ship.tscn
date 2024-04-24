@@ -276,12 +276,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
 [node name="hull_wall4" parent="hull_walls" instance=ExtResource("3_0qmcb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
 
-[node name="hull_wall33" parent="hull_walls" instance=ExtResource("3_0qmcb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
-
-[node name="hull_wall34" parent="hull_walls" instance=ExtResource("3_0qmcb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
-
 [node name="hull_wall5" parent="hull_walls" instance=ExtResource("3_0qmcb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 

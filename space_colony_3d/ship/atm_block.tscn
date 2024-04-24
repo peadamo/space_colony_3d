@@ -1,16 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4ng75ob3a3w6"]
+[gd_scene load_steps=5 format=3 uid="uid://d4ng75ob3a3w6"]
 
 [ext_resource type="Script" path="res://ship/atm_block.gd" id="1_t65xn"]
+[ext_resource type="Shader" uid="uid://cdnwm41mj3m2f" path="res://shaders_and_materials/oxi_ATM_shader.tres" id="2_d4ldf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ekyjk"]
-transparency = 1
-albedo_color = Color(0, 0.776471, 0.960784, 0)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_86dn7"]
+render_priority = 0
+shader = ExtResource("2_d4ldf")
+shader_parameter/zone_color = null
+shader_parameter/alpha_value = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_uctkx"]
-material = SubResource("StandardMaterial3D_ekyjk")
+material = SubResource("ShaderMaterial_86dn7")
 
 [node name="atm_block" type="Node3D"]
 script = ExtResource("1_t65xn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_uctkx")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1.86525, 0, 0, 0, -8.15326e-08, 1.86525, 0, -1.86525, -8.15326e-08, 0, 0.518095, 0)
+text = "200
+"

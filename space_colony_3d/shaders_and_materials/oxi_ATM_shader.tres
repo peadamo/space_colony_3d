@@ -4,9 +4,10 @@
 code = "shader_type spatial;
 
 uniform vec4 zone_color : source_color;
+uniform float alpha_value = 0.0 ;
 
 void fragment( )
 {
 	ALBEDO = zone_color.rgb;
-	ALPHA = sin(TIME) + VERTEX.y;
+	ALPHA = alpha_value;
 }"
