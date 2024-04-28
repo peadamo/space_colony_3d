@@ -7,9 +7,7 @@ func ship_get_floor_nodes():
 	return $floor.get_children()
 
 var floor_meshes:Array=[]
-
 var x_ray_meshes : Array = []
-
 const PROP_BLUEPRINT_SKYBLUE = preload("res://shaders_and_materials/prop_blueprint_skyblue.tres")
 @onready var roof = $roof
 
@@ -53,50 +51,24 @@ func active_xView_vision():
 				
 	for mesh in x_ray_meshes:
 		mesh.material_override=PROP_BLUEPRINT_SKYBLUE
-	
 func inactive_xView_vision():
 	for mesh in x_ray_meshes:
 		mesh.material_override=null
 		
 		
-const FLOOR_00 = preload("res://assets/3d_models/ship/floor/floor_00.tscn")		
-const HULL_WALL = preload("res://assets/3d_models/ship/hull_wall/hull_wall.tscn")
-const ROOF_00 = preload("res://assets/3d_models/ship/roof/roof_00.tscn")
-const HULL_BLUEPRINT_WITH_WALL = preload("res://assets/3d_models/ship/hull_blueprint/hull_blueprint_with_wall.tscn")
 @onready var hull_blueprint = $hull_blueprint
-
+const HULL_3X_3_BLUEPRINT = preload("res://assets/3d_models/ship/hull_modules/HULL 3x3 blueprint.tscn")
 func add_hull_wall_blueprint(position):
-	hull_blueprint.add_child(HULL_BLUEPRINT_WITH_WALL.instantiate())
+	hull_blueprint.add_child(HULL_3X_3_BLUEPRINT.instantiate())
 	var last_child=hull_blueprint.get_child(-1)
 	last_child.global_position=position
 	last_child.write_blueprint()
-	
-	
-	
+const HULL_3X_3 = preload("res://assets/3d_models/ship/hull_modules/hull_3x3.tscn")	
+@onready var hull = $hull
 func add_hull_wall(pos):
-	
-	hull_walls.add_child(HULL_WALL.instantiate())
-	var last_wall=hull_walls.get_child(-1)
-	last_wall.global_position=pos
-	
-
-	
-	floor.add_child(FLOOR_00.instantiate())
-	var last_floor=floor.get_child(-1)
-	last_floor.global_position=pos
-	
-	roof.add_child(ROOF_00.instantiate())
-	var last_roof=roof.get_child(-1)
-	last_roof.global_position=pos
-	
-	var shipCell = ship_cells[shipCells_get_position_index(pos,true)]
-	shipCell.hull=true
-	shipCell.hull_wall_node=last_wall
-	shipCell.floor=true
-	print("construido  ",pos , shipCell)
-	
-	#update_hull_walls()
-	
+	hull.add_child(HULL_3X_3.instantiate())
+	var last_hull_node = hull.get_child(-1)
+	last_hull_node.global_position=pos
 	
 var ship_cells : Array = []
 var ship_max_size = 26

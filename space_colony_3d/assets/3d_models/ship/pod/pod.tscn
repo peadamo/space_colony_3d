@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bxuhpqx7bacrn"]
+[gd_scene load_steps=21 format=3 uid="uid://bxuhpqx7bacrn"]
 
 [ext_resource type="Script" path="res://assets/3d_models/ship/pod/pod.gd" id="1_h06qc"]
 [ext_resource type="PackedScene" uid="uid://dui7tvtw8rfkc" path="res://assets/3d_models/ship/main_console/panel_content.tscn" id="2_hm6cq"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cenbfuko6mgdj" path="res://assets/3d_models/ship/pod/pod_Leather036C_1K-PNG_Color.png" id="5_quypo"]
 [ext_resource type="Texture2D" uid="uid://8yguiyjr42ak" path="res://assets/3d_models/ship/pod/pod_Leather036C_1K-PNG_Roughness.png" id="6_2q0ih"]
 [ext_resource type="Texture2D" uid="uid://1lmwdbcfk57g" path="res://assets/3d_models/ship/pod/pod_Leather036C_1K-PNG_NormalDX.png" id="7_csb2k"]
+[ext_resource type="PackedScene" uid="uid://cx3s2f1kg1r7p" path="res://player/player.tscn" id="8_wmckm"]
+[ext_resource type="PackedScene" uid="uid://bfndikj3qdjwc" path="res://assets/3d_models/ship/hull_modules/HULL 3x3 blueprint.tscn" id="12_7dbap"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d4i5n"]
 resource_name = "pod_metal"
@@ -139,8 +141,6 @@ size = Vector2(1, 0.563)
 [sub_resource type="SphereShape3D" id="SphereShape3D_ktr8x"]
 radius = 1.16487
 
-[sub_resource type="SphereMesh" id="SphereMesh_salg6"]
-
 [node name="pod" type="CharacterBody3D"]
 script = ExtResource("1_h06qc")
 
@@ -175,6 +175,8 @@ skeleton = NodePath("")
 [node name="player_holder" type="Marker3D" parent="pod_y/pod_x"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56422, -0.26705)
 
+[node name="Player" parent="pod_y/pod_x/player_holder" instance=ExtResource("8_wmckm")]
+
 [node name="SpotLight3D" type="SpotLight3D" parent="pod_y/pod_x"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.24065)
 light_energy = 10.0
@@ -192,6 +194,10 @@ material = SubResource("CanvasItemMaterial_k3hu0")
 [node name="Quad" parent="pod_y/pod_x/screens/PanelContent" index="1"]
 mesh = SubResource("QuadMesh_ax0xb")
 
+[node name="Label3D" type="Label3D" parent="pod_y/pod_x/screens"]
+transform = Transform3D(0.401188, 0, 0.034267, 0, 0.402649, 0, -0.034267, 0, 0.401188, -0.0883748, 0.561485, -1.03177)
+text = "dasdadasdasdas"
+
 [node name="props" type="Node3D" parent="pod_y/pod_x"]
 
 [node name="pod_button_lunch" parent="pod_y/pod_x/props" node_paths=PackedStringArray("pod") instance=ExtResource("3_rq1wq")]
@@ -202,11 +208,46 @@ pod = NodePath("../../../..")
 transform = Transform3D(0.988367, -0.0923372, -0.120851, 0, 0.794605, -0.607126, 0.152089, 0.600063, 0.785362, 0.288216, -0.334, -0.867)
 pod = NodePath("../../../..")
 
+[node name="RayCast3D" type="RayCast3D" parent="pod_y/pod_x"]
+target_position = Vector3(0, 0, -30)
+collision_mask = 8
+collide_with_areas = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ktr8x")
 disabled = true
 
-[node name="pointer_mesh_ref" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_salg6")
+[node name="pointer_mesh_ref" type="Marker3D" parent="."]
 
+[node name="Hull3x3Blueprint" parent="pointer_mesh_ref" instance=ExtResource("12_7dbap")]
+visible = false
+
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/floor/floor_collider" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/roof/roof_collider" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_01/wall_01_collider" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_02/wall_02_collider" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_03/wall_03_collider" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_04/wall_04_collider" index="0"]
+disabled = true
+
+[editable path="pod_y/pod_x/player_holder/Player"]
 [editable path="pod_y/pod_x/screens/PanelContent"]
+[editable path="pointer_mesh_ref/Hull3x3Blueprint"]
+[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3"]
+[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/3x3_hull_frame"]
+[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/floor/3X3 FLOOR 01"]
+[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/roof/3x3 roof"]
+[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_01/3x3 wall01"]
+[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_02/3x3 wall01"]
+[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_03/3x3 wall01"]
+[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_04/3x3 wall01"]

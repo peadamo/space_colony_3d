@@ -16,13 +16,14 @@ visible = false
 
 [node name="floor" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="floor" groups=["hull_block"]]
+[node name="floor_collider" type="StaticBody3D" parent="floor" groups=["hull_block"]]
+collision_layer = 9
 script = ExtResource("2_ccv4k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/floor_collider"]
 shape = SubResource("BoxShape3D_xtclw")
 
-[node name="lateral_block_pos" type="Marker3D" parent="floor/StaticBody3D"]
+[node name="lateral_block_pos" type="Marker3D" parent="floor/floor_collider"]
 transform = Transform3D(1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 0, -4.37114e-08, -3.55271e-15, 1, 0, -3, 0)
 
 [node name="3X3 FLOOR 01" parent="floor" instance=ExtResource("2_ma1xc")]
@@ -30,25 +31,29 @@ transform = Transform3D(1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 0, -4.3711
 [node name="roof" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="roof" groups=["hull_block"]]
+[node name="roof_collider" type="StaticBody3D" parent="roof" groups=["hull_block"]]
+collision_layer = 9
+script = ExtResource("2_ccv4k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="roof/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="roof/roof_collider"]
 shape = SubResource("BoxShape3D_xtclw")
 
-[node name="lateral_block_pos" type="Marker3D" parent="roof/StaticBody3D"]
+[node name="lateral_block_pos" type="Marker3D" parent="roof/roof_collider"]
 
 [node name="3x3 roof" parent="roof" instance=ExtResource("3_f4r8f")]
 
 [node name="wall_01" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="wall_01" groups=["hull_block"]]
+[node name="wall_01_collider" type="StaticBody3D" parent="wall_01" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+collision_layer = 9
+script = ExtResource("2_ccv4k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_01/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_01/wall_01_collider"]
 shape = SubResource("BoxShape3D_xtclw")
 
-[node name="lateral_block_pos" type="Marker3D" parent="wall_01/StaticBody3D"]
+[node name="lateral_block_pos" type="Marker3D" parent="wall_01/wall_01_collider"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5, -1.5)
 
 [node name="3x3 wall01" parent="wall_01" instance=ExtResource("3_5kl6u")]
@@ -57,13 +62,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
 [node name="wall_02" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.5, 1.5)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="wall_02" groups=["hull_block"]]
+[node name="wall_02_collider" type="StaticBody3D" parent="wall_02" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+collision_layer = 9
+script = ExtResource("2_ccv4k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_02/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_02/wall_02_collider"]
 shape = SubResource("BoxShape3D_xtclw")
 
-[node name="lateral_block_pos" type="Marker3D" parent="wall_02/StaticBody3D"]
+[node name="lateral_block_pos" type="Marker3D" parent="wall_02/wall_02_collider"]
 transform = Transform3D(1, 8.74228e-08, 8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -8.74228e-08, 1, -4.37114e-08, 0, 1.5, -1.5)
 
 [node name="3x3 wall01" parent="wall_02" instance=ExtResource("3_5kl6u")]
@@ -72,14 +79,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
 [node name="wall_03" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 1.5, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="wall_03" groups=["hull_block"]]
+[node name="wall_03_collider" type="StaticBody3D" parent="wall_03" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+collision_layer = 9
+script = ExtResource("2_ccv4k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_03/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_03/wall_03_collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 8.35187e-23, 0, 8.35187e-23, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_xtclw")
 
-[node name="lateral_block_pos" type="Marker3D" parent="wall_03/StaticBody3D"]
+[node name="lateral_block_pos" type="Marker3D" parent="wall_03/wall_03_collider"]
 transform = Transform3D(1, 4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, 0, 1.5, -1.5)
 
 [node name="3x3 wall01" parent="wall_03" instance=ExtResource("3_5kl6u")]
@@ -88,13 +97,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
 [node name="wall_04" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 1.5, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="wall_04" groups=["hull_block"]]
+[node name="wall_04_collider" type="StaticBody3D" parent="wall_04" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+collision_layer = 9
+script = ExtResource("2_ccv4k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_04/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_04/wall_04_collider"]
 shape = SubResource("BoxShape3D_xtclw")
 
-[node name="lateral_block_pos" type="Marker3D" parent="wall_04/StaticBody3D"]
+[node name="lateral_block_pos" type="Marker3D" parent="wall_04/wall_04_collider"]
 transform = Transform3D(1, 4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, 0, 1.5, -1.5)
 
 [node name="3x3 wall01" parent="wall_04" instance=ExtResource("3_5kl6u")]
