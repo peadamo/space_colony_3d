@@ -111,9 +111,15 @@ func _ready():
 			ship_cells.append({"pos": Vector3(x_val,0,z_val), "hull" : false, "hull_wall_node" : null, "floor" : false})
 				
 				
+<<<<<<< HEAD
+	#get_used_cells()
+	##
+	#generate_ATM_cells()
+=======
 	get_used_cells()
 	
 	generate_ATM_cells()
+>>>>>>> parent of 52538fe (experimenting wit 3x3 hull module)
 	
 	#update_hull_walls()
 	
@@ -173,6 +179,7 @@ func find_near_atm_cells(x,y,z):
 func get_used_cells():
 	
 	var wall_cells= $hull_walls.get_children()
+	
 	for wall in wall_cells:
 		var wall_pos = wall.global_position
 		ship_cells[shipCells_get_position_index(wall_pos)].hull = true

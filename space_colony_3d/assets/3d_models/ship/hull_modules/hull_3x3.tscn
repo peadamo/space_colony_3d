@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://dc0vmtmbncifv"]
+
+[ext_resource type="PackedScene" uid="uid://c28dte1xdgdyu" path="res://assets/3d_models/ship/hull_modules/3x3_hull_frame/3x_3_hull_frame.tscn" id="1_2ao6q"]
+[ext_resource type="Script" path="res://assets/3d_models/ship/hull_modules/hull_block_wall.gd" id="2_ccv4k"]
+[ext_resource type="PackedScene" uid="uid://brpfp6n3gknox" path="res://assets/3d_models/ship/hull_modules/3X3 FLOOR/3X3 FLOOR 01.glb" id="2_ma1xc"]
+[ext_resource type="PackedScene" uid="uid://f02b6non0s56" path="res://assets/3d_models/ship/hull_modules/3x3 wall/3x3 wall01.glb" id="3_5kl6u"]
+[ext_resource type="PackedScene" uid="uid://djkl278cm08ic" path="res://assets/3d_models/ship/hull_modules/3x3 roof/3x3 roof.glb" id="3_f4r8f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xtclw"]
+size = Vector3(3, 0, 3)
+
+[node name="Hull3x3" type="Node3D"]
+
+[node name="3x3_hull_frame" parent="." instance=ExtResource("1_2ao6q")]
+visible = false
+
+[node name="floor" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" groups=["hull_block"]]
+script = ExtResource("2_ccv4k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_xtclw")
+
+[node name="lateral_block_pos" type="Marker3D" parent="floor/StaticBody3D"]
+transform = Transform3D(1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 0, -4.37114e-08, -3.55271e-15, 1, 0, -3, 0)
+
+[node name="3X3 FLOOR 01" parent="floor" instance=ExtResource("2_ma1xc")]
+
+[node name="roof" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="roof" groups=["hull_block"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="roof/StaticBody3D"]
+shape = SubResource("BoxShape3D_xtclw")
+
+[node name="lateral_block_pos" type="Marker3D" parent="roof/StaticBody3D"]
+
+[node name="3x3 roof" parent="roof" instance=ExtResource("3_f4r8f")]
+
+[node name="wall_01" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall_01" groups=["hull_block"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_01/StaticBody3D"]
+shape = SubResource("BoxShape3D_xtclw")
+
+[node name="lateral_block_pos" type="Marker3D" parent="wall_01/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5, -1.5)
+
+[node name="3x3 wall01" parent="wall_01" instance=ExtResource("3_5kl6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+
+[node name="wall_02" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.5, 1.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall_02" groups=["hull_block"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_02/StaticBody3D"]
+shape = SubResource("BoxShape3D_xtclw")
+
+[node name="lateral_block_pos" type="Marker3D" parent="wall_02/StaticBody3D"]
+transform = Transform3D(1, 8.74228e-08, 8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -8.74228e-08, 1, -4.37114e-08, 0, 1.5, -1.5)
+
+[node name="3x3 wall01" parent="wall_02" instance=ExtResource("3_5kl6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+
+[node name="wall_03" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 1.5, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall_03" groups=["hull_block"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_03/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 8.35187e-23, 0, 8.35187e-23, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_xtclw")
+
+[node name="lateral_block_pos" type="Marker3D" parent="wall_03/StaticBody3D"]
+transform = Transform3D(1, 4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, 0, 1.5, -1.5)
+
+[node name="3x3 wall01" parent="wall_03" instance=ExtResource("3_5kl6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+
+[node name="wall_04" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 1.5, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall_04" groups=["hull_block"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_04/StaticBody3D"]
+shape = SubResource("BoxShape3D_xtclw")
+
+[node name="lateral_block_pos" type="Marker3D" parent="wall_04/StaticBody3D"]
+transform = Transform3D(1, 4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, 0, 1.5, -1.5)
+
+[node name="3x3 wall01" parent="wall_04" instance=ExtResource("3_5kl6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)

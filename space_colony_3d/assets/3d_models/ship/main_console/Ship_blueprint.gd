@@ -4,9 +4,9 @@ var main_children
 @onready var ship = get_tree().current_scene.base_ship
 
 
-func _ready():
-	update_tilemap()
-			
+#func _ready():
+	#update_tilemap()
+			#
 	
 	
 func update_tilemap():
