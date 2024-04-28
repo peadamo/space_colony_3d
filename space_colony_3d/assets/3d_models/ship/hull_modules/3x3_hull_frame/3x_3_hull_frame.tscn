@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c28dte1xdgdyu"]
+
+[ext_resource type="PackedScene" uid="uid://cruiui0j3yqnk" path="res://assets/3d_models/ship/hull_modules/3x3_hull_frame/3x3_hull_frame.glb" id="1_yok5i"]
+
+[node name="3x3_hull_frame" instance=ExtResource("1_yok5i")]

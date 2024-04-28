@@ -1,8 +1,0 @@
-ea4bc82a6ad023ab7ee23ee620429895
-::res://::1712714385
-default_env.tres::Environment::-1::1674515326::0::1::::<><>::
-gui_3d.gd::GDScript::-1::1674515913::0::1::::<>Spatial<>::
-gui_in_3d.tscn::PackedScene::7322414358616281291::1712714362::0::1::::<><>::res://gui_panel_3d.tscn
-gui_panel_3d.tscn::PackedScene::-1::1674515326::0::1::::<><>::res://gui_3d.gd<>res://icon.png
-icon.png::CompressedTexture2D::8001993790328519355::1674515326::1712714357::1::::<><>::
-README.md::TextFile::-1::1674515326::0::1::::<><>::

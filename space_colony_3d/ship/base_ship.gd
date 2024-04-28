@@ -111,15 +111,9 @@ func _ready():
 			ship_cells.append({"pos": Vector3(x_val,0,z_val), "hull" : false, "hull_wall_node" : null, "floor" : false})
 				
 				
-<<<<<<< HEAD
 	#get_used_cells()
 	##
 	#generate_ATM_cells()
-=======
-	get_used_cells()
-	
-	generate_ATM_cells()
->>>>>>> parent of 52538fe (experimenting wit 3x3 hull module)
 	
 	#update_hull_walls()
 	
