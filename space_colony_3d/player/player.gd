@@ -288,7 +288,7 @@ func update_pointer_pos():
 	var camera = get_tree().root.get_camera_3d()
 	var rayOrigin = camera.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) *2000
-	var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd,0x2)
+	var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd)
 	var rayArray = spaceState.intersect_ray(Parameters)
 	if rayArray.has("position"):
 		return rayArray["position"]
@@ -297,11 +297,7 @@ func update_pointer_pos():
 
 func _on__1_sec_timeout():
 	raycast_process()
-	var ATM_cell = ship.get_atm_cell_by_pos($".".position)
-	if ATM_cell != null:
-		ATM_cell.oxi-=1
-		if ATM_cell.oxi < 50:
-			print("##### BAJO OXIDENO####")
+
 	
 
 var is_showing_blue_print_to_build=false

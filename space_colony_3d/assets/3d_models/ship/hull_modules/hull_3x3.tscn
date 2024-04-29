@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dc0vmtmbncifv"]
+[gd_scene load_steps=8 format=3 uid="uid://dc0vmtmbncifv"]
 
 [ext_resource type="PackedScene" uid="uid://c28dte1xdgdyu" path="res://assets/3d_models/ship/hull_modules/3x3_hull_frame/3x_3_hull_frame.tscn" id="1_2ao6q"]
+[ext_resource type="Script" path="res://assets/3d_models/ship/hull_modules/hull_3x3.gd" id="1_i25o1"]
 [ext_resource type="Script" path="res://assets/3d_models/ship/hull_modules/hull_block_wall.gd" id="2_ccv4k"]
 [ext_resource type="PackedScene" uid="uid://brpfp6n3gknox" path="res://assets/3d_models/ship/hull_modules/3X3 FLOOR/3X3 FLOOR 01.glb" id="2_ma1xc"]
 [ext_resource type="PackedScene" uid="uid://f02b6non0s56" path="res://assets/3d_models/ship/hull_modules/3x3 wall/3x3 wall01.glb" id="3_5kl6u"]
@@ -10,6 +11,7 @@
 size = Vector3(3, 0, 3)
 
 [node name="Hull3x3" type="Node3D"]
+script = ExtResource("1_i25o1")
 
 [node name="3x3_hull_frame" parent="." instance=ExtResource("1_2ao6q")]
 visible = false
@@ -42,71 +44,71 @@ shape = SubResource("BoxShape3D_xtclw")
 
 [node name="3x3 roof" parent="roof" instance=ExtResource("3_f4r8f")]
 
-[node name="wall_01" type="Node3D" parent="."]
+[node name="north_wall" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5)
 
-[node name="wall_01_collider" type="StaticBody3D" parent="wall_01" groups=["hull_block"]]
+[node name="wall_01_collider" type="StaticBody3D" parent="north_wall" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 collision_layer = 9
 script = ExtResource("2_ccv4k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_01/wall_01_collider"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="north_wall/wall_01_collider"]
 shape = SubResource("BoxShape3D_xtclw")
 
-[node name="lateral_block_pos" type="Marker3D" parent="wall_01/wall_01_collider"]
+[node name="lateral_block_pos" type="Marker3D" parent="north_wall/wall_01_collider"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5, -1.5)
 
-[node name="3x3 wall01" parent="wall_01" instance=ExtResource("3_5kl6u")]
+[node name="3x3 wall01" parent="north_wall" instance=ExtResource("3_5kl6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
 
-[node name="wall_02" type="Node3D" parent="."]
+[node name="south_wall" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.5, 1.5)
 
-[node name="wall_02_collider" type="StaticBody3D" parent="wall_02" groups=["hull_block"]]
+[node name="wall_02_collider" type="StaticBody3D" parent="south_wall" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 collision_layer = 9
 script = ExtResource("2_ccv4k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_02/wall_02_collider"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="south_wall/wall_02_collider"]
 shape = SubResource("BoxShape3D_xtclw")
 
-[node name="lateral_block_pos" type="Marker3D" parent="wall_02/wall_02_collider"]
+[node name="lateral_block_pos" type="Marker3D" parent="south_wall/wall_02_collider"]
 transform = Transform3D(1, 8.74228e-08, 8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -8.74228e-08, 1, -4.37114e-08, 0, 1.5, -1.5)
 
-[node name="3x3 wall01" parent="wall_02" instance=ExtResource("3_5kl6u")]
+[node name="3x3 wall01" parent="south_wall" instance=ExtResource("3_5kl6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
 
-[node name="wall_03" type="Node3D" parent="."]
+[node name="east_wall" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 1.5, 0)
 
-[node name="wall_03_collider" type="StaticBody3D" parent="wall_03" groups=["hull_block"]]
+[node name="wall_03_collider" type="StaticBody3D" parent="east_wall" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 collision_layer = 9
 script = ExtResource("2_ccv4k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_03/wall_03_collider"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="east_wall/wall_03_collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 8.35187e-23, 0, 8.35187e-23, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_xtclw")
 
-[node name="lateral_block_pos" type="Marker3D" parent="wall_03/wall_03_collider"]
+[node name="lateral_block_pos" type="Marker3D" parent="east_wall/wall_03_collider"]
 transform = Transform3D(1, 4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, 0, 1.5, -1.5)
 
-[node name="3x3 wall01" parent="wall_03" instance=ExtResource("3_5kl6u")]
+[node name="3x3 wall01" parent="east_wall" instance=ExtResource("3_5kl6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
 
-[node name="wall_04" type="Node3D" parent="."]
+[node name="west_wall" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 1.5, 0)
 
-[node name="wall_04_collider" type="StaticBody3D" parent="wall_04" groups=["hull_block"]]
+[node name="wall_04_collider" type="StaticBody3D" parent="west_wall" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 collision_layer = 9
 script = ExtResource("2_ccv4k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_04/wall_04_collider"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="west_wall/wall_04_collider"]
 shape = SubResource("BoxShape3D_xtclw")
 
-[node name="lateral_block_pos" type="Marker3D" parent="wall_04/wall_04_collider"]
+[node name="lateral_block_pos" type="Marker3D" parent="west_wall/wall_04_collider"]
 transform = Transform3D(1, 4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, 0, 1.5, -1.5)
 
-[node name="3x3 wall01" parent="wall_04" instance=ExtResource("3_5kl6u")]
+[node name="3x3 wall01" parent="west_wall" instance=ExtResource("3_5kl6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)

@@ -4,11 +4,7 @@ var main_children
 @onready var ship = get_tree().current_scene.base_ship
 
 
-#func _ready():
-	#update_tilemap()
-			#
-	
-	
+
 func update_tilemap():
 	tile_map.clear_layer(0)
 	var shipCells = ship.get_used_cells()

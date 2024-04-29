@@ -161,7 +161,3 @@ func check_raycast():
 			label_3d.text = str("build:",object_in_view)
 			
 			pass
-			#label_3d.text = str("click to build")
-			
-			
-	

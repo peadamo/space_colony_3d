@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bxuhpqx7bacrn"]
+[gd_scene load_steps=20 format=3 uid="uid://bxuhpqx7bacrn"]
 
 [ext_resource type="Script" path="res://assets/3d_models/ship/pod/pod.gd" id="1_h06qc"]
 [ext_resource type="PackedScene" uid="uid://dui7tvtw8rfkc" path="res://assets/3d_models/ship/main_console/panel_content.tscn" id="2_hm6cq"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://cenbfuko6mgdj" path="res://assets/3d_models/ship/pod/pod_Leather036C_1K-PNG_Color.png" id="5_quypo"]
 [ext_resource type="Texture2D" uid="uid://8yguiyjr42ak" path="res://assets/3d_models/ship/pod/pod_Leather036C_1K-PNG_Roughness.png" id="6_2q0ih"]
 [ext_resource type="Texture2D" uid="uid://1lmwdbcfk57g" path="res://assets/3d_models/ship/pod/pod_Leather036C_1K-PNG_NormalDX.png" id="7_csb2k"]
-[ext_resource type="PackedScene" uid="uid://cx3s2f1kg1r7p" path="res://player/player.tscn" id="8_wmckm"]
 [ext_resource type="PackedScene" uid="uid://bfndikj3qdjwc" path="res://assets/3d_models/ship/hull_modules/HULL 3x3 blueprint.tscn" id="12_7dbap"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d4i5n"]
@@ -175,8 +174,6 @@ skeleton = NodePath("")
 [node name="player_holder" type="Marker3D" parent="pod_y/pod_x"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56422, -0.26705)
 
-[node name="Player" parent="pod_y/pod_x/player_holder" instance=ExtResource("8_wmckm")]
-
 [node name="SpotLight3D" type="SpotLight3D" parent="pod_y/pod_x"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.24065)
 light_energy = 10.0
@@ -213,7 +210,7 @@ target_position = Vector3(0, 0, -30)
 collision_mask = 8
 collide_with_areas = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="pointer_mesh_ref_Hull3x3Blueprint_Hull3x3_wall_01_wall_01_collider#CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ktr8x")
 disabled = true
 
@@ -228,26 +225,24 @@ disabled = true
 [node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/roof/roof_collider" index="0"]
 disabled = true
 
-[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_01/wall_01_collider" index="0"]
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/north_wall/wall_01_collider" index="0"]
 disabled = true
 
-[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_02/wall_02_collider" index="0"]
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/south_wall/wall_02_collider" index="0"]
 disabled = true
 
-[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_03/wall_03_collider" index="0"]
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/east_wall/wall_03_collider" index="0"]
 disabled = true
 
-[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_04/wall_04_collider" index="0"]
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/west_wall/wall_04_collider" index="0"]
 disabled = true
 
-[editable path="pod_y/pod_x/player_holder/Player"]
+[node name="CollisionShape3D" parent="pointer_mesh_ref/Hull3x3Blueprint/build_detector_Area" index="0"]
+disabled = true
+
 [editable path="pod_y/pod_x/screens/PanelContent"]
 [editable path="pointer_mesh_ref/Hull3x3Blueprint"]
 [editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3"]
 [editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/3x3_hull_frame"]
 [editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/floor/3X3 FLOOR 01"]
 [editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/roof/3x3 roof"]
-[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_01/3x3 wall01"]
-[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_02/3x3 wall01"]
-[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_03/3x3 wall01"]
-[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/wall_04/3x3 wall01"]
