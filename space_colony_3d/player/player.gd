@@ -5,7 +5,7 @@ var jump_velocity=5
 var speed=10
 @onready var player = $"."
 
-@onready var head_camera:Camera3D = $head/head_camera
+@onready var head_camera = $head/head_camera
 
 @export var ship : Node3D
 

@@ -172,7 +172,7 @@ mesh = SubResource("ArrayMesh_asefd")
 skeleton = NodePath("")
 
 [node name="player_holder" type="Marker3D" parent="pod_y/pod_x"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56422, -0.26705)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.15905, -0.26705)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="pod_y/pod_x"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.24065)

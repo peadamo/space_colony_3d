@@ -2,41 +2,33 @@
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_s2uyd"]
 [ext_resource type="PackedScene" uid="uid://b8ecti2dhsooi" path="res://GUI/radial_menu.tscn" id="2_3cnl1"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_fabli"]
-radius = 0.375
-height = 1.5
+[ext_resource type="PackedScene" uid="uid://btevs2cmwrpad" path="res://player/3d_model/player_arms.tscn" id="2_xj2ko"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bincg"]
-radius = 0.175
-height = 1.5
+radius = 0.255171
+height = 1.79358
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_s2uyd")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("CapsuleMesh_fabli")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.907375, 0)
 shape = SubResource("CapsuleShape3D_bincg")
 
 [node name="head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.073, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51681, 0)
 
-[node name="head_camera" type="Camera3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63031, 0)
+[node name="head_camera" type="Node3D" parent="head"]
+
+[node name="Camera3D" type="Camera3D" parent="head/head_camera"]
 current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="head/head_camera"]
 target_position = Vector3(0, 0, -30)
 collide_with_areas = true
 
-[node name="SpotLight3D" type="SpotLight3D" parent="head/head_camera"]
-visible = false
-light_energy = 5.0
-spot_range = 29.4665
-spot_angle = 31.6391
+[node name="player_arms" parent="head" instance=ExtResource("2_xj2ko")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, -1.57036, -0.133736)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
