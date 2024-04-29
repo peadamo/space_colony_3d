@@ -1,6 +1,7 @@
 extends Node3D
 @onready var ship_buildings = $ship_buildings
 
+@onready var internal_walls = $internal_walls
 
 @onready var hull = $hull
 
@@ -13,10 +14,10 @@ func _ready():
 
 #region Hull node construction
 
-
+const INTERNAL_WALL_3X_3 = preload("res://assets/3d_models/ship/hull_modules/internal_wall 3x3.tscn")
 func auto_delete_internal_walls(hullNode):
 #Elimina las pararedes del hull node que tengan otro nodo como vecino, y asigna los vecinos.
-	
+	var hullNode_pos = hullNode.global_position
 	var hullNode_north_marker = round(hullNode.self_lateral_hull_node_markers.north.global_position)
 	var hullNode_south_marker = round(hullNode.self_lateral_hull_node_markers.south.global_position)
 	var hullNode_east_marker = round(hullNode.self_lateral_hull_node_markers.east.global_position)
@@ -26,11 +27,17 @@ func auto_delete_internal_walls(hullNode):
 	
 	for eval_hullNode in hull.get_children():
 		var eval_pos = round(eval_hullNode.global_position)
+		
 		if eval_pos == hullNode_north_marker:
 			hullNode.near_hull_nodes.north=eval_hullNode
 			hullNode.delete_north_wall()
 			eval_hullNode.near_hull_nodes.south = hullNode
 			eval_hullNode.delete_south_wall()
+			
+			internal_walls.add_child(INTERNAL_WALL_3X_3.instantiate())
+			var new_child = internal_walls.get_child(-1)
+			new_child.global_position = (hullNode_north_marker-hullNode_pos)/2+hullNode_pos
+			new_child.rotate_y(deg_to_rad(90))
 			
 		elif eval_pos == hullNode_south_marker:
 			hullNode.near_hull_nodes.south=eval_hullNode
@@ -38,11 +45,20 @@ func auto_delete_internal_walls(hullNode):
 			eval_hullNode.near_hull_nodes.north = hullNode
 			eval_hullNode.delete_north_wall()
 			
+			internal_walls.add_child(INTERNAL_WALL_3X_3.instantiate())
+			var new_child = internal_walls.get_child(-1)
+			new_child.global_position = (hullNode_south_marker-hullNode_pos)/2+hullNode_pos
+			new_child.rotate_y(deg_to_rad(90))
+			
 		elif eval_pos == hullNode_east_marker:
 			hullNode.near_hull_nodes.east=eval_hullNode
 			hullNode.delete_east_wall()
 			eval_hullNode.near_hull_nodes.west = hullNode
 			eval_hullNode.delete_west_wall()
+			
+			internal_walls.add_child(INTERNAL_WALL_3X_3.instantiate())
+			var new_child = internal_walls.get_child(-1)
+			new_child.global_position = (hullNode_east_marker-hullNode_pos)/2+hullNode_pos
 			
 			
 		elif eval_pos == hullNode_west_marker:
@@ -50,6 +66,11 @@ func auto_delete_internal_walls(hullNode):
 			hullNode.delete_west_wall()
 			eval_hullNode.near_hull_nodes.east = hullNode
 			eval_hullNode.delete_east_wall()
+			
+			internal_walls.add_child(INTERNAL_WALL_3X_3.instantiate())
+			var new_child = internal_walls.get_child(-1)
+			new_child.global_position = (hullNode_west_marker-hullNode_pos)/2+hullNode_pos
+			
 
 
 

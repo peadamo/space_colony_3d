@@ -10,7 +10,10 @@ script = ExtResource("1_6ucqf")
 [node name="ship_buildings" type="Node3D" parent="."]
 
 [node name="wall_lamp_002" parent="ship_buildings" instance=ExtResource("2_p1yqd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, -1)
+
+[node name="wall_lamp_003" parent="ship_buildings" instance=ExtResource("2_p1yqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -1)
 
 [node name="hull_blueprint" type="Node3D" parent="."]
 
@@ -27,32 +30,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 [node name="Hull3x6" parent="hull" instance=ExtResource("3_wcl56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
 
-[node name="Hull3x7" parent="hull" instance=ExtResource("3_wcl56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -6)
-
-[node name="Hull3x8" parent="hull" instance=ExtResource("3_wcl56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
-
-[node name="Hull3x9" parent="hull" instance=ExtResource("3_wcl56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -9)
-
-[node name="Hull3x11" parent="hull" instance=ExtResource("3_wcl56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9)
-
-[node name="Hull3x12" parent="hull" instance=ExtResource("3_wcl56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -6)
-
-[node name="Hull3x13" parent="hull" instance=ExtResource("3_wcl56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -9)
-
-[node name="Hull3x14" parent="hull" instance=ExtResource("3_wcl56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -6)
-
-[node name="Hull3x15" parent="hull" instance=ExtResource("3_wcl56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -9)
-
-[node name="Hull3x16" parent="hull" instance=ExtResource("3_wcl56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -6)
-
-[node name="Hull3x10" parent="hull" instance=ExtResource("3_wcl56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -9)
+[node name="internal_walls" type="Node3D" parent="."]
