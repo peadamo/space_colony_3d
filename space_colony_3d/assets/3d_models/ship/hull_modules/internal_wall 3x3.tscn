@@ -2,7 +2,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rtxh"]
 transparency = 1
-albedo_color = Color(0.956863, 0.443137, 0.913725, 0.427451)
+albedo_color = Color(0.956863, 0.443137, 0.913725, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_n7dc8"]
 material = SubResource("StandardMaterial3D_3rtxh")
