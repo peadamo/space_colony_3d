@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sci-fi Gun / Tool
+* source:	https://sketchfab.com/3d-models/sci-fi-gun-tool-e04a6cd043d440868c45bd0248e96f0f
+* author:	Koyshem (https://sketchfab.com/koyshem)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sci-fi Gun / Tool" (https://sketchfab.com/3d-models/sci-fi-gun-tool-e04a6cd043d440868c45bd0248e96f0f) by Koyshem (https://sketchfab.com/koyshem) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

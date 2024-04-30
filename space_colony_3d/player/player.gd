@@ -47,7 +47,7 @@ func _ready():
 	radial_menu.visible=false
 var can_put_blueprint=false
 var can_show_radial_menu=true
-
+var is_gun_on_hand = false
 func _unhandled_input(event):
 	
 	if can_move_head:
@@ -150,6 +150,13 @@ func _unhandled_input(event):
 			radial_menu.visible=false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+		if Input.is_action_just_pressed("grab_gun"):
+			is_gun_on_hand=!is_gun_on_hand
+			if is_gun_on_hand :
+				$head/head_camera/player_arms.grab_gun()
+			else:
+				$head/head_camera/player_arms.store_gun()
+				
 
 
 
