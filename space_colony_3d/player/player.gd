@@ -153,9 +153,9 @@ func _unhandled_input(event):
 		if Input.is_action_just_pressed("grab_gun"):
 			is_gun_on_hand=!is_gun_on_hand
 			if is_gun_on_hand :
-				$head/head_camera/player_arms.grab_gun()
+				$head/player_bodie.grab_gun()
 			else:
-				$head/head_camera/player_arms.store_gun()
+				$head/player_bodie.store_gun()
 				
 
 

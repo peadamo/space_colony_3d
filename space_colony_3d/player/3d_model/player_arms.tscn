@@ -80,6 +80,6 @@ bones/44/position = Vector3(-2.13063e-06, 5.28859, -1.12677e-05)
 bones/44/rotation = Quaternion(-0.00163478, -0.0025679, 0.067956, 0.997684)
 
 [node name="rigth_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.964965, -0.00515864, 0.26233, -0.262293, -0.00684032, -0.964964, 0.00677235, -0.999964, 0.00524736, 21.8556, 118.671, -39.0231)
+transform = Transform3D(-0.964965, -0.00515835, 0.26233, -0.262293, -0.00684097, -0.964964, 0.00677224, -0.999964, 0.00524802, 21.8556, 118.671, -39.0231)
 bone_name = "Hand.R"
 bone_idx = 5
