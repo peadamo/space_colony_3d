@@ -2,7 +2,7 @@ extends CharacterBody3D
 var mouse_sensitivity=0.002
 var gravity=9.8
 var jump_velocity=5
-var speed=10
+var speed=5
 @onready var player = $"."
 
 @onready var head_camera = $head/head_camera
@@ -153,12 +153,18 @@ func _unhandled_input(event):
 		if Input.is_action_just_pressed("grab_gun"):
 			is_gun_on_hand=!is_gun_on_hand
 			if is_gun_on_hand :
-				$head/player_bodie.grab_gun()
+				$head/head_camera/player_arms2.grab_gun()
 			else:
-				$head/player_bodie.store_gun()
+				$head/head_camera/player_arms2.store_gun()
 				
+		if Input.is_action_just_pressed("carry"):
+			is_gun_on_hand=!is_gun_on_hand
+			if is_gun_on_hand :
+				$head/head_camera/player_arms2.grab_book()
+			else:
+				$head/head_camera/player_arms2.store_book()
 
-
+var is_walking=false
 
 func _physics_process(delta):
 	if is_in_pod == false:
@@ -173,9 +179,15 @@ func _physics_process(delta):
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 			calc_pointer_ref_position()
+			if is_walking == false :
+				is_walking = true
+				$head/player_torso.get_walk()
 		else:
 			velocity.x = 0.0
 			velocity.z = 0.0
+			if is_walking == true :
+				is_walking = false
+				$head/player_torso.get_idle()
 			
 		move_and_slide()
 	
