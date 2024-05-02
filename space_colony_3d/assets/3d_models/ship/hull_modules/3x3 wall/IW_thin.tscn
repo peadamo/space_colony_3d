@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjigj1dje14q1"]
+
+[ext_resource type="PackedScene" uid="uid://cumjhi0hykaon" path="res://assets/3d_models/ship/hull_modules/3x3 wall/thin/thin_wall_01.glb" id="1_r15qp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_daf6h"]
+size = Vector3(3, 3, 0.3)
+
+[node name="IwThin" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_daf6h")
+
+[node name="thin_wall_01" parent="StaticBody3D" instance=ExtResource("1_r15qp")]

@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://dc0vmtmbncifv"]
+[gd_scene load_steps=7 format=3 uid="uid://dc0vmtmbncifv"]
 
-[ext_resource type="PackedScene" uid="uid://c28dte1xdgdyu" path="res://assets/3d_models/ship/hull_modules/3x3_hull_frame/3x_3_hull_frame.tscn" id="1_2ao6q"]
 [ext_resource type="Script" path="res://assets/3d_models/ship/hull_modules/hull_3x3.gd" id="1_i25o1"]
 [ext_resource type="Script" path="res://assets/3d_models/ship/hull_modules/hull_block_wall.gd" id="2_ccv4k"]
 [ext_resource type="PackedScene" uid="uid://brpfp6n3gknox" path="res://assets/3d_models/ship/hull_modules/3X3 FLOOR/3X3 FLOOR 01.glb" id="2_ma1xc"]
@@ -12,9 +11,6 @@ size = Vector3(3, 0, 3)
 
 [node name="Hull3x3" type="Node3D"]
 script = ExtResource("1_i25o1")
-
-[node name="3x3_hull_frame" parent="." instance=ExtResource("1_2ao6q")]
-visible = false
 
 [node name="floor" type="Node3D" parent="."]
 

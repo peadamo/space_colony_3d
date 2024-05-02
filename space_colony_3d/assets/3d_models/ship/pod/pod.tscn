@@ -243,6 +243,5 @@ disabled = true
 [editable path="pod_y/pod_x/screens/PanelContent"]
 [editable path="pointer_mesh_ref/Hull3x3Blueprint"]
 [editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3"]
-[editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/3x3_hull_frame"]
 [editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/floor/3X3 FLOOR 01"]
 [editable path="pointer_mesh_ref/Hull3x3Blueprint/Hull3x3/roof/3x3 roof"]
