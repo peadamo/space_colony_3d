@@ -106,6 +106,8 @@ func _unhandled_input(event):
 			if looking_at_hangar:
 				interactive_object_in_view.enter_pod($".")
 				
+			if looking_at_internalWall:
+				interactive_object_in_view.build_wall()
 		if Input.is_action_just_pressed("delete_objeect"):
 			if looking_at_building:
 				interactive_object_in_view.destroy_building()
@@ -154,9 +156,10 @@ func _unhandled_input(event):
 			is_gun_on_hand=!is_gun_on_hand
 			if is_gun_on_hand :
 				$head/head_camera/player_arms2.grab_gun()
+				ray_cast_3d.set_collision_mask_value(5, true)
 			else:
 				$head/head_camera/player_arms2.store_gun()
-				
+				ray_cast_3d.set_collision_mask_value(5, false)
 		if Input.is_action_just_pressed("carry"):
 			is_gun_on_hand=!is_gun_on_hand
 			if is_gun_on_hand :
@@ -198,10 +201,12 @@ var looking_at_interactive_object=false
 var looking_at_prebuild_object=false
 var looking_at_building=false
 var looking_at_hangar=false
+var looking_at_internalWall = false
 
 
 func raycast_process():
 	var raycastCollide=ray_cast_3d.get_collider()
+	
 	if raycastCollide != null:
 		$Control/debug.text = str(raycastCollide)
 		
@@ -225,11 +230,20 @@ func raycast_process():
 			$Control/Label.text="E to use pod"
 			looking_at_hangar=true
 			interactive_object_in_view=raycastCollide
+		elif raycastCollide.is_in_group("internal_wall"):
+			$Control/Label.visible=true
+			$Control/Label.text="edit_wall"
+			looking_at_internalWall=true
+			interactive_object_in_view=raycastCollide.get_parent()
+			interactive_object_in_view.show_blueprint()
+			
+			
 		else :
 			looking_at_interactive_object=false
 			looking_at_prebuild_object=false
 			looking_at_building=false
 			looking_at_hangar=false
+			looking_at_internalWall=false
 			$Control/Label.visible=false
 			
 	
@@ -307,7 +321,7 @@ func update_pointer_pos():
 	var camera = get_tree().root.get_camera_3d()
 	var rayOrigin = camera.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) *2000
-	var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd)
+	var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd,0xA)
 	var rayArray = spaceState.intersect_ray(Parameters)
 	if rayArray.has("position"):
 		return rayArray["position"]

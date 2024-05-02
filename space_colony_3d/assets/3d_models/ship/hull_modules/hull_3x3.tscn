@@ -19,7 +19,7 @@ visible = false
 [node name="floor" type="Node3D" parent="."]
 
 [node name="floor_collider" type="StaticBody3D" parent="floor" groups=["hull_block"]]
-collision_layer = 9
+collision_layer = 11
 script = ExtResource("2_ccv4k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/floor_collider"]
@@ -34,7 +34,7 @@ transform = Transform3D(1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 0, -4.3711
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3, 0)
 
 [node name="roof_collider" type="StaticBody3D" parent="roof" groups=["hull_block"]]
-collision_layer = 9
+collision_layer = 11
 script = ExtResource("2_ccv4k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="roof/roof_collider"]
@@ -49,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5)
 
 [node name="wall_01_collider" type="StaticBody3D" parent="north_wall" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-collision_layer = 9
+collision_layer = 11
 script = ExtResource("2_ccv4k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="north_wall/wall_01_collider"]
@@ -66,7 +66,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.5
 
 [node name="wall_02_collider" type="StaticBody3D" parent="south_wall" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-collision_layer = 9
+collision_layer = 11
 script = ExtResource("2_ccv4k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="south_wall/wall_02_collider"]
@@ -83,7 +83,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 1
 
 [node name="wall_03_collider" type="StaticBody3D" parent="east_wall" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-collision_layer = 9
+collision_layer = 11
 script = ExtResource("2_ccv4k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="east_wall/wall_03_collider"]
@@ -101,7 +101,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 
 
 [node name="wall_04_collider" type="StaticBody3D" parent="west_wall" groups=["hull_block"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-collision_layer = 9
+collision_layer = 11
 script = ExtResource("2_ccv4k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="west_wall/wall_04_collider"]

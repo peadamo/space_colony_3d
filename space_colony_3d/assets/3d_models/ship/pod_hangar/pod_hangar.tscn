@@ -68,6 +68,8 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.45471)
 
 [node name="hangar_door_interactor" type="Area3D" parent="objecet_props/hangar_door" index="0" node_paths=PackedStringArray("pod") groups=["hangar_door"]]
+collision_layer = 2
+collision_mask = 0
 monitorable = false
 script = ExtResource("5_3hmj6")
 pod = NodePath("../../pod_container/pod")
@@ -77,7 +79,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01065, -0.0244141)
 shape = SubResource("BoxShape3D_4dlyl")
 
 [node name="player_exit" type="Marker3D" parent="objecet_props" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32877, -1.94449)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.944)
 
 [node name="landing_area" type="Area3D" parent="." index="4"]
 
