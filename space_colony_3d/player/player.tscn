@@ -33,17 +33,17 @@ collide_with_areas = true
 transform = Transform3D(-0.990964, 0, -0.134124, 0, 1, 0, 0.134124, 0, -0.990964, 0, -1.31724, 0.0395375)
 
 [node name="Skeleton3D" parent="head/head_camera/player_arms2/player_arms" index="0"]
-bones/0/position = Vector3(-0.530297, 0.840074, -95.6018)
-bones/0/rotation = Quaternion(-0.7285, -0.0505696, 0.0160387, 0.682988)
-bones/1/rotation = Quaternion(0.0244955, 0.0136996, 0.0227831, 0.999346)
+bones/0/position = Vector3(0.191776, -0.202363, -95.5795)
+bones/0/rotation = Quaternion(-0.728802, -0.0524531, 0.0126174, 0.682596)
+bones/1/rotation = Quaternion(0.0253953, 0.0128301, 0.0219232, 0.999355)
 bones/2/position = Vector3(-4.84283e-08, 16.2626, 3.17352e-07)
-bones/2/rotation = Quaternion(-0.036291, 0.0030634, 0.0144202, 0.999233)
+bones/2/rotation = Quaternion(-0.0361918, 0.00214833, 0.0138293, 0.999247)
 bones/3/position = Vector3(8.7543e-08, 13.7562, -4.91273e-06)
-bones/3/rotation = Quaternion(-0.0876729, 0.00204419, 0.0151766, 0.996032)
+bones/3/rotation = Quaternion(-0.0887199, 0.00031078, 0.0140606, 0.995957)
 bones/4/position = Vector3(-5.96042e-08, 14.4925, 1.21644e-06)
-bones/4/rotation = Quaternion(0.294888, -0.0017146, 0.00468287, 0.955519)
+bones/4/rotation = Quaternion(0.295612, -0.00116424, 0.00403823, 0.955299)
 bones/5/position = Vector3(2.30968e-07, 8.51924, 0.0655684)
-bones/5/rotation = Quaternion(-0.160782, 0.0103813, -0.00194639, 0.986933)
+bones/5/rotation = Quaternion(-0.158028, 0.0115335, -0.00274819, 0.987363)
 bones/10/position = Vector3(1.25216e-06, 0.0424053, 1.66589)
 bones/11/position = Vector3(-6.55651e-07, -0.434341, 1.28471)
 bones/24/position = Vector3(-0.807242, -0.325439, 0.454666)
@@ -54,12 +54,12 @@ bones/39/position = Vector3(0.807241, -0.325441, 0.454667)
 bones/40/position = Vector3(0.725091, 0.0237027, 0.578195)
 bones/53/position = Vector3(2.08486e-07, 1.23315, 8.25718)
 bones/54/position = Vector3(6.1442, 10.7824, -0.588251)
-bones/54/rotation = Quaternion(0.673884, 0.469845, -0.452689, 0.346697)
-bones/55/rotation = Quaternion(0.528073, 0.180469, 0.170298, 0.812138)
+bones/54/rotation = Quaternion(0.677175, 0.465943, -0.451769, 0.34675)
+bones/55/rotation = Quaternion(0.524743, 0.182928, 0.167452, 0.814335)
 bones/56/position = Vector3(2.07032e-06, 27.675, 2.64457e-07)
-bones/56/rotation = Quaternion(1.85302e-06, 1.53638e-08, 0.0139813, 0.999902)
+bones/56/rotation = Quaternion(1.90564e-06, -8.87212e-08, 0.0129312, 0.999916)
 bones/57/position = Vector3(1.01686e-06, 27.8743, 1.22589e-06)
-bones/57/rotation = Quaternion(0.0459138, -0.280696, 0.0268936, 0.958321)
+bones/57/rotation = Quaternion(0.0473426, -0.284832, 0.0272855, 0.957019)
 bones/58/position = Vector3(-2.37345, 2.42101, 1.42584)
 bones/58/rotation = Quaternion(0.0537589, 0.499198, 0.290434, 0.814592)
 bones/59/rotation = Quaternion(0.177989, 0.0865953, -0.215742, 0.956178)
@@ -79,11 +79,11 @@ bones/74/rotation = Quaternion(0.235074, -0.00362597, -0.049751, 0.970697)
 bones/75/rotation = Quaternion(0.151259, 4.39337e-08, -0.0154909, 0.988373)
 bones/76/rotation = Quaternion(0.143499, 1.8941e-08, -0.0146961, 0.989541)
 bones/78/position = Vector3(-6.1442, 10.7829, -0.588111)
-bones/78/rotation = Quaternion(-0.675959, 0.466874, -0.470017, -0.322788)
+bones/78/rotation = Quaternion(-0.675207, 0.467874, -0.468792, -0.32469)
 bones/79/position = Vector3(-1.98812e-05, 12.5046, 0.00031542)
-bones/79/rotation = Quaternion(0.445672, -0.267844, -0.191959, 0.832339)
-bones/80/rotation = Quaternion(-1.08373e-07, -1.53721e-08, -0.0578449, 0.998326)
-bones/81/rotation = Quaternion(0.0540611, 0.175004, -0.00504252, 0.98307)
+bones/79/rotation = Quaternion(0.447232, -0.265311, -0.194748, 0.831665)
+bones/80/rotation = Quaternion(6.60664e-08, -7.90454e-09, -0.0583519, 0.998296)
+bones/81/rotation = Quaternion(0.0569674, 0.175106, -0.00625662, 0.98288)
 bones/82/position = Vector3(2.37345, 2.421, 1.426)
 bones/82/rotation = Quaternion(0.0464987, -0.491326, -0.307513, 0.813555)
 bones/83/position = Vector3(0.000229985, 5.41874, 0.000179648)
@@ -109,20 +109,20 @@ bones/96/rotation = Quaternion(0.155511, -2.10967e-08, 0.0126595, 0.987753)
 bones/98/rotation = Quaternion(0.22969, 0.00352702, 0.0437256, 0.972275)
 bones/99/rotation = Quaternion(0.151549, -4.00468e-08, 0.0123368, 0.988373)
 bones/100/rotation = Quaternion(0.143773, -3.39996e-08, 0.0117037, 0.989541)
-bones/102/rotation = Quaternion(0.142029, 0.0667318, 0.984795, -0.0745243)
-bones/103/rotation = Quaternion(-0.126866, -0.0149381, 0.0400902, 0.990997)
-bones/104/rotation = Quaternion(0.31497, 0.0217947, -0.058067, 0.947073)
+bones/102/rotation = Quaternion(0.140539, 0.0759326, 0.984326, -0.0747307)
+bones/103/rotation = Quaternion(-0.133863, -0.0151046, 0.0393664, 0.990102)
+bones/104/rotation = Quaternion(0.315476, 0.0229782, -0.0549398, 0.947063)
 bones/105/rotation = Quaternion(0.507117, 0.00203318, 0.00284317, 0.86187)
-bones/107/rotation = Quaternion(-0.0978119, -0.0262773, 0.994493, -0.0269413)
-bones/108/rotation = Quaternion(-0.0731177, 0.0845805, -0.0311608, 0.993242)
-bones/109/rotation = Quaternion(0.352637, 0.021471, 0.0044309, 0.935503)
-bones/110/rotation = Quaternion(0.523077, -0.0234927, 0.0415128, 0.85095)
+bones/107/rotation = Quaternion(-0.0962861, -0.0202677, 0.994756, -0.0278995)
+bones/108/rotation = Quaternion(-0.0729462, 0.0844704, -0.0306428, 0.99328)
+bones/109/rotation = Quaternion(0.345484, 0.0242935, 0.00439575, 0.9381)
+bones/110/rotation = Quaternion(0.524794, -0.023496, 0.0414211, 0.849896)
 
 [node name="brazos_001" parent="head/head_camera/player_arms2/player_arms/Skeleton3D" index="1"]
 visible = false
 
 [node name="BoneAttachment3D" parent="head/head_camera/player_arms2/player_arms/Skeleton3D" index="2"]
-transform = Transform3D(0.401667, 0.0262422, 0.91541, 0.913277, 0.0624648, -0.402522, -0.0677437, 0.997702, 0.00112374, -24.5051, 1.15227, -84.8159)
+transform = Transform3D(0.396953, 0.0218964, 0.917578, 0.91503, 0.0687117, -0.39749, -0.0717519, 0.997396, 0.00723936, -23.9692, 0.400205, -85.1635)
 
 [node name="laser_cutter" parent="head/head_camera/player_arms2/player_arms/Skeleton3D/BoneAttachment3D" index="0"]
 transform = Transform3D(-26.6336, 99.5272, -16.9987, -3.91303, 16.5494, 103.028, 100.893, 26.9149, -0.49156, -0.282715, 13.4506, 3.38883)
@@ -177,6 +177,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="RadialMenu" parent="Control" node_paths=PackedStringArray("player") instance=ExtResource("2_3cnl1")]
+visible = false
 layout_mode = 1
 player = NodePath("../..")
 
@@ -184,6 +185,206 @@ player = NodePath("../..")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Build_menu" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Control/Build_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "This is the build_menu
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Build_menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_right = 50.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="Construction preview" type="Control" parent="Control/Build_menu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/Build_menu/HBoxContainer/Construction preview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.164706, 0.164706, 0.631373)
+
+[node name="Label" type="Label" parent="Control/Build_menu/HBoxContainer/Construction preview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Construction preview2" type="Control" parent="Control/Build_menu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/Build_menu/HBoxContainer/Construction preview2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.164706, 0.164706, 0.631373)
+
+[node name="Label" type="Label" parent="Control/Build_menu/HBoxContainer/Construction preview2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Construction preview3" type="Control" parent="Control/Build_menu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/Build_menu/HBoxContainer/Construction preview3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.164706, 0.164706, 0.631373)
+
+[node name="Label" type="Label" parent="Control/Build_menu/HBoxContainer/Construction preview3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Construction preview4" type="Control" parent="Control/Build_menu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/Build_menu/HBoxContainer/Construction preview4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.164706, 0.164706, 0.631373)
+
+[node name="Label" type="Label" parent="Control/Build_menu/HBoxContainer/Construction preview4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Construction preview5" type="Control" parent="Control/Build_menu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/Build_menu/HBoxContainer/Construction preview5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.164706, 0.164706, 0.631373)
+
+[node name="Label" type="Label" parent="Control/Build_menu/HBoxContainer/Construction preview5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Construction preview6" type="Control" parent="Control/Build_menu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/Build_menu/HBoxContainer/Construction preview6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.164706, 0.164706, 0.631373)
+
+[node name="Label" type="Label" parent="Control/Build_menu/HBoxContainer/Construction preview6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Construction preview7" type="Control" parent="Control/Build_menu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/Build_menu/HBoxContainer/Construction preview7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.164706, 0.164706, 0.631373)
+
+[node name="Label" type="Label" parent="Control/Build_menu/HBoxContainer/Construction preview7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="pointer_mesh_ref" type="Marker3D" parent="."]
 

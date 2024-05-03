@@ -42,9 +42,13 @@ func leave_pod(pos):
 	#$head/head_camera.rotation=Vector3.ZERO
 
 @onready var radial_menu = $Control/RadialMenu
+@onready var build_menu = $Control/Build_menu
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	radial_menu.visible=false
+	build_menu.visible=false
+	
 var can_put_blueprint=false
 var can_show_radial_menu=true
 var is_gun_on_hand = false
@@ -157,9 +161,14 @@ func _unhandled_input(event):
 			if is_gun_on_hand :
 				$head/head_camera/player_arms2.grab_gun()
 				ray_cast_3d.set_collision_mask_value(5, true)
+				build_menu.visible=true
 			else:
 				$head/head_camera/player_arms2.store_gun()
 				ray_cast_3d.set_collision_mask_value(5, false)
+				build_menu.visible=false
+				
+				
+				
 		if Input.is_action_just_pressed("carry"):
 			is_gun_on_hand=!is_gun_on_hand
 			if is_gun_on_hand :
@@ -167,6 +176,18 @@ func _unhandled_input(event):
 			else:
 				$head/head_camera/player_arms2.store_book()
 
+#esto es para cuando esta en el menu de cosntruccion
+		if is_gun_on_hand:
+			if event is InputEventMouseButton:
+				if event.button_index == 5 and event.pressed:
+					$Control/Build_menu/HBoxContainer.position.x-=100
+					pass
+				if event.button_index == 4 and event.pressed:
+					$Control/Build_menu/HBoxContainer.position.x+=100
+					
+					pass
+			print(event)
+			
 var is_walking=false
 
 func _physics_process(delta):
