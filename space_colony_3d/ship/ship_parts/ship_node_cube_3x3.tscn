@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://gsb2nl27twce"]
+
+[ext_resource type="PackedScene" uid="uid://c5ds01m6pn8bv" path="res://ship/ship_parts/face_square_3x_3.tscn" id="1_ktb42"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_njhk3"]
+size = Vector3(3, 3, 3)
+
+[node name="ShipNodeCube3x3" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_njhk3")
+
+[node name="faces" type="Node3D" parent="."]
+
+[node name="face_square_3x3_00" parent="faces" instance=ExtResource("1_ktb42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="face_square_3x3_05" parent="faces" instance=ExtResource("1_ktb42")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -1.5, 0)
+
+[node name="face_square_3x3_01" parent="faces" instance=ExtResource("1_ktb42")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="face_square_3x3_02" parent="faces" instance=ExtResource("1_ktb42")]
+transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="face_square_3x3_03" parent="faces" instance=ExtResource("1_ktb42")]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -6.55671e-08, 0, 1.5)
+
+[node name="face_square_3x3_04" parent="faces" instance=ExtResource("1_ktb42")]
+transform = Transform3D(-5.73206e-15, 4.37114e-08, -1, 1, 1.31134e-07, 0, 1.31134e-07, -1, -4.37114e-08, 6.55671e-08, 0, -1.5)

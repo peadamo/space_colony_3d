@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdwa8se1u80k6"]
+
+[ext_resource type="PackedScene" uid="uid://c5ds01m6pn8bv" path="res://ship/ship_parts/face_square_3x_3.tscn" id="1_jynb0"]
+[ext_resource type="PackedScene" uid="uid://dcoxpbnpo3g6k" path="res://ship/ship_parts/face_triangle_3x_3.tscn" id="2_0ssk1"]
+[ext_resource type="PackedScene" uid="uid://xvigklki11" path="res://ship/ship_parts/face_rect_prism_3x_3.tscn" id="3_jo11r"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_l5bir"]
+left_to_right = 0.0
+size = Vector3(3, 3, 3)
+
+[node name="ShipNodePrism3x3" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_l5bir")
+
+[node name="faces" type="Node3D" parent="."]
+
+[node name="face_square_3x3_05" parent="faces" instance=ExtResource("1_jynb0")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -1.5, 0)
+
+[node name="face_square_3x3_02" parent="faces" instance=ExtResource("1_jynb0")]
+transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="face_triangle_3x3" parent="faces" instance=ExtResource("2_0ssk1")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, -1.5)
+
+[node name="face_triangle_3x4" parent="faces" instance=ExtResource("2_0ssk1")]
+transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 0, 0, 1.5)
+
+[node name="face_rect_prism_3x3" parent="faces" instance=ExtResource("3_jo11r")]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
+
+[editable path="faces/face_square_3x3_02"]
+[editable path="faces/face_triangle_3x4"]
+[editable path="faces/face_rect_prism_3x3"]

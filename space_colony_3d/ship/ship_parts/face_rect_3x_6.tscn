@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct51tnapxp3u1"]
+
+[ext_resource type="Script" path="res://ship/ship_parts/ship_part_face.gd" id="1_b3cba"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ye212"]
+size = Vector3(6, 0, 3)
+
+[node name="face_rect_3x6" type="StaticBody3D"]
+collision_layer = 11
+collision_mask = 0
+script = ExtResource("1_b3cba")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ye212")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56474, 1.5, -0.0215795)
