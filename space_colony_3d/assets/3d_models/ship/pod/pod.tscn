@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxuhpqx7bacrn"]
+[gd_scene load_steps=16 format=3 uid="uid://bxuhpqx7bacrn"]
 
 [ext_resource type="Script" path="res://assets/3d_models/ship/pod/pod.gd" id="1_h06qc"]
-[ext_resource type="PackedScene" uid="uid://dui7tvtw8rfkc" path="res://assets/3d_models/ship/main_console/panel_content.tscn" id="2_hm6cq"]
 [ext_resource type="Texture2D" uid="uid://cs58jve7w1qi6" path="res://assets/3d_models/ship/pod/pod_Metal002_1K-PNG_Color.png" id="2_q8aq0"]
 [ext_resource type="Texture2D" uid="uid://dwavgymteh2i7" path="res://assets/3d_models/ship/pod/pod_Metal002_1K-PNG_Metalness-Metal002_1K-PNG_Roughness.png" id="3_23n7l"]
 [ext_resource type="PackedScene" uid="uid://dh0ajk36tgx7x" path="res://assets/3d_models/ship/pod/pod_button_lunch.tscn" id="3_rq1wq"]
@@ -129,13 +128,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gjrc6")
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k3hu0"]
-light_mode = 1
-
-[sub_resource type="QuadMesh" id="QuadMesh_ax0xb"]
-resource_local_to_scene = true
-size = Vector2(1, 0.563)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_ktr8x"]
 radius = 1.16487
 
@@ -181,15 +173,6 @@ spot_angle = 63.1717
 
 [node name="screens" type="Node3D" parent="pod_y/pod_x"]
 
-[node name="PanelContent" parent="pod_y/pod_x/screens" instance=ExtResource("2_hm6cq")]
-transform = Transform3D(0.217348, 0.211493, 0.959449, -0.0467263, 0.98376, -0.206266, -0.981371, 0, 0.222314, -0.879842, 0.280359, -0.261362)
-
-[node name="ShipBlueprint" parent="pod_y/pod_x/screens/PanelContent/SubViewport" index="0"]
-material = SubResource("CanvasItemMaterial_k3hu0")
-
-[node name="Quad" parent="pod_y/pod_x/screens/PanelContent" index="1"]
-mesh = SubResource("QuadMesh_ax0xb")
-
 [node name="Label3D" type="Label3D" parent="pod_y/pod_x/screens"]
 transform = Transform3D(0.401188, 0, 0.034267, 0, 0.402649, 0, -0.034267, 0, 0.401188, -0.0883748, 0.561485, -1.03177)
 text = "dasdadasdasdas"
@@ -215,5 +198,3 @@ shape = SubResource("SphereShape3D_ktr8x")
 disabled = true
 
 [node name="pointer_mesh_ref" type="Marker3D" parent="."]
-
-[editable path="pod_y/pod_x/screens/PanelContent"]

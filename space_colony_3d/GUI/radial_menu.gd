@@ -71,7 +71,7 @@ func run_action_selected_menu():
 			load_menu("life_support_menu")
 #airlock MENU ITEMS:
 		"Pod Hangar":
-			player.load_blueprint("Pod Hangar",true)
+			player.construction.load_blueprint("Pod Hangar",true)
 		"Shuttle Hangar":
 			pass
 		"X1 Airlock":
@@ -80,7 +80,7 @@ func run_action_selected_menu():
 			pass
 #vital suport
 		"Oxygen Generator":
-			player.load_blueprint("Oxygen Generator",true)
+			player.construction.load_blueprint("Oxygen Generator",true)
 
 	
 var actual_angle=0.0

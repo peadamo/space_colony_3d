@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwiiv7d2riq4w"]
+
+[ext_resource type="PackedScene" uid="uid://ekjo00nueopf" path="res://ship/base_ship.tscn" id="1_bhptd"]
+[ext_resource type="Script" path="res://main.gd" id="1_gaq2m"]
+[ext_resource type="PackedScene" uid="uid://cx3s2f1kg1r7p" path="res://player/player.tscn" id="2_i8058"]
+[ext_resource type="PackedScene" uid="uid://jra8nqg480i0" path="res://world/world_base.tscn" id="3_04yyn"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_gaq2m")
+
+[node name="WorldBase" parent="." instance=ExtResource("3_04yyn")]
+
+[node name="BaseShip" parent="." instance=ExtResource("1_bhptd")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("pointer_marker", "ship") instance=ExtResource("2_i8058")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.297474, 1.3925, -2.81877)
+pointer_marker = NodePath("../suport_nodes/player_pointer_marker")
+ship = NodePath("../BaseShip")
+
+[node name="construction" parent="Player/scripts" index="0"]
+player = Object(CharacterBody3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.297474, 1.3925, -2.81877),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_ray_pickable":true,"input_capture_on_drag":false,"axis_lock_linear_x":false,"axis_lock_linear_y":false,"axis_lock_linear_z":false,"axis_lock_angular_x":false,"axis_lock_angular_y":false,"axis_lock_angular_z":false,"motion_mode":0,"up_direction":Vector3(0, 1, 0),"slide_on_ceiling":true,"velocity":Vector3(0, 0, 0),"max_slides":6,"wall_min_slide_angle":0.261799,"floor_stop_on_slope":true,"floor_constant_speed":false,"floor_block_on_wall":true,"floor_max_angle":0.785398,"floor_snap_length":0.1,"platform_on_leave":0,"platform_floor_layers":4294967295,"platform_wall_layers":0,"safe_margin":0.001,"script":Resource("res://player/player.gd"),"pointer_marker":Object(Marker3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":null)
+,"ship":Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":Resource("res://ship/base_ship.gd"))
+)
+
+
+[node name="interactions" parent="Player/scripts" index="2"]
+player = Object(CharacterBody3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.297474, 1.3925, -2.81877),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_ray_pickable":true,"input_capture_on_drag":false,"axis_lock_linear_x":false,"axis_lock_linear_y":false,"axis_lock_linear_z":false,"axis_lock_angular_x":false,"axis_lock_angular_y":false,"axis_lock_angular_z":false,"motion_mode":0,"up_direction":Vector3(0, 1, 0),"slide_on_ceiling":true,"velocity":Vector3(0, 0, 0),"max_slides":6,"wall_min_slide_angle":0.261799,"floor_stop_on_slope":true,"floor_constant_speed":false,"floor_block_on_wall":true,"floor_max_angle":0.785398,"floor_snap_length":0.1,"platform_on_leave":0,"platform_floor_layers":4294967295,"platform_wall_layers":0,"safe_margin":0.001,"script":Resource("res://player/player.gd"),"pointer_marker":Object(Marker3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":null)
+,"ship":Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":Resource("res://ship/base_ship.gd"))
+)
+
+player_pointer_marker = Object(Marker3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":null)
+
+
+[node name="Skeleton3D" parent="Player/head/head_camera/player_arms2/player_arms" index="0"]
+bones/0/position = Vector3(-0.550312, 0.932015, -95.5687)
+bones/0/rotation = Quaternion(-0.729399, -0.0513124, 0.0159017, 0.681976)
+bones/1/rotation = Quaternion(0.0279245, 0.0157682, 0.0236919, 0.999205)
+bones/2/rotation = Quaternion(-0.0357378, 0.0033091, 0.014462, 0.999251)
+bones/3/rotation = Quaternion(-0.0875919, 0.0021119, 0.0152723, 0.996037)
+bones/4/rotation = Quaternion(0.297578, -0.00185407, 0.00346303, 0.954689)
+bones/5/rotation = Quaternion(-0.165829, 0.0088901, -0.00132267, 0.986113)
+bones/54/rotation = Quaternion(0.677216, 0.465887, -0.452356, 0.345981)
+bones/55/rotation = Quaternion(0.525214, 0.17823, 0.173008, 0.813912)
+bones/56/rotation = Quaternion(1.85329e-06, 2.82529e-08, 0.0141161, 0.9999)
+bones/57/rotation = Quaternion(0.0427694, -0.284432, 0.029134, 0.957299)
+bones/78/rotation = Quaternion(-0.678696, 0.463575, -0.469874, -0.322007)
+bones/79/rotation = Quaternion(0.44637, -0.265855, -0.18971, 0.833117)
+bones/80/rotation = Quaternion(-1.73467e-07, -3.8293e-08, -0.0581261, 0.998309)
+bones/81/rotation = Quaternion(0.0532992, 0.176065, -0.00544224, 0.982919)
+bones/102/rotation = Quaternion(0.144517, 0.0672068, 0.984286, -0.0760231)
+bones/103/rotation = Quaternion(-0.131683, -0.0124162, 0.0396851, 0.990419)
+bones/104/rotation = Quaternion(0.317863, 0.0217115, -0.0577839, 0.946125)
+bones/107/rotation = Quaternion(-0.097949, -0.0269915, 0.994453, -0.0272317)
+bones/108/rotation = Quaternion(-0.0762303, 0.0845106, -0.031665, 0.992998)
+bones/109/rotation = Quaternion(0.354476, 0.0211803, 0.00505839, 0.934812)
+bones/110/rotation = Quaternion(0.5233, -0.0234932, 0.0415009, 0.850813)
+
+[node name="BoneAttachment3D" parent="Player/head/head_camera/player_arms2/player_arms/Skeleton3D" index="2"]
+transform = Transform3D(0.402618, 0.0330326, 0.914772, 0.912911, 0.0586788, -0.403918, -0.0670202, 0.99773, -0.00653067, -24.1206, 1.24757, -84.6543)
+
+[node name="suport_nodes" type="Node" parent="."]
+
+[node name="player_pointer_marker" type="Marker3D" parent="suport_nodes"]
+
+[editable path="Player"]
+[editable path="Player/head/head_camera/player_arms2"]
