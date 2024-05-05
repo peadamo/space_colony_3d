@@ -16,7 +16,7 @@ var mouse_sensitivity=0.002
 @export var hangar_landed_marker : Marker3D
 @onready var player_holder = $pod_y/pod_x/player_holder
 
-var speed=10
+var speed=20
 var is_on_use=false
 
 func start():
@@ -48,17 +48,38 @@ func _unhandled_input(event):
 		
 		if event is InputEventMouseButton:
 			
-			if event.button_index==1 and event.pressed:
-				if blue_print_on:
-					ship.add_hull_wall_blueprint(pointer_mesh_ref.global_position)
-					
-				if build_hull_block_on and object_to_build != null:
-					object_to_build.get_parent().build_blueprint()
-					
-			if event.button_index==2 and event.pressed:
-				if blue_print_on:
+			if blue_print_on:
+				#click izquierdo
+				if event.button_index==1 and event.pressed:
+						new_ship_node_blueprint.reparent(ship.hull)
+						new_ship_node_blueprint.enable_collision_all_faces()
+						ship.add_new_ship_node_faces(new_ship_node_blueprint)
+						create_new_blueprint_model(actual_node_model)
+						
+				#click derecho
+				if event.button_index==2 and event.pressed:
 					blue_print_on=false
-					$pointer_mesh_ref/Hull3x3Blueprint.visible=false
+					$pointer_mesh_ref.visible=false
+				#rueda arriba
+				if event.button_index==4 and event.pressed:
+					print("rueda arriba")
+					change_actual_node_model(1)
+					update_blueprint_model()
+				#rueda abajo
+				if event.button_index==5 and event.pressed:
+					print("rueda abajo")
+					change_actual_node_model(-1)
+					update_blueprint_model()
+					
+		if Input.is_action_just_pressed("rotate_left"):
+			print("rotate_left")
+			new_ship_node_blueprint.rotate_y(deg_to_rad(-90))
+		if Input.is_action_just_pressed("rotate_rigth"):
+			print("rotate_rigth")
+			
+			new_ship_node_blueprint.rotate_y(deg_to_rad(90))
+
+					
 				
 		if Input.is_action_just_pressed("x_ray_vision"):
 			x_ray_on=!x_ray_on
@@ -70,10 +91,12 @@ func _unhandled_input(event):
 		if Input.is_action_just_pressed("add_hull_block"):
 			blue_print_on=!blue_print_on
 			if blue_print_on:
-				$pointer_mesh_ref/Hull3x3Blueprint.visible=true
+				update_blueprint_model()
+				$pointer_mesh_ref.visible=true
 				
 			else:
-				$pointer_mesh_ref/Hull3x3Blueprint.visible=false
+				
+				$pointer_mesh_ref.visible=false
 				
 		if Input.is_action_just_pressed("build_hull_block"):
 			build_hull_block_on=!build_hull_block_on
@@ -140,7 +163,8 @@ func _physics_process(delta):
 		velocity=pod_orintation*delta*speed*10
 	
 	move_and_slide()
-	check_raycast()
+	if blue_print_on:
+		check_raycast()
 	
 @onready var ray_cast_3d :RayCast3D = $pod_y/pod_x/RayCast3D
 var object_in_view
@@ -148,16 +172,49 @@ var object_to_build
 @onready var label_3d = $pod_y/pod_x/screens/Label3D
 @onready var pointer_mesh_ref = $pointer_mesh_ref
 
+
+var new_ship_node_blueprint_scene = null
+var new_ship_node_blueprint : Node3D= null
+
 func check_raycast():
 	object_in_view = ray_cast_3d.get_collider()
 	
 	if object_in_view != null :
 		label_3d.text = str("")
-		if object_in_view.is_in_group("hull_block"):
+		if object_in_view.is_in_group("ship_node_face"):
 			#label_3d.text = str(object_in_view.get_blueprint_position())
-			pointer_mesh_ref.global_position=object_in_view.get_blueprint_position()
+			pointer_mesh_ref.global_position=object_in_view.get_new_shipNode_position()
+			#print(new_ship_node_blueprint_scene)
 		if  object_in_view.is_in_group("blue_print"):
 			object_to_build=object_in_view
 			label_3d.text = str("build:",object_in_view)
 			
-			pass
+
+var actual_node_model = "CUBE"
+func update_blueprint_model():
+	CUSTOM.clear_node_children(pointer_mesh_ref)
+	create_new_blueprint_model(actual_node_model)
+
+const SHIP_NODE_CUBE_3X_3 = preload("res://ship/ship_parts/ship_node_cube_3x3.tscn")
+const SHIP_NODE_PRISM_3X_3 = preload("res://ship/ship_parts/ship_node_prism_3x3.tscn")
+const SHIP_NODE_PRISM_3X_6 = preload("res://ship/ship_parts/ship_node_prism_3x6.tscn")	
+
+func create_new_blueprint_model(model):
+		match model:
+			"CUBE":
+				pointer_mesh_ref.add_child(SHIP_NODE_CUBE_3X_3.instantiate())
+			"PRISM_3X3":
+				pointer_mesh_ref.add_child(SHIP_NODE_PRISM_3X_3.instantiate())
+			"PRISM_3X6":
+				pointer_mesh_ref.add_child(SHIP_NODE_PRISM_3X_6.instantiate())
+		new_ship_node_blueprint=pointer_mesh_ref.get_child(-1)
+
+var node_models : Array = ["CUBE","PRISM_3X3","PRISM_3X6"]
+
+func change_actual_node_model(val):
+	var actual_index = node_models.find(actual_node_model)
+	var new_index = actual_index + val
+	if new_index > node_models.size()-1:
+		new_index = 0
+	actual_node_model = node_models[new_index]
+	

@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://xvigklki11"]
+[gd_scene load_steps=4 format=3 uid="uid://xvigklki11"]
+
+[ext_resource type="Script" path="res://ship/ship_parts/ship_part_face.gd" id="1_36qt7"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_b11mg"]
 points = PackedVector3Array(-1.5, -1.5, -1.5, -1.5, -1.5, -1.5, -1.5, -1.5, 1.5, -1.5, -1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, -1.5, 1.5, 1.5, -1.5)
 
-[node name="face_rect_prism_3x3" type="StaticBody3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_u8hrc"]
+size = Vector3(4.243, 0, 3)
+
+[node name="face_rect_prism_3x3" type="StaticBody3D" groups=["ship_node_face"]]
 collision_layer = 11
 collision_mask = 0
+script = ExtResource("1_36qt7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
@@ -13,3 +19,9 @@ shape = SubResource("ConvexPolygonShape3D_b11mg")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="construction" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="construction"]
+mesh = SubResource("BoxMesh_u8hrc")
+skeleton = NodePath("../..")

@@ -1,14 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5ds01m6pn8bv"]
+[gd_scene load_steps=4 format=3 uid="uid://c5ds01m6pn8bv"]
+
+[ext_resource type="Script" path="res://ship/ship_parts/ship_part_face.gd" id="1_7565c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yn8pe"]
 size = Vector3(3, 0, 3)
 
-[node name="face_square_3x3" type="StaticBody3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_t2tbe"]
+size = Vector3(3, 0, 3)
+
+[node name="face_square_3x3" type="StaticBody3D" groups=["ship_node_face"]]
 collision_layer = 11
 collision_mask = 0
+script = ExtResource("1_7565c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_yn8pe")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="construction" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="construction"]
+mesh = SubResource("BoxMesh_t2tbe")
+skeleton = NodePath("../..")

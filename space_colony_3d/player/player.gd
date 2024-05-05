@@ -53,7 +53,7 @@ var can_put_blueprint=false
 var can_show_radial_menu=true
 var is_gun_on_hand = false
 func _unhandled_input(event):
-	
+	#print(event)
 	if can_move_head:
 		if event is InputEventMouseMotion:
 			$head.rotate_y(-event.relative.x*mouse_sensitivity)

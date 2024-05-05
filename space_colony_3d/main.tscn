@@ -13,5 +13,5 @@ script = ExtResource("1_gaq2m")
 [node name="BaseShip" parent="." instance=ExtResource("1_bhptd")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("ship") instance=ExtResource("2_i8058")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.297474, 1.81542, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.297474, 0.989978, -2.81877)
 ship = NodePath("../BaseShip")
