@@ -9,7 +9,6 @@ points = PackedVector3Array(-1.5, -1.5, -1.5, -1.5, -1.5, -1.5, -1.5, -1.5, 1.5,
 size = Vector3(6.708, 0, 3)
 
 [node name="face_rect_prism_3x6" type="StaticBody3D" groups=["ship_node_face"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_2mxpx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -19,11 +19,6 @@ var mouse_sensitivity=0.002
 var speed=20
 var is_on_use=false
 
-func start():
-	#is_on_use=true
-	pass
-	
-	
 var is_lunching=false
 func start_lunch():
 	print("pod starting _lunch")
@@ -35,22 +30,22 @@ func back_to_hangar():
 	is_back_to_hangar=true
 	is_on_use=false
 
-var x_ray_on=false
 var blue_print_on=false
-var build_hull_block_on=false
-const HULL_3X_3_BLUEPRINT = preload("res://assets/3d_models/ship/hull_modules/HULL 3x3 blueprint.tscn")
 func _unhandled_input(event):
-	
 	if is_on_use:
+		
 		if event is InputEventMouseMotion:
 			pod_y.rotate_y(-event.relative.x*mouse_sensitivity)
 			pod_x.rotate_x(-event.relative.y*mouse_sensitivity)
 		
-		if event is InputEventMouseButton:
-			
-			if blue_print_on:
+		if blue_print_on:
+			if event is InputEventMouseButton:
 				#click izquierdo
 				if event.button_index==1 and event.pressed:
+						print(new_ship_node_blueprint.global_position)
+						new_ship_node_blueprint.global_position=round(new_ship_node_blueprint.global_position*10)/10
+						print(new_ship_node_blueprint.global_position)
+						
 						new_ship_node_blueprint.reparent(ship.hull)
 						new_ship_node_blueprint.enable_collision_all_faces()
 						ship.add_new_ship_node_faces(new_ship_node_blueprint)
@@ -71,23 +66,14 @@ func _unhandled_input(event):
 					change_actual_node_model(-1)
 					update_blueprint_model()
 					
-		if Input.is_action_just_pressed("rotate_left"):
-			print("rotate_left")
-			new_ship_node_blueprint.rotate_y(deg_to_rad(-90))
-		if Input.is_action_just_pressed("rotate_rigth"):
-			print("rotate_rigth")
-			
-			new_ship_node_blueprint.rotate_y(deg_to_rad(90))
+			if Input.is_action_just_pressed("rotate_left"):
+				print("rotate_left")
+				new_ship_node_blueprint.rotate_y(deg_to_rad(-90))
+			if Input.is_action_just_pressed("rotate_rigth"):
+				print("rotate_rigth")
+				
+				new_ship_node_blueprint.rotate_y(deg_to_rad(90))
 
-					
-				
-		if Input.is_action_just_pressed("x_ray_vision"):
-			x_ray_on=!x_ray_on
-			if x_ray_on:
-				ship.active_xView_vision()
-			else:
-				ship.inactive_xView_vision()
-				
 		if Input.is_action_just_pressed("add_hull_block"):
 			blue_print_on=!blue_print_on
 			if blue_print_on:
@@ -97,15 +83,7 @@ func _unhandled_input(event):
 			else:
 				
 				$pointer_mesh_ref.visible=false
-				
-		if Input.is_action_just_pressed("build_hull_block"):
-			build_hull_block_on=!build_hull_block_on
-			
-			if build_hull_block_on:
-				ray_cast_3d.set_collision_mask(16)
 
-			else:
-				ray_cast_3d.set_collision_mask(8)
 
 func _physics_process(delta):
 	velocity=Vector3.ZERO
@@ -173,23 +151,15 @@ var object_to_build
 @onready var pointer_mesh_ref = $pointer_mesh_ref
 
 
-var new_ship_node_blueprint_scene = null
 var new_ship_node_blueprint : Node3D= null
 
 func check_raycast():
 	object_in_view = ray_cast_3d.get_collider()
-	
 	if object_in_view != null :
-		label_3d.text = str("")
 		if object_in_view.is_in_group("ship_node_face"):
-			#label_3d.text = str(object_in_view.get_blueprint_position())
 			pointer_mesh_ref.global_position=object_in_view.get_new_shipNode_position()
-			#print(new_ship_node_blueprint_scene)
-		if  object_in_view.is_in_group("blue_print"):
-			object_to_build=object_in_view
-			label_3d.text = str("build:",object_in_view)
-			
 
+#region Construction hull
 var actual_node_model = "CUBE"
 func update_blueprint_model():
 	CUSTOM.clear_node_children(pointer_mesh_ref)
@@ -217,4 +187,5 @@ func change_actual_node_model(val):
 	if new_index > node_models.size()-1:
 		new_index = 0
 	actual_node_model = node_models[new_index]
+#endregion
 	

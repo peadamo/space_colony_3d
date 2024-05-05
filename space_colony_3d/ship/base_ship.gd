@@ -37,8 +37,8 @@ func add_new_ship_node_faces(ship_node):
 func delete_internal_wall(eval_face):
 	for face in ship_node_faces:
 		if face != eval_face:
+			
 			if round(face.global_position) == round(eval_face.global_position):
-				print("deleted",eval_face,face)
 				eval_face.disable_face_collision()
 				eval_face.delete_construction()
 	

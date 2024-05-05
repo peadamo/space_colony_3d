@@ -167,14 +167,7 @@ func _unhandled_input(event):
 				ray_cast_3d.set_collision_mask_value(5, false)
 				build_menu.visible=false
 				
-				
-				
-		if Input.is_action_just_pressed("carry"):
-			is_gun_on_hand=!is_gun_on_hand
-			if is_gun_on_hand :
-				$head/head_camera/player_arms2.grab_book()
-			else:
-				$head/head_camera/player_arms2.store_book()
+
 
 #esto es para cuando esta en el menu de cosntruccion
 		if is_gun_on_hand:
@@ -251,11 +244,11 @@ func raycast_process():
 			$Control/Label.text="E to use pod"
 			looking_at_hangar=true
 			interactive_object_in_view=raycastCollide
-		elif raycastCollide.is_in_group("internal_wall"):
+		elif raycastCollide.is_in_group("IT_wall_build_detector"):
 			$Control/Label.visible=true
 			$Control/Label.text="edit_wall"
 			looking_at_internalWall=true
-			interactive_object_in_view=raycastCollide.get_parent()
+			interactive_object_in_view=raycastCollide.get_parent().get_parent()
 			interactive_object_in_view.show_blueprint()
 			
 			
@@ -309,10 +302,11 @@ func calc_pointer_ref_position():
 		else:
 			value_y=(floor(value_y_module))*value_y_sign
 			
-		if value_y>0:
-			value_y-=0.5
+
 		
-		var cal_corrected_position = Vector3(value_x,value_y,value_z)
+		#var cal_corrected_position = Vector3(value_x,value_y,value_z)
+		var cal_corrected_position = round(new_position)
+		print(cal_corrected_position)
 		
 		#print("new_position",new_position)
 		#print("corrected_position",cal_corrected_position)
@@ -331,7 +325,7 @@ var is_floor_blue_print=true
 func update_mesh_ref_position():
 	if is_floor_blue_print:
 		
-		pointer_mesh_ref.global_position=Vector3(corrected_position.x,0,corrected_position.z)
+		pointer_mesh_ref.global_position=Vector3(corrected_position.x,corrected_position.y,corrected_position.z)
 		
 	else:
 		pointer_mesh_ref.global_position=corrected_position

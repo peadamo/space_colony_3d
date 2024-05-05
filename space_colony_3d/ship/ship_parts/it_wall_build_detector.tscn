@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddajhkeae3ryk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qe057"]
+size = Vector3(3, 0.5, 0.2)
+
+[node name="IT_wall_build_detector" type="StaticBody3D" groups=["IT_wall_build_detector"]]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qe057")
