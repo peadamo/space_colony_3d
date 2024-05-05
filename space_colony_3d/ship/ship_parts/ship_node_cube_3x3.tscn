@@ -18,10 +18,12 @@ mesh = SubResource("BoxMesh_njhk3")
 [node name="face_square_3x3_00" parent="faces" instance=ExtResource("1_ktb42")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 is_cube = true
+is_roof = true
 
 [node name="face_square_3x3_05" parent="faces" instance=ExtResource("1_ktb42")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -1.5, 0)
 is_cube = true
+is_floor = true
 
 [node name="face_square_3x3_01" parent="faces" instance=ExtResource("1_ktb42")]
 transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, 1.5, 0, 0)

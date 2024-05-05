@@ -4,6 +4,8 @@ extends StaticBody3D
 @export var is_prism_3x3 = false
 @export var is_prism_3x6 = false
 @export var is_wall = false
+@export var is_floor = false
+@export var is_roof = false
 @export var is_squere_face = false
 
 

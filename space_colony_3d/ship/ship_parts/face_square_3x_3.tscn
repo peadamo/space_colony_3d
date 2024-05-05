@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5ds01m6pn8bv"]
+[gd_scene load_steps=6 format=3 uid="uid://c5ds01m6pn8bv"]
 
 [ext_resource type="Script" path="res://ship/ship_parts/ship_part_face.gd" id="1_7565c"]
+[ext_resource type="PackedScene" uid="uid://dwa7rxk41oloq" path="res://ship/ship_walls/metal_plate_wall.glb" id="2_k5iuw"]
 [ext_resource type="PackedScene" uid="uid://ddajhkeae3ryk" path="res://ship/ship_parts/it_wall_build_detector.tscn" id="2_smtuf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yn8pe"]
@@ -30,6 +31,8 @@ skeleton = NodePath("../..")
 [node name="Timer" type="Timer" parent="construction"]
 wait_time = 0.1
 one_shot = true
+
+[node name="metal_plate_wall" parent="construction" instance=ExtResource("2_k5iuw")]
 
 [node name="interaction_detectors" type="Node3D" parent="."]
 
