@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcu7kn0l37uwm"
-path="res://.godot/imported/build_icon_smallPowerNode.png-8f05facd9f95c5a3306dc9418b3edc6a.ctex"
+uid="uid://djuvssa6haqvl"
+path="res://.godot/imported/menu_building_PodHangar.png-460403512c676db6e5c58975f7a372eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GUI/scroll_menu/icons/build_icon_smallPowerNode.png"
-dest_files=["res://.godot/imported/build_icon_smallPowerNode.png-8f05facd9f95c5a3306dc9418b3edc6a.ctex"]
+source_file="res://GUI/scroll_menu/icons/menu_building_PodHangar.png"
+dest_files=["res://.godot/imported/menu_building_PodHangar.png-460403512c676db6e5c58975f7a372eb.ctex"]
 
 [params]
 
