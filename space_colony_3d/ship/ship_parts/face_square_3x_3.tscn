@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5ds01m6pn8bv"]
+[gd_scene load_steps=7 format=3 uid="uid://c5ds01m6pn8bv"]
 
 [ext_resource type="Script" path="res://ship/ship_parts/ship_part_face.gd" id="1_7565c"]
 [ext_resource type="PackedScene" uid="uid://dwa7rxk41oloq" path="res://ship/ship_walls/metal_plate_wall.glb" id="2_k5iuw"]
 [ext_resource type="PackedScene" uid="uid://ddajhkeae3ryk" path="res://ship/ship_parts/it_wall_build_detector.tscn" id="2_smtuf"]
+[ext_resource type="PackedScene" uid="uid://vfxic0217vvf" path="res://ship/ship_parts/construction_spot.tscn" id="4_ebkmq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yn8pe"]
 size = Vector3(3, 0, 3)
@@ -38,5 +39,60 @@ one_shot = true
 
 [node name="IT_wall_build_detector" parent="interaction_detectors" instance=ExtResource("2_smtuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4)
+
+[node name="Construction_spots" type="Node3D" parent="."]
+
+[node name="construction_spot" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+
+[node name="construction_spot2" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="construction_spot3" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="construction_spot4" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="construction_spot5" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="construction_spot6" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="construction_spot7" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="construction_spot8" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="construction_spot9" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="construction_spot10" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0)
+
+[node name="construction_spot11" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -1, 0, 0)
+
+[node name="construction_spot12" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 1, 0, 0)
+
+[node name="construction_spot13" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -8.74228e-08, -1)
+
+[node name="construction_spot14" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -1, -8.74228e-08, -1)
+
+[node name="construction_spot15" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 1, -8.74228e-08, -1)
+
+[node name="construction_spot16" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 8.74228e-08, 1)
+
+[node name="construction_spot17" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -1, 8.74228e-08, 1)
+
+[node name="construction_spot18" parent="Construction_spots" instance=ExtResource("4_ebkmq")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 1, 8.74228e-08, 1)
 
 [connection signal="timeout" from="construction/Timer" to="." method="_on_timer_timeout"]

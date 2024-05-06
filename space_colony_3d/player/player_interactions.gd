@@ -18,25 +18,25 @@ func _unhandled_input(event):
 			if player.looking_at_hangar:
 				player.interactive_object_in_view.enter_pod($".")
 				
-		if Input.is_action_just_pressed("construction_mode"):
-			player.construction_mode_on=!player.construction_mode_on
-			if player.construction_mode_on :
-				$"../../head/head_camera/player_arms2".grab_gun()
-				#ray_cast_3d.set_collision_mask_value(5, true)
-				#player.build_menu.visible=true
-			else:
-				$"../../head/head_camera/player_arms2".store_gun()
-				#ray_cast_3d.set_collision_mask_value(5, false)
-				#player.build_menu.visible=false
-				
-#esto es para cuando esta en el menu de cosntruccion
-		if player.construction_mode_on:
-			if event is InputEventMouseButton:
-				if event.button_index == 5 and event.pressed:
-					$Control/Build_menu/HBoxContainer.position.x-=100
-					pass
-				if event.button_index == 4 and event.pressed:
-					$Control/Build_menu/HBoxContainer.position.x+=100
+		#if Input.is_action_just_pressed("construction_mode"):
+			#player.construction_mode_on=!player.construction_mode_on
+			#if player.construction_mode_on :
+				#$"../../head/head_camera/player_arms2".grab_gun()
+				##ray_cast_3d.set_collision_mask_value(5, true)
+				##player.build_menu.visible=true
+			#else:
+				#$"../../head/head_camera/player_arms2".store_gun()
+				##ray_cast_3d.set_collision_mask_value(5, false)
+				##player.build_menu.visible=false
+				#
+##esto es para cuando esta en el menu de cosntruccion
+		#if player.construction_mode_on:
+			#if event is InputEventMouseButton:
+				#if event.button_index == 5 and event.pressed:
+					#$Control/Build_menu/HBoxContainer.position.x-=100
+					#pass
+				#if event.button_index == 4 and event.pressed:
+					#$Control/Build_menu/HBoxContainer.position.x+=100
 					
 	else:
 		if Input.is_action_just_pressed("use_object"):

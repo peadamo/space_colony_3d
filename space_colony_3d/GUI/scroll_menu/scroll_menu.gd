@@ -1,34 +1,36 @@
 extends Control
+@export var player : CharacterBody3D
+const TEST_BUILDING = preload("res://ship/ship_buildings/test_build/test_building.tscn")
 
 @onready var subMenu_Airlock : Array = [
-	{"name":"Pod Hangar","image":load("res://GUI/scroll_menu/icons/menu_building_PodHangar.png"),"submenu":null},
-	{"name":"Shuttle Hangar","image":load("res://GUI/scroll_menu/icons/menu_building_ShuttleHangar.png"),"submenu":null},
-	{"name":"Space SuitLocker","image":load("res://GUI/scroll_menu/icons/menu_building_SpaceSuitLocker.png"),"submenu":null},
-	{"name":"X1 Airlock","image":load("res://GUI/scroll_menu/icons/menu_building_X1Airlock.png"),"submenu":null},
+	{"name":"Pod Hangar","image":load("res://GUI/scroll_menu/icons/menu_building_PodHangar.png"),"submenu":null,"blueprint":TEST_BUILDING},
+	{"name":"Shuttle Hangar","image":load("res://GUI/scroll_menu/icons/menu_building_ShuttleHangar.png"),"submenu":null,"blueprint":TEST_BUILDING},
+	{"name":"Space SuitLocker","image":load("res://GUI/scroll_menu/icons/menu_building_SpaceSuitLocker.png"),"submenu":null,"blueprint":TEST_BUILDING},
+	{"name":"X1 Airlock","image":load("res://GUI/scroll_menu/icons/menu_building_X1Airlock.png"),"submenu":null,"blueprint":TEST_BUILDING},
 ]
 
 @onready var subMenu_Power : Array = [
-	{"name":"Small Power Node","image":load("res://GUI/scroll_menu/icons/menu_building_SmallPowerNode.png"),"submenu":null},
-	{"name":"Large Power Node","image":load("res://GUI/scroll_menu/icons/menu_building_LargePowerNode.png"),"submenu":null},
-	{"name":"Energium Power Generator","image":load("res://GUI/scroll_menu/icons/menu_building_EnergiumPowerGenerator.png"),"submenu":null},
-	{"name":"X1 Power Generator","image":load("res://GUI/scroll_menu/icons/menu_building_X1PowerGenerator.png"),"submenu":null},
-	{"name":"Power Capacity Node","image":load("res://GUI/scroll_menu/icons/menu_building_PowerCapacityNode.png"),"submenu":null},
+	{"name":"Small Power Node","image":load("res://GUI/scroll_menu/icons/menu_building_SmallPowerNode.png"),"submenu":null,"blueprint":TEST_BUILDING},
+	{"name":"Large Power Node","image":load("res://GUI/scroll_menu/icons/menu_building_LargePowerNode.png"),"submenu":null,"blueprint":TEST_BUILDING},
+	{"name":"Energium Power Generator","image":load("res://GUI/scroll_menu/icons/menu_building_EnergiumPowerGenerator.png"),"submenu":null,"blueprint":TEST_BUILDING},
+	{"name":"X1 Power Generator","image":load("res://GUI/scroll_menu/icons/menu_building_X1PowerGenerator.png"),"submenu":null,"blueprint":TEST_BUILDING},
+	{"name":"Power Capacity Node","image":load("res://GUI/scroll_menu/icons/menu_building_PowerCapacityNode.png"),"submenu":null,"blueprint":TEST_BUILDING},
 	
 ]
 
 @onready var build_category : Array = [
-	{"name":"Wall","image":load("res://GUI/scroll_menu/icons/menu_icon_walls.png"),"submenu":subMenu_Airlock},
-	{"name":"Furniture","image":load("res://GUI/scroll_menu/icons/menu_icon_furniture.png"),"submenu":subMenu_Airlock},
-	{"name":"Decorations","image":load("res://GUI/scroll_menu/icons/menu_icon_decorations.png"),"submenu":subMenu_Airlock},
-	{"name":"Facility","image":load("res://GUI/scroll_menu/icons/menu_icon_facility.png"),"submenu":subMenu_Airlock},
-	{"name":"Life Support","image":load("res://GUI/scroll_menu/icons/menu_icon_lifeSupport.png"),"submenu":subMenu_Airlock},
-	{"name":"Power","image":load("res://GUI/scroll_menu/icons/menu_icon_power.png"),"submenu":subMenu_Power},
-	{"name":"Resource","image":load("res://GUI/scroll_menu/icons/menu_icon_resource.png"),"submenu":subMenu_Airlock},
-	{"name":"Food","image":load("res://GUI/scroll_menu/icons/menu_icon_food.png"),"submenu":subMenu_Airlock},
-	{"name":"Storage","image":load("res://GUI/scroll_menu/icons/menu_icon_storage.png"),"submenu":subMenu_Airlock},
-	{"name":"Airlock","image":load("res://GUI/scroll_menu/icons/menu_icon_airlock.png"),"submenu":subMenu_Airlock},
-	{"name":"System","image":load("res://GUI/scroll_menu/icons/menu_icon_system.png"),"submenu":subMenu_Airlock},
-	{"name":"Robots","image":load("res://GUI/scroll_menu/icons/menu_icon_robots.png"),"submenu":subMenu_Airlock},
+	{"name":"Wall","image":load("res://GUI/scroll_menu/icons/menu_icon_walls.png"),"submenu":subMenu_Airlock,"blueprint":null},
+	{"name":"Furniture","image":load("res://GUI/scroll_menu/icons/menu_icon_furniture.png"),"submenu":subMenu_Airlock,"blueprint":null},
+	{"name":"Decorations","image":load("res://GUI/scroll_menu/icons/menu_icon_decorations.png"),"submenu":subMenu_Airlock,"blueprint":null},
+	{"name":"Facility","image":load("res://GUI/scroll_menu/icons/menu_icon_facility.png"),"submenu":subMenu_Airlock,"blueprint":null},
+	{"name":"Life Support","image":load("res://GUI/scroll_menu/icons/menu_icon_lifeSupport.png"),"submenu":subMenu_Airlock,"blueprint":null},
+	{"name":"Power","image":load("res://GUI/scroll_menu/icons/menu_icon_power.png"),"submenu":subMenu_Power,"blueprint":null},
+	{"name":"Resource","image":load("res://GUI/scroll_menu/icons/menu_icon_resource.png"),"submenu":subMenu_Airlock,"blueprint":null},
+	{"name":"Food","image":load("res://GUI/scroll_menu/icons/menu_icon_food.png"),"submenu":subMenu_Airlock,"blueprint":null},
+	{"name":"Storage","image":load("res://GUI/scroll_menu/icons/menu_icon_storage.png"),"submenu":subMenu_Airlock,"blueprint":null},
+	{"name":"Airlock","image":load("res://GUI/scroll_menu/icons/menu_icon_airlock.png"),"submenu":subMenu_Airlock,"blueprint":null},
+	{"name":"System","image":load("res://GUI/scroll_menu/icons/menu_icon_system.png"),"submenu":subMenu_Airlock,"blueprint":null},
+	{"name":"Robots","image":load("res://GUI/scroll_menu/icons/menu_icon_robots.png"),"submenu":subMenu_Airlock,"blueprint":null},
 ]
 
 
@@ -49,27 +51,41 @@ extends Control
 
 
 func _ready():
+	$".".visible=false
 	CUSTOM.clear_node_children(preview_item_container)
 	initialize_menu(build_category)
 	
+var is_active = false
+
+func show_build_menu():
+	$".".visible=true
+	is_active = true
+
+func hide_build_menu():
+	$".".visible=false
+	is_active = false
+	
 	
 func _unhandled_input(event):
-	print(event)
-	if event is InputEventMouseButton:
-		if event.button_index == 4 and event.pressed:
-			actual_index += 1
-			update_menu()
-		if event.button_index == 5 and event.pressed:
-			actual_index -= 1
-			update_menu()
-			
-		if event.button_index == 2 and event.pressed:
-			go_back_to_prev_menu()
-			
-	if event is InputEventKey:
-		if event.keycode == 70 and event.pressed:
-			process_select_actual_menu_item()
-			
+	if is_active:
+		if event is InputEventMouseButton:
+			if event.button_index == 4 and event.pressed:
+				actual_index += 1
+				update_menu()
+			if event.button_index == 5 and event.pressed:
+				actual_index -= 1
+				update_menu()
+				
+			if event.button_index == 2 and event.pressed:
+				go_back_to_prev_menu()
+				
+			if event.button_index == 1 and event.pressed:
+				process_select_actual_menu_item()
+				
+		if event is InputEventKey:
+			if event.keycode == 70 and event.pressed:
+				process_select_actual_menu_item()
+				
 var actual_index = 0
 var actual_index_modifier = 0
 var actual_menu 
@@ -127,13 +143,24 @@ func process_select_actual_menu_item():
 	var submenu = actual_menu[actual_index].submenu
 	if submenu != null :
 		has_subMenu=true
-		
 	if has_subMenu:
 		prev_menu=actual_menu
 		initialize_menu(submenu)
 		
+	var has_blueprint = false
+	var blueprint = actual_menu[actual_index].blueprint
+	if blueprint != null :
+		has_blueprint=true
+		
+	if has_blueprint:
+		player.construction.load_blueprint(blueprint)
+		
 func go_back_to_prev_menu():
-	initialize_menu(prev_menu)
+	if actual_menu == build_category:
+		player.change_construction_mode_state()
+	else :
+		initialize_menu(prev_menu)
+	
 	
 		
 		

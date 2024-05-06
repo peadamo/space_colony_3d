@@ -1,5 +1,4 @@
 extends CharacterBody3D
-@export var pointer_marker : Marker3D
 @export var ship : Node3D
 
 #player_scripts
@@ -19,8 +18,7 @@ var gravity=9.8
 var jump_velocity=5
 var speed=5
 
-#Player conditional values
-var construction_mode_on = false
+
 
 
 var can_move=true
@@ -52,6 +50,7 @@ func get_into_pod():
 	rotation=Vector3.ZERO
 	$head.rotation=Vector3.ZERO
 	$head/head_camera.rotation=Vector3.ZERO
+	
 func leave_pod(pos):
 	can_move=true
 	can_move_head=true
@@ -62,3 +61,17 @@ func leave_pod(pos):
 	rotation=Vector3.ZERO
 
 
+#Player conditional values
+var construction_mode_on = false
+
+func _unhandled_input(event):
+
+	if Input.is_action_just_pressed("construction_mode"):
+		change_construction_mode_state()
+
+func change_construction_mode_state():
+	construction_mode_on = !construction_mode_on
+	if construction_mode_on:
+		construction.turn_on()
+	else: 
+		construction.turn_off()

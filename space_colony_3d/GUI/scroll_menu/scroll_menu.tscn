@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bl2sapmit3gs8"]
+[gd_scene load_steps=16 format=3 uid="uid://bl2sapmit3gs8"]
 
 [ext_resource type="Script" path="res://GUI/scroll_menu/scroll_menu.gd" id="1_80sa2"]
 [ext_resource type="PackedScene" uid="uid://bwr5ejcsx4pwb" path="res://GUI/scroll_menu/preview_item.tscn" id="2_1yv2g"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bb6vo3obe2afv" path="res://GUI/scroll_menu/icons/menu_icon_furniture.png" id="5_qpase"]
 [ext_resource type="Texture2D" uid="uid://tt4175ri662l" path="res://GUI/scroll_menu/icons/menu_icon_walls.png" id="7_w22e4"]
 [ext_resource type="Texture2D" uid="uid://10j3ljrxs3rf" path="res://GUI/scroll_menu/icons/right-click.png" id="11_0drnd"]
+[ext_resource type="Texture2D" uid="uid://2jbwj324041w" path="res://GUI/scroll_menu/icons/left-click.png" id="11_bsx3m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kb77s"]
 bg_color = Color(0, 0, 0, 0.388235)
@@ -649,6 +650,24 @@ expand_mode = 2
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="main_menu/VBoxContainer/MarginContainer4/info_display/MarginContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.317647, 0.317647, 0.317647, 1)
+theme_override_fonts/font = ExtResource("3_8elyj")
+theme_override_font_sizes/font_size = 24
+text = "/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="main_menu/VBoxContainer/MarginContainer4/info_display/MarginContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("11_bsx3m")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label2" type="Label" parent="main_menu/VBoxContainer/MarginContainer4/info_display/MarginContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
