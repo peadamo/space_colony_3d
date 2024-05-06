@@ -141,6 +141,7 @@ func update_menu():
 func process_select_actual_menu_item():
 	var has_subMenu = false
 	var submenu = actual_menu[actual_index].submenu
+	
 	if submenu != null :
 		has_subMenu=true
 	if has_subMenu:
