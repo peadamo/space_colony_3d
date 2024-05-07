@@ -1,16 +1,16 @@
 extends Node3D
 @onready var ship_buildings = $ship_buildings
-
 @onready var internal_walls = $internal_walls
-
 @onready var hull = $hull
 
-
+@onready var player = $"../Player"
+func free_player(pos):
+	player.reparent($"..")
+	player.leave_pod(pos)
 
 func _ready():
 # borra las paredes internadas de los hull nodes creados a mano
 	get_ship_nodes_faces()
-	print(ship_node_faces.size())
 	for face in ship_node_faces:
 		delete_internal_wall(face)
 
@@ -45,8 +45,11 @@ func delete_internal_wall(eval_face):
 	pass
 #endregion
 
-@onready var player = $"../Player"
-func free_player(pos):
-	player.reparent($"..")
-	player.leave_pod(pos)
+#region building_construction
+func add_new_building(build:PackedScene,pos,rot):
+	ship_buildings.add_child(build.instantiate())
+	var last_build = ship_buildings.get_child(-1)
+	last_build.global_position = pos
+	last_build.global_rotation = rot
 
+#endregion

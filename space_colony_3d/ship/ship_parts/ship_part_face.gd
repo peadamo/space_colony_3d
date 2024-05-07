@@ -29,8 +29,7 @@ func get_ship_node_blueprint_scene():
 	
 func disable_face_collision():
 	collision_shape_3d.disabled = true
-	for cspot in $Construction_spots.get_children():
-		cspot.collision_shape_3d.disabled=true
+	$construction/metal_plate_wall.disable_face_collision()
 	
 func enable_face_collision():
 	collision_shape_3d.disabled = false

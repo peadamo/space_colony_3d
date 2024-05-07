@@ -4,67 +4,88 @@ extends Node
 @onready var player_build_menu = $"../../Control/player_build_menu"
 @onready var ray_cast_3d : RayCast3D = $"../../head/head_camera/RayCast3D"
 
-var active = false
+var is_active = false
+var is_blueprint_active = false
+# click counter es una truchada para que no me duplique el click el click en el primer menu aca
+var click_counter = 0
+
+func _unhandled_input(event):
+	if is_active:
+		if is_blueprint_active:
+			
+			if event is InputEventMouseButton:
+				if event.button_index == 1 and event.pressed:
+					if click_counter>=1:
+						player.ship.add_new_building(curret_build_blueprint,pointer_marker.global_position,exp_rot)
+					click_counter+=1
+				
+			if Input.is_action_just_pressed("rotate_left"):
+					rotate_blueprint(-1)
+			if Input.is_action_just_pressed("rotate_rigth"):
+					rotate_blueprint(-1)
 
 func turn_on():
 	print("construction_mode ON")
-	active = true
+	is_active = true
 	player_build_menu.show_build_menu()
 	$"../../head/head_camera/player_arms2".grab_gun()
 	
 func turn_off():
 	print("construction_mode OFF")
-	active = false
+	is_active = false
 	player_build_menu.hide_build_menu()
+	cancel_blueprint_display()
 	$"../../head/head_camera/player_arms2".store_gun()
 
 
+@onready var pointer_marker_pos_updater :Timer = $pointer_marker_pos_updater
 
-@onready var pointer_marker_pos_updater = $pointer_marker_pos_updater
-
+var curret_build_blueprint = null
 func load_blueprint(blueprint:PackedScene):
+	curret_build_blueprint=blueprint
 	CUSTOM.clear_node_children(pointer_marker)
 	pointer_marker.add_child(blueprint.instantiate())
 	pointer_marker_pos_updater.start()
 	ray_cast_3d.set_collision_mask_value(6,true)
-
+	is_blueprint_active = true
+	
+var exp_rot = Vector3.ZERO
 func _on_pointer_marker_pos_updater_timeout():
 	var construction_spot = ray_cast_3d.get_collider()
 	if construction_spot != null :
-		pointer_marker.global_position = construction_spot.spot_marker.global_position
-		pointer_marker.global_rotation = construction_spot.spot_marker.global_rotation
+		pointer_marker.global_position = round(update_pointer_pos()*10)/10
+		pointer_marker.rotation = construction_spot.spot_marker.global_rotation
+		pointer_marker.get_child(-1).rotation.y=rot_modifier
+		exp_rot = (pointer_marker.get_child(-1).global_rotation)
+func cancel_blueprint_display():
+	CUSTOM.clear_node_children(pointer_marker)
+	pointer_marker_pos_updater.stop()
+	ray_cast_3d.set_collision_mask_value(6,false)
+	is_blueprint_active = false
+	click_counter = 0
 	
-	#pointer_marker.global_position=update_pointer_pos()
-	##print(pointer_marker.global_position)
-	#pass # Replace with function body.
+	
+	
+	
+	
+	
+	
+var rot_modifier = 0
+func rotate_blueprint(val):
+	rot_modifier+=deg_to_rad(90*val)
 
-
-#func update_pointer_pos():
-	#var spaceState=player.get_world_3d().direct_space_state
-	#var mousePos = Vector2(1366,768)/2
-	#var camera = get_tree().root.get_camera_3d()
-	#var rayOrigin = camera.project_ray_origin(mousePos)
-	#var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) *2000
-	#var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd,0xA)
-	#var rayArray = spaceState.intersect_ray(Parameters)
-	##print(rayArray)
-	#if rayArray.has("position"):
-		#return rayArray["position"]
-	#return Vector3.ZERO
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+func update_pointer_pos():
+	var spaceState=player.get_world_3d().direct_space_state
+	var mousePos = Vector2(1366,768)/2
+	var camera = get_tree().root.get_camera_3d()
+	var rayOrigin = camera.project_ray_origin(mousePos)
+	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) *2000
+	var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd,0xA)
+	var rayArray = spaceState.intersect_ray(Parameters)
+	#print(rayArray.position)
+	if rayArray.has("position"):
+		return rayArray["position"]
+	return Vector3.ZERO
 
 
 

@@ -1,12 +1,12 @@
 extends Control
 @export var player : CharacterBody3D
 const TEST_BUILDING = preload("res://ship/ship_buildings/test_build/test_building.tscn")
-
+const OXIGEN_DISPENSER_3D_MODEL = preload("res://ship/ship_buildings/oxigen_dispenser/oxigen_dispenser_3d_model.glb")
 @onready var subMenu_Airlock : Array = [
 	{"name":"Pod Hangar","image":load("res://GUI/scroll_menu/icons/menu_building_PodHangar.png"),"submenu":null,"blueprint":TEST_BUILDING},
-	{"name":"Shuttle Hangar","image":load("res://GUI/scroll_menu/icons/menu_building_ShuttleHangar.png"),"submenu":null,"blueprint":TEST_BUILDING},
+	{"name":"Shuttle Hangar","image":load("res://GUI/scroll_menu/icons/menu_building_ShuttleHangar.png"),"submenu":null,"blueprint":OXIGEN_DISPENSER_3D_MODEL},
 	{"name":"Space SuitLocker","image":load("res://GUI/scroll_menu/icons/menu_building_SpaceSuitLocker.png"),"submenu":null,"blueprint":TEST_BUILDING},
-	{"name":"X1 Airlock","image":load("res://GUI/scroll_menu/icons/menu_building_X1Airlock.png"),"submenu":null,"blueprint":TEST_BUILDING},
+	{"name":"X1 Airlock","image":load("res://GUI/scroll_menu/icons/menu_building_X1Airlock.png"),"submenu":null,"blueprint":OXIGEN_DISPENSER_3D_MODEL},
 ]
 
 @onready var subMenu_Power : Array = [
@@ -80,6 +80,7 @@ func _unhandled_input(event):
 				go_back_to_prev_menu()
 				
 			if event.button_index == 1 and event.pressed:
+				print("scroll menu clik")
 				process_select_actual_menu_item()
 				
 		if event is InputEventKey:
@@ -137,6 +138,8 @@ func update_menu():
 			last_item.texture_rect.texture = item.image
 	else:
 		preview_menu_margin_container.visible=false
+		var blueprint = actual_menu[selected_item_index].blueprint
+		player.construction.load_blueprint(blueprint)
 
 func process_select_actual_menu_item():
 	var has_subMenu = false
@@ -161,6 +164,7 @@ func go_back_to_prev_menu():
 		player.change_construction_mode_state()
 	else :
 		initialize_menu(prev_menu)
+		player.construction.cancel_blueprint_display()
 	
 	
 		

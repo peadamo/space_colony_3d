@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://clk063xp26732"]
+
+[ext_resource type="PackedScene" uid="uid://dwa7rxk41oloq" path="res://ship/ship_walls/metal_plate_wall.glb" id="1_k7woe"]
+[ext_resource type="Script" path="res://ship/ship_walls/metal_plate_wall.gd" id="2_aypbe"]
+[ext_resource type="PackedScene" uid="uid://vfxic0217vvf" path="res://ship/ship_parts/construction_spot.tscn" id="2_etgmo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4utsy"]
+size = Vector3(3, 0.3, 3)
+
+[node name="metal_plate_wall" instance=ExtResource("1_k7woe")]
+script = ExtResource("2_aypbe")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.15527e-05, 6.10352e-05)
+shape = SubResource("BoxShape3D_4utsy")
+
+[node name="Construction_spots" type="Node3D" parent="." index="2"]
+
+[node name="construction_spot" parent="Construction_spots" index="0" instance=ExtResource("2_etgmo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+
+[node name="construction_spot2" parent="Construction_spots" index="1" instance=ExtResource("2_etgmo")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.15, 0)
