@@ -10,12 +10,12 @@ var object_meshes:Array=[]
 func _ready():
 	process_object_meshes()
 	set_mesh_material_override(PROP_BLUEPRINT_GREEN)
-	
+
 	
 const PROP_BLUEPRINT_GREEN = preload("res://shaders_and_materials/prop_blueprint_green.tres")
 const PROP_BLUEPRINT_RED = preload("res://shaders_and_materials/prop_blueprint_red.tres")
 const PROP_BLUEPRINT_SKYBLUE = preload("res://shaders_and_materials/prop_blueprint_skyblue.tres")
-
+const PROP_BLUEPRINT_WHITE = preload("res://shaders_and_materials/prop_blueprint_white.tres")
 func process_object_meshes():
 	if mesh_container != null:
 		var meshInstances=mesh_container.get_children()
@@ -36,8 +36,9 @@ func set_mesh_material_override(new_material):
 	for object_mesh in object_meshes:
 		object_mesh.material_override=new_material
 
-
-
+func resalt_mesh_withe():
+	set_mesh_material_override(PROP_BLUEPRINT_WHITE)
+	$Timer.start()
 
 @onready var blueprint_area_col_detector : Area3D = $blueprint_area_col_detector
 
@@ -52,24 +53,16 @@ func _on_blueprint_area_col_detector_body_exited(body):
 		set_mesh_material_override(PROP_BLUEPRINT_GREEN)
 		building.can_be_build=true
 		
-func _on_timer_timeout():
-	var has_collisions=false
-	if blueprint_area_col_detector.has_overlapping_areas() or blueprint_area_col_detector.has_overlapping_bodies():
-		has_collisions=true
-
-	if has_collisions:
-		#print(blueprint_area_col_detector.get_overlapping_areas())
-		#print(blueprint_area_col_detector.get_overlapping_bodies())
-		
-		set_mesh_material_override(PROP_BLUEPRINT_RED)
-		
-	else:
-		set_mesh_material_override(PROP_BLUEPRINT_GREEN)
 @onready var collision_shape_3d = $blueprint_area_col_detector/CollisionShape3D
 
 @onready var building_collision : StaticBody3D= $"../building_collision"
 		
 func blueprint_placed():
+	blueprint_area_col_detector.monitoring = false
 	set_mesh_material_override(PROP_BLUEPRINT_SKYBLUE)
-	building_collision.set_collision_layer_value(1,true)
-	queue_free()
+	building_collision.set_collision_layer_value(2,true)
+
+
+func _on_timer_timeout():
+	set_mesh_material_override(PROP_BLUEPRINT_SKYBLUE)
+	

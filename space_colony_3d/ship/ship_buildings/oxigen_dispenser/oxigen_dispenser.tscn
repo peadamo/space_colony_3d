@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://qxuakfoqah41"]
+[gd_scene load_steps=8 format=3 uid="uid://qxuakfoqah41"]
 
 [ext_resource type="PackedScene" uid="uid://wn50mnr7hiep" path="res://ship/ship_buildings/oxigen_dispenser/oxigen_dispenser.glb" id="1_set5u"]
 [ext_resource type="PackedScene" uid="uid://uu6h8ub57hye" path="res://custom_nodes/blue_print_controller.tscn" id="2_eojj7"]
 [ext_resource type="Script" path="res://ship/ship_buildings/oxigen_dispenser/oxigen_dispenser.gd" id="2_nqegb"]
 [ext_resource type="Script" path="res://scripts/building_construction_controls.gd" id="3_33xh1"]
+[ext_resource type="Material" uid="uid://q2rjx0y81172" path="res://shaders_and_materials/prop_blueprint_white.tres" id="4_xi720"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4qjj"]
 size = Vector3(0.95, 1.826, 0.95)
@@ -16,6 +17,9 @@ script = ExtResource("2_nqegb")
 
 [node name="building_construction_controls" type="Node" parent="." index="0"]
 script = ExtResource("3_33xh1")
+
+[node name="OXIGEN_DISPENSER" parent="meshes" index="0"]
+material_override = ExtResource("4_xi720")
 
 [node name="building_collision" type="StaticBody3D" parent="." index="2"]
 collision_layer = 0

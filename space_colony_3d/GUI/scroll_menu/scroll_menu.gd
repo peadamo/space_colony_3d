@@ -52,6 +52,7 @@ const OXIGEN_DISPENSER = preload("res://ship/ship_buildings/oxigen_dispenser/oxi
 
 func _ready():
 	$".".visible=false
+	$"info labels/center_label".visible=false
 	CUSTOM.clear_node_children(preview_item_container)
 	initialize_menu(build_category)
 	
@@ -158,13 +159,14 @@ func process_select_actual_menu_item():
 		
 	if has_blueprint:
 		player.construction.load_blueprint(blueprint)
-		
+		player.construction.disable_placed_blueprint_interactions()
 func go_back_to_prev_menu():
 	if actual_menu == build_category:
 		player.change_construction_mode_state()
 	else :
 		initialize_menu(prev_menu)
 		player.construction.cancel_blueprint_display()
+		player.construction.enable_placed_blueprint_interactions()
 	
 	
 		
