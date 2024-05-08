@@ -33,7 +33,6 @@ wait_time = 0.1
 one_shot = true
 
 [node name="metal_plate_wall" parent="construction" instance=ExtResource("2_vho35")]
-visible = false
 
 [node name="interaction_detectors" type="Node3D" parent="."]
 

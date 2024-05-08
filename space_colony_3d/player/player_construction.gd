@@ -16,13 +16,13 @@ func _unhandled_input(event):
 			if event is InputEventMouseButton:
 				if event.button_index == 1 and event.pressed:
 					if click_counter>=1:
-						player.ship.add_new_building(curret_build_blueprint,pointer_marker.global_position,exp_rot)
+						place_blueprint()
 					click_counter+=1
 				
 			if Input.is_action_just_pressed("rotate_left"):
 					rotate_blueprint(-1)
 			if Input.is_action_just_pressed("rotate_rigth"):
-					rotate_blueprint(-1)
+					rotate_blueprint(+1)
 
 func turn_on():
 	print("construction_mode ON")
@@ -40,23 +40,29 @@ func turn_off():
 
 @onready var pointer_marker_pos_updater :Timer = $pointer_marker_pos_updater
 
-var curret_build_blueprint = null
+var curret_build_blueprint_path = null
+var current_blueprint = null
 func load_blueprint(blueprint:PackedScene):
-	curret_build_blueprint=blueprint
+	curret_build_blueprint_path=blueprint
 	CUSTOM.clear_node_children(pointer_marker)
 	pointer_marker.add_child(blueprint.instantiate())
-	pointer_marker_pos_updater.start()
 	ray_cast_3d.set_collision_mask_value(6,true)
 	is_blueprint_active = true
-	
+	current_blueprint=pointer_marker.get_child(-1)
+	pointer_marker_pos_updater.start()
 var exp_rot = Vector3.ZERO
+#una zafada trucha, aveces no toma las variables en el moemnto que creo deberia hacerlo???
+var can_be_blueprint_placed = null
+
 func _on_pointer_marker_pos_updater_timeout():
+	can_be_blueprint_placed = current_blueprint.can_be_build
 	var construction_spot = ray_cast_3d.get_collider()
 	if construction_spot != null :
 		pointer_marker.global_position = round(update_pointer_pos()*10)/10
 		pointer_marker.rotation = construction_spot.spot_marker.global_rotation
-		pointer_marker.get_child(-1).rotation.y=rot_modifier
-		exp_rot = (pointer_marker.get_child(-1).global_rotation)
+		current_blueprint.rotation.y=rot_modifier
+		exp_rot = (current_blueprint.global_rotation)
+		
 func cancel_blueprint_display():
 	CUSTOM.clear_node_children(pointer_marker)
 	pointer_marker_pos_updater.stop()
@@ -64,9 +70,9 @@ func cancel_blueprint_display():
 	is_blueprint_active = false
 	click_counter = 0
 	
-	
-	
-	
+func place_blueprint():
+	if can_be_blueprint_placed:
+		player.ship.add_new_building(curret_build_blueprint_path,pointer_marker.global_position,exp_rot)
 	
 	
 	

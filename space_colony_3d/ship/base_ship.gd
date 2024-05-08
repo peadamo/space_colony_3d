@@ -51,5 +51,6 @@ func add_new_building(build:PackedScene,pos,rot):
 	var last_build = ship_buildings.get_child(-1)
 	last_build.global_position = pos
 	last_build.global_rotation = rot
+	last_build.building_construction_controls.activate_construction_preview()
 
 #endregion

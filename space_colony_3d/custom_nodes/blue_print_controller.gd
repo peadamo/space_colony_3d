@@ -1,5 +1,5 @@
 extends Node3D
-
+@export var building:Node3D
 @export var mesh_container : Node3D
 @export var mesh_container_01 : Node3D
 @export var mesh_container_02 : Node3D
@@ -9,8 +9,8 @@ var object_meshes:Array=[]
 
 func _ready():
 	process_object_meshes()
-	
 	set_mesh_material_override(PROP_BLUEPRINT_GREEN)
+	
 	
 const PROP_BLUEPRINT_GREEN = preload("res://shaders_and_materials/prop_blueprint_green.tres")
 const PROP_BLUEPRINT_RED = preload("res://shaders_and_materials/prop_blueprint_red.tres")
@@ -32,7 +32,6 @@ func process_object_meshes():
 		for meshInstance:MeshInstance3D in meshInstances:
 			object_meshes.append(meshInstance)
 
-
 func set_mesh_material_override(new_material):
 	for object_mesh in object_meshes:
 		object_mesh.material_override=new_material
@@ -40,28 +39,19 @@ func set_mesh_material_override(new_material):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @onready var blueprint_area_col_detector : Area3D = $blueprint_area_col_detector
 
+func _on_blueprint_area_col_detector_body_entered(body):
+	set_mesh_material_override(PROP_BLUEPRINT_RED)
+	building.can_be_build=false
+	
+func _on_blueprint_area_col_detector_body_exited(body):
+	var colliding_bodies = blueprint_area_col_detector.get_overlapping_bodies()
+	
+	if colliding_bodies.size() == 0:
+		set_mesh_material_override(PROP_BLUEPRINT_GREEN)
+		building.can_be_build=true
+		
 func _on_timer_timeout():
 	var has_collisions=false
 	if blueprint_area_col_detector.has_overlapping_areas() or blueprint_area_col_detector.has_overlapping_bodies():
@@ -75,16 +65,11 @@ func _on_timer_timeout():
 		
 	else:
 		set_mesh_material_override(PROP_BLUEPRINT_GREEN)
-@onready var timer = $Timer
 @onready var collision_shape_3d = $blueprint_area_col_detector/CollisionShape3D
 
+@onready var building_collision : StaticBody3D= $"../building_collision"
 		
 func blueprint_placed():
-	timer.stop()
 	set_mesh_material_override(PROP_BLUEPRINT_SKYBLUE)
-	blueprint_area_col_detector.add_to_group("blue_print")
-	
-func build():
-	collision_shape_3d.disabled=false
-	set_mesh_material_override(null)
+	building_collision.set_collision_layer_value(1,true)
 	queue_free()

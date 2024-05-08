@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://qxuakfoqah41"]
+
+[ext_resource type="PackedScene" uid="uid://wn50mnr7hiep" path="res://ship/ship_buildings/oxigen_dispenser/oxigen_dispenser.glb" id="1_set5u"]
+[ext_resource type="PackedScene" uid="uid://uu6h8ub57hye" path="res://custom_nodes/blue_print_controller.tscn" id="2_eojj7"]
+[ext_resource type="Script" path="res://ship/ship_buildings/oxigen_dispenser/oxigen_dispenser.gd" id="2_nqegb"]
+[ext_resource type="Script" path="res://scripts/building_construction_controls.gd" id="3_33xh1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4qjj"]
+size = Vector3(0.95, 1.826, 0.95)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8cc5n"]
+size = Vector3(0.95, 1.828, 0.95)
+
+[node name="oxigen_dispenser" instance=ExtResource("1_set5u")]
+script = ExtResource("2_nqegb")
+
+[node name="building_construction_controls" type="Node" parent="." index="0"]
+script = ExtResource("3_33xh1")
+
+[node name="building_collision" type="StaticBody3D" parent="." index="2"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="building_collision" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.916687, 0)
+shape = SubResource("BoxShape3D_y4qjj")
+
+[node name="bluePrint_controller" parent="." index="3" node_paths=PackedStringArray("building", "mesh_container") instance=ExtResource("2_eojj7")]
+building = NodePath("..")
+mesh_container = NodePath("../meshes")
+
+[node name="CollisionShape3D" parent="bluePrint_controller/blueprint_area_col_detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919937, 0)
+shape = SubResource("BoxShape3D_8cc5n")
+
+[editable path="bluePrint_controller"]
