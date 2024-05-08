@@ -8,7 +8,6 @@ var is_active = false
 var is_blueprint_active = false
 # click counter es una truchada para que no me duplique el click el click en el primer menu aca
 var click_counter = 0
-
 func _unhandled_input(event):
 	if is_active:
 		if is_blueprint_active:
@@ -25,14 +24,16 @@ func _unhandled_input(event):
 					rotate_blueprint(+1)
 					
 		elif already_placed_blueprint_on_view != null:
-			if Input.is_action_just_pressed("delete_objeect"):
-				delete_blueprint()
-			if Input.is_action_just_pressed("move_blue_print"):
+			if Input.is_action_just_pressed("use_object"):
+				player_build_menu.center_label.visible=false
 				disable_placed_blueprint_interactions()
-			if Input.is_action_just_released("move_blue_print"):
-				enable_placed_blueprint_interactions()
-			if Input.is_action_pressed("move_blue_print"):
-				move_blueprint()
+				load_blueprint(already_placed_blueprint_on_view.escene_ref)
+				already_placed_blueprint_on_view.queue_free()
+				click_counter+=1
+			if Input.is_action_just_pressed("delete_objeect"):
+				already_placed_blueprint_on_view.building_construction_controls.build_it()
+				
+				
 func turn_on():
 	print("construction_mode ON")
 	is_active = true
@@ -85,6 +86,7 @@ func cancel_blueprint_display():
 	
 	
 #region Iteractions with placed blueprints
+var can_edit_blueprint = false
 
 @onready var build_raycast_checker : Timer = $build_raycast_checker
 func  enable_placed_blueprint_interactions():
@@ -97,26 +99,39 @@ func  disable_placed_blueprint_interactions():
 	
 var already_placed_blueprint_on_view = null
 
-func delete_blueprint():
-	already_placed_blueprint_on_view.queue_free()
-	
-	
-func move_blueprint():
-	already_placed_blueprint_on_view.global_position = round(update_pointer_pos()*10)/10
-	
-
 func _on_build_raycast_checker_timeout():
 #aca checkea bluepritns con los que pueda interactuar
 	var blueprint_on_view = ray_cast_3d.get_collider()
 	if blueprint_on_view != null:
 		if already_placed_blueprint_on_view != blueprint_on_view.get_parent():
 			already_placed_blueprint_on_view=blueprint_on_view.get_parent()
+			player_build_menu.center_label.visible=true
+			
 	else :
 		already_placed_blueprint_on_view = null
+		player_build_menu.center_label.visible=false
 		
 #aca le da la orden que se mantenga resaltado
 	if already_placed_blueprint_on_view !=null:
 		already_placed_blueprint_on_view.building_construction_controls.resalt_blueprint()
+		
+
+
+
+
+
+
+
+
+#func delete_blueprint():
+	#already_placed_blueprint_on_view.queue_free()
+	#
+	#
+#func move_blueprint():
+	#already_placed_blueprint_on_view.global_position = round(update_pointer_pos()*10)/10
+	#
+
+
 #endregion
 	
 	

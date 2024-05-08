@@ -66,3 +66,11 @@ func blueprint_placed():
 func _on_timer_timeout():
 	set_mesh_material_override(PROP_BLUEPRINT_SKYBLUE)
 	
+func build_the_thing():
+	$Timer.stop()
+	set_mesh_material_override(null)
+	blueprint_area_col_detector.monitoring = false
+	building_collision.set_collision_layer_value(2,false)
+	building_collision.set_collision_layer_value(1,true)
+	
+	

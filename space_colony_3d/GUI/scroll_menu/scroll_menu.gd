@@ -49,10 +49,11 @@ const OXIGEN_DISPENSER = preload("res://ship/ship_buildings/oxigen_dispenser/oxi
 @onready var rigth_1_image = $main_menu/VBoxContainer/MarginContainer2/sub_menu/HBoxContainer/rigth_1/Item/Panel/TextureRect
 @onready var rigth_2_image = $main_menu/VBoxContainer/MarginContainer2/sub_menu/HBoxContainer/rigth_2/Item/Panel/TextureRect
 
+@onready var center_label = $"info labels/center_label"
 
 func _ready():
 	$".".visible=false
-	$"info labels/center_label".visible=false
+	center_label.visible=false
 	CUSTOM.clear_node_children(preview_item_container)
 	initialize_menu(build_category)
 	
@@ -84,9 +85,9 @@ func _unhandled_input(event):
 				print("scroll menu clik")
 				process_select_actual_menu_item()
 				
-		if event is InputEventKey:
-			if event.keycode == 70 and event.pressed:
-				process_select_actual_menu_item()
+		#if event is InputEventKey:
+			#if event.keycode == 70 and event.pressed:
+				#process_select_actual_menu_item()
 				
 var actual_index = 0
 var actual_index_modifier = 0
