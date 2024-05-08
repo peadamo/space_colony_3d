@@ -6,9 +6,18 @@ func clear_node_children(node_to_clean):
 		child.queue_free()
 
 
-
-
-
+func array_to_hex(input_array : Array):
+	var proceced_value
+	#var binary_val = 0
+	var bin_int_val = 0
+	for value in input_array:
+		#binary_val+= pow(10,value-1)
+		bin_int_val+=pow(2,value-1)
+		
+	var format_string = "%x"
+	var actual_string = str("0x",format_string % [bin_int_val])
+	var final_val = int(actual_string)
+	return final_val
 
 
 
