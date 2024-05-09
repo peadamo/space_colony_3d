@@ -148,5 +148,6 @@ internal_wall_mode={
 3d_physics/layer_1="Common collision layer for all shit that collide"
 3d_physics/layer_2="Not builded blueprint"
 3d_physics/layer_4="hull_node_wall detecctors, for expanding the hull"
+3d_physics/layer_5="internal_wall construction zone detectors"
 3d_physics/layer_6="Construction_spot_normal"
 3d_physics/layer_7="avaiable_construction_layer"

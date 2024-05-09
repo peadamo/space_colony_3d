@@ -1,5 +1,12 @@
 extends Node3D
-@onready var collision_shape_3d = $StaticBody3D/CollisionShape3D
+@onready var collision_shape_3d = $building_collision/CollisionShape3D
+
+@export var auto_disble_collisions = true
+var can_be_build = false
+
+func _ready():
+	if auto_disble_collisions:
+		disable_face_collision()
 
 func disable_face_collision():
 	collision_shape_3d.disabled = true

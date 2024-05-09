@@ -7,10 +7,14 @@ extends Node3D
 var object_meshes:Array=[]
 
 
-func _ready():
-	process_object_meshes()
-	set_mesh_material_override(PROP_BLUEPRINT_GREEN)
+@export var is_active = true
 
+func _ready():
+	if is_active:
+		process_object_meshes()
+		set_mesh_material_override(PROP_BLUEPRINT_GREEN)
+		blueprint_area_col_detector.monitoring = true
+	
 	
 const PROP_BLUEPRINT_GREEN = preload("res://shaders_and_materials/prop_blueprint_green.tres")
 const PROP_BLUEPRINT_RED = preload("res://shaders_and_materials/prop_blueprint_red.tres")

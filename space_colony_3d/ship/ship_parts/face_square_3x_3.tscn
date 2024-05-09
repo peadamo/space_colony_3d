@@ -34,12 +34,21 @@ wait_time = 0.1
 one_shot = true
 
 [node name="metal_plate_wall" parent="construction" instance=ExtResource("2_vho35")]
+auto_disble_collisions = false
+
+[node name="bluePrint_controller" parent="construction/metal_plate_wall" index="3"]
+is_active = false
 
 [node name="interaction_detectors" type="Node3D" parent="."]
 
 [node name="IT_wall_build_detector" parent="interaction_detectors" instance=ExtResource("2_smtuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4)
 
+[node name="wall_position_marker" parent="interaction_detectors/IT_wall_build_detector" index="1"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 1.4)
+
 [connection signal="timeout" from="construction/Timer" to="." method="_on_timer_timeout"]
 
 [editable path="construction/metal_plate_wall"]
+[editable path="construction/metal_plate_wall/bluePrint_controller"]
+[editable path="interaction_detectors/IT_wall_build_detector"]

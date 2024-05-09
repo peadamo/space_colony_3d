@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddajhkeae3ryk"]
+[gd_scene load_steps=3 format=3 uid="uid://ddajhkeae3ryk"]
+
+[ext_resource type="Script" path="res://ship/ship_parts/it_wall_build_detector.gd" id="1_y5f7u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qe057"]
 size = Vector3(3, 0.5, 0.2)
@@ -6,6 +8,9 @@ size = Vector3(3, 0.5, 0.2)
 [node name="IT_wall_build_detector" type="StaticBody3D" groups=["IT_wall_build_detector"]]
 collision_layer = 16
 collision_mask = 0
+script = ExtResource("1_y5f7u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_qe057")
+
+[node name="wall_position_marker" type="Marker3D" parent="."]
