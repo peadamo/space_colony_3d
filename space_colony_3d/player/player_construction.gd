@@ -15,6 +15,7 @@ func _unhandled_input(event):
 			if event is InputEventMouseButton:
 				if event.button_index == 1 and event.pressed:
 					if click_counter>=1:
+						print("construction_click")
 						place_blueprint()
 					click_counter+=1
 				
@@ -28,6 +29,8 @@ func _unhandled_input(event):
 				player_build_menu.center_label.visible=false
 				disable_placed_blueprint_interactions()
 				load_blueprint(already_placed_blueprint_on_view.escene_ref)
+				curret_build_blueprint_path=already_placed_blueprint_on_view.escene_ref
+				
 				already_placed_blueprint_on_view.queue_free()
 				click_counter+=1
 			if Input.is_action_just_pressed("delete_objeect"):
@@ -54,13 +57,16 @@ func turn_off():
 var curret_build_blueprint_path = null
 var current_blueprint = null
 
+var blueprint_admited_surface_type = null
 func load_blueprint(blueprint:PackedScene):
+	player_build_menu.can_left_click = false
 	curret_build_blueprint_path=blueprint
 	CUSTOM.clear_node_children(pointer_marker)
 	pointer_marker.add_child(blueprint.instantiate())
+	current_blueprint=pointer_marker.get_child(-1)
+	blueprint_admited_surface_type = current_blueprint.blueprint_admited_surface_type
 	ray_cast_3d.set_collision_mask_value(6,true)
 	is_blueprint_active = true
-	current_blueprint=pointer_marker.get_child(-1)
 	pointer_marker_pos_updater.start()
 	
 var exp_rot = Vector3.ZERO
@@ -71,10 +77,15 @@ func _on_pointer_marker_pos_updater_timeout():
 	can_be_blueprint_placed = current_blueprint.can_be_build
 	var construction_spot = ray_cast_3d.get_collider()
 	if construction_spot != null :
-		pointer_marker.global_position = round(update_pointer_pos()*10)/10
-		pointer_marker.rotation = construction_spot.spot_marker.global_rotation
-		current_blueprint.rotation.y=rot_modifier
-		exp_rot = (current_blueprint.global_rotation)
+		if blueprint_admited_surface_type.has(construction_spot.surface_type):
+			pointer_marker.visible=true
+			pointer_marker.global_position = round(update_pointer_pos()*10)/10
+			pointer_marker.rotation = construction_spot.spot_marker.global_rotation
+			current_blueprint.rotation.y=rot_modifier
+			exp_rot = (current_blueprint.global_rotation)
+		else:
+			pointer_marker.visible=false
+			can_be_blueprint_placed = false
 		
 func cancel_blueprint_display():
 	

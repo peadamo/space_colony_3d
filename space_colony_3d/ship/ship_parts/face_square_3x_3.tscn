@@ -10,11 +10,12 @@ size = Vector3(3, 0, 3)
 [sub_resource type="BoxMesh" id="BoxMesh_t2tbe"]
 size = Vector3(3, 0, 3)
 
-[node name="face_square_3x3" type="StaticBody3D" groups=["ship_node_face"]]
+[node name="face_square_3x3" type="StaticBody3D" node_paths=PackedStringArray("construction_spots_container") groups=["ship_node_face"]]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_7565c")
 is_squere_face = true
+construction_spots_container = NodePath("construction/metal_plate_wall")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_yn8pe")
@@ -40,3 +41,5 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4)
 
 [connection signal="timeout" from="construction/Timer" to="." method="_on_timer_timeout"]
+
+[editable path="construction/metal_plate_wall"]

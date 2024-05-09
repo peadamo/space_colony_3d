@@ -68,7 +68,7 @@ func hide_build_menu():
 	$".".visible=false
 	is_active = false
 	
-	
+var can_left_click = true
 func _unhandled_input(event):
 	if is_active:
 		if event is InputEventMouseButton:
@@ -81,10 +81,11 @@ func _unhandled_input(event):
 				
 			if event.button_index == 2 and event.pressed:
 				go_back_to_prev_menu()
-				
+				can_left_click=true
 			if event.button_index == 1 and event.pressed:
-				print("scroll menu clik")
-				process_select_actual_menu_item()
+				if can_left_click:
+					print("scroll menu clik")
+					process_select_actual_menu_item()
 				
 		#if event is InputEventKey:
 			#if event.keycode == 70 and event.pressed:

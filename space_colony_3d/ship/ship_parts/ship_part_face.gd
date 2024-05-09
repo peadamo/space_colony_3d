@@ -7,14 +7,21 @@ extends StaticBody3D
 @export var is_floor = false
 @export var is_roof = false
 @export var is_squere_face = false
-
+# la pared o lo que sea que contenga los construction spots que dan la rotacion al construir y suu es pared o algo asi
+@export var construction_spots_container : Node3D
 
 
 func _ready():
 	if is_squere_face:
 		if !is_wall:
 			$interaction_detectors/IT_wall_build_detector.queue_free()
-
+			
+		if is_floor:
+			construction_spots_container.set_spot_wall_data("floor")
+		if is_roof:
+			construction_spots_container.set_spot_wall_data("roof")
+		if is_wall:
+			construction_spots_container.set_spot_wall_data("wall")
 func get_new_shipNode_position():
 	return $Marker3D.global_position
 

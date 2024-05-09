@@ -8,3 +8,4 @@ const escene_ref = preload("res://ship/ship_buildings/wall_lamp/wall_lamp.tscn")
 #so you cannot place a colliding blueprint, genius
 @onready var can_be_build = true
 
+var blueprint_admited_surface_type : Array = ["floor","roof","wall"]
