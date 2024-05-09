@@ -152,7 +152,7 @@ func update_pointer_pos():
 	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) *2000
 	var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd,CUSTOM.array_to_hex([7]))
 	var rayArray = spaceState.intersect_ray(Parameters)
-	print(rayArray.position)
+	#print(rayArray.position)
 	if rayArray.has("position"):
 		return rayArray["position"]
 	return Vector3.ZERO

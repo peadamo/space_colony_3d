@@ -5,7 +5,7 @@ extends Node
 
 
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if !player.is_in_pod:
 		pass
 		#if Input.is_action_just_pressed("show_radial_menu") and player.can_show_radial_menu:

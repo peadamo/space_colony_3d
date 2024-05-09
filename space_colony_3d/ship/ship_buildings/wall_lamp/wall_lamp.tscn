@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnucvgp3oyiir"]
+
+[ext_resource type="PackedScene" uid="uid://dxkjqmeil02i4" path="res://ship/ship_buildings/wall_lamp/wall_lamp.glb" id="1_wdl5s"]
+[ext_resource type="Script" path="res://scripts/building_construction_controls.gd" id="2_i7615"]
+[ext_resource type="Script" path="res://ship/ship_buildings/wall_lamp/wall_lamp.gd" id="2_mht4p"]
+[ext_resource type="PackedScene" uid="uid://uu6h8ub57hye" path="res://custom_nodes/blue_print_controller.tscn" id="3_n0x88"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evnpx"]
+size = Vector3(0.48988, 0.32857, 0.95)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5njv2"]
+size = Vector3(0.488965, 0.327239, 0.95)
+
+[node name="wall_lamp" instance=ExtResource("1_wdl5s")]
+script = ExtResource("2_mht4p")
+
+[node name="building_construction_controls" type="Node" parent="." index="1"]
+script = ExtResource("2_i7615")
+
+[node name="building_collision" type="StaticBody3D" parent="." index="2"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="building_collision" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00396121, 0.167972, 0)
+shape = SubResource("BoxShape3D_evnpx")
+
+[node name="bluePrint_controller" parent="." index="3" node_paths=PackedStringArray("building", "mesh_container") instance=ExtResource("3_n0x88")]
+building = NodePath("..")
+mesh_container = NodePath("../mesh")
+
+[node name="CollisionShape3D" parent="bluePrint_controller/blueprint_area_col_detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00356448, 0.169557, 0)
+shape = SubResource("BoxShape3D_5njv2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.339503, 0)
+light_color = Color(0.960784, 0.960784, 0.87451, 1)
+shadow_enabled = true
+
+[editable path="bluePrint_controller"]

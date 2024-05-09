@@ -15,11 +15,11 @@ size = Vector3(0.95, 1.828, 0.95)
 [node name="oxigen_dispenser" instance=ExtResource("1_set5u")]
 script = ExtResource("2_nqegb")
 
-[node name="building_construction_controls" type="Node" parent="." index="0"]
-script = ExtResource("3_33xh1")
-
 [node name="OXIGEN_DISPENSER" parent="meshes" index="0"]
 material_override = ExtResource("4_xi720")
+
+[node name="building_construction_controls" type="Node" parent="." index="1"]
+script = ExtResource("3_33xh1")
 
 [node name="building_collision" type="StaticBody3D" parent="." index="2"]
 collision_layer = 0

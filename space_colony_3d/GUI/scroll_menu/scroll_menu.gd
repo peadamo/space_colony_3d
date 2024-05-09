@@ -2,8 +2,9 @@ extends Control
 @export var player : CharacterBody3D
 const TEST_BUILDING = preload("res://ship/ship_buildings/test_build/test_building.tscn")
 const OXIGEN_DISPENSER = preload("res://ship/ship_buildings/oxigen_dispenser/oxigen_dispenser.tscn")
+const WALL_LAMP = preload("res://ship/ship_buildings/wall_lamp/wall_lamp.tscn")
 @onready var subMenu_Airlock : Array = [
-	{"name":"Pod Hangar","image":load("res://GUI/scroll_menu/icons/menu_building_PodHangar.png"),"submenu":null,"blueprint":OXIGEN_DISPENSER},
+	{"name":"Pod Hangar","image":load("res://GUI/scroll_menu/icons/menu_building_PodHangar.png"),"submenu":null,"blueprint":WALL_LAMP},
 	{"name":"Shuttle Hangar","image":load("res://GUI/scroll_menu/icons/menu_building_ShuttleHangar.png"),"submenu":null,"blueprint":OXIGEN_DISPENSER},
 	{"name":"Space SuitLocker","image":load("res://GUI/scroll_menu/icons/menu_building_SpaceSuitLocker.png"),"submenu":null,"blueprint":OXIGEN_DISPENSER},
 	{"name":"X1 Airlock","image":load("res://GUI/scroll_menu/icons/menu_building_X1Airlock.png"),"submenu":null,"blueprint":OXIGEN_DISPENSER},

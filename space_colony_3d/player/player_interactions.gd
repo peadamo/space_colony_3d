@@ -6,7 +6,7 @@ extends Node
 
 
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	
 	if !player.is_in_pod:
 		

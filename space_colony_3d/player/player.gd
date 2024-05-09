@@ -64,7 +64,7 @@ func leave_pod(pos):
 #Player conditional values
 var construction_mode_on = false
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 
 	if Input.is_action_just_pressed("construction_mode"):
 		change_construction_mode_state()

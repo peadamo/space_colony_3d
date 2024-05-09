@@ -7,7 +7,6 @@ func clear_node_children(node_to_clean):
 
 
 func array_to_hex(input_array : Array):
-	var proceced_value
 	#var binary_val = 0
 	var bin_int_val = 0
 	for value in input_array:

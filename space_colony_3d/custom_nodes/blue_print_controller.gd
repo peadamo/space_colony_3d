@@ -42,11 +42,11 @@ func resalt_mesh_withe():
 
 @onready var blueprint_area_col_detector : Area3D = $blueprint_area_col_detector
 
-func _on_blueprint_area_col_detector_body_entered(body):
+func _on_blueprint_area_col_detector_body_entered(_body):
 	set_mesh_material_override(PROP_BLUEPRINT_RED)
 	building.can_be_build=false
 	
-func _on_blueprint_area_col_detector_body_exited(body):
+func _on_blueprint_area_col_detector_body_exited(_body):
 	var colliding_bodies = blueprint_area_col_detector.get_overlapping_bodies()
 	
 	if colliding_bodies.size() == 0:
