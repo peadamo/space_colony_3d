@@ -3,6 +3,8 @@ extends CharacterBody3D
 
 #player_scripts
 @onready var construction = $scripts/construction
+@onready var internal_walls_construction = $scripts/construction/internal_walls_construction
+
 @onready var movement = $scripts/movement
 @onready var interactions = $scripts/interactions
 @onready var gui = $scripts/gui
@@ -12,6 +14,7 @@ extends CharacterBody3D
 @onready var player = $"."
 @onready var head_camera = $head/head_camera
 @onready var collision_shape_3d = $CollisionShape3D
+@onready var player_arms_2 = $head/head_camera/player_arms2
 
 #Player stats
 var gravity=9.8
@@ -62,16 +65,36 @@ func leave_pod(pos):
 
 
 #Player conditional values
-var construction_mode_on = false
 
 func _unhandled_input(_event):
 
 	if Input.is_action_just_pressed("construction_mode"):
+		if internalwalls_construction_mode_on:
+			change_internalwalls_construction_mode_state()
+			
 		change_construction_mode_state()
-
+		
+		
+	if Input.is_action_just_pressed("internal_wall_mode"):
+		if construction_mode_on:
+			change_construction_mode_state()
+			
+		change_internalwalls_construction_mode_state()
+		
+		
+		
+var construction_mode_on = false
 func change_construction_mode_state():
 	construction_mode_on = !construction_mode_on
 	if construction_mode_on:
 		construction.turn_on()
 	else: 
 		construction.turn_off()
+		
+var internalwalls_construction_mode_on = false
+func change_internalwalls_construction_mode_state():
+	internalwalls_construction_mode_on = !internalwalls_construction_mode_on
+	if internalwalls_construction_mode_on:
+		internal_walls_construction.turn_on()
+	else: 
+		internal_walls_construction.turn_off()
