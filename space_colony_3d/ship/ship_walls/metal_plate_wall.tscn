@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://clk063xp26732"]
+[gd_scene load_steps=8 format=3 uid="uid://clk063xp26732"]
 
 [ext_resource type="PackedScene" uid="uid://dwa7rxk41oloq" path="res://ship/ship_walls/metal_plate_wall.glb" id="1_k7woe"]
 [ext_resource type="Script" path="res://ship/ship_walls/metal_plate_wall.gd" id="2_aypbe"]
 [ext_resource type="PackedScene" uid="uid://vfxic0217vvf" path="res://ship/ship_parts/construction_spot.tscn" id="2_etgmo"]
 [ext_resource type="PackedScene" uid="uid://uu6h8ub57hye" path="res://custom_nodes/blue_print_controller.tscn" id="4_t23rb"]
+[ext_resource type="Script" path="res://scripts/building_construction_controls.gd" id="5_rodjp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4utsy"]
 size = Vector3(3, 0.3, 3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_duat7"]
-size = Vector3(4, 4, 4)
+[sub_resource type="BoxShape3D" id="BoxShape3D_3yhvo"]
+size = Vector3(2, 0.1, 2)
 
 [node name="metal_plate_wall" instance=ExtResource("1_k7woe")]
 script = ExtResource("2_aypbe")
@@ -34,6 +35,9 @@ building = NodePath("..")
 mesh_container = NodePath("../meshes")
 
 [node name="CollisionShape3D" parent="bluePrint_controller/blueprint_area_col_detector" index="0"]
-shape = SubResource("BoxShape3D_duat7")
+shape = SubResource("BoxShape3D_3yhvo")
+
+[node name="building_construction_controls" type="Node" parent="." index="4"]
+script = ExtResource("5_rodjp")
 
 [editable path="bluePrint_controller"]

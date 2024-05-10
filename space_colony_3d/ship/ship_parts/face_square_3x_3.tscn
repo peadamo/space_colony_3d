@@ -26,12 +26,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="construction" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="construction"]
+visible = false
 mesh = SubResource("BoxMesh_t2tbe")
 skeleton = NodePath("../..")
-
-[node name="Timer" type="Timer" parent="construction"]
-wait_time = 0.1
-one_shot = true
 
 [node name="metal_plate_wall" parent="construction" instance=ExtResource("2_vho35")]
 auto_disble_collisions = false
@@ -41,13 +38,12 @@ is_active = false
 
 [node name="interaction_detectors" type="Node3D" parent="."]
 
-[node name="IT_wall_build_detector" parent="interaction_detectors" instance=ExtResource("2_smtuf")]
+[node name="IT_wall_build_detector" parent="interaction_detectors" node_paths=PackedStringArray("ship_node_face") instance=ExtResource("2_smtuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4)
+ship_node_face = NodePath("../..")
 
 [node name="wall_position_marker" parent="interaction_detectors/IT_wall_build_detector" index="1"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 1.4)
-
-[connection signal="timeout" from="construction/Timer" to="." method="_on_timer_timeout"]
 
 [editable path="construction/metal_plate_wall"]
 [editable path="construction/metal_plate_wall/bluePrint_controller"]

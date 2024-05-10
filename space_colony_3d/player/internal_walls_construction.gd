@@ -8,12 +8,18 @@ var is_active = false
 const METAL_PLATE_WALL = preload("res://ship/ship_walls/metal_plate_wall.tscn")
 
 
+func _unhandled_input(event):
+	if is_active:
+		if event is InputEventMouseButton:
+			if event.button_index == 1 and event.pressed:
+					print("internal_wall_construction_click")
+					place_blueprint()
+
 func turn_on():
 	print("internal_walls_construction ON")
 	is_active = true
 	player.player_arms_2.grab_book()
 	ray_cast_3d.set_collision_mask_value(5,true)
-	print("active timer")
 	$intWall_timer.start()
 	load_blueprint(METAL_PLATE_WALL)
 	
@@ -27,14 +33,14 @@ func turn_off():
 	
 
 var wall_position_marker=null
-
+var last_object_in_view=null
+var object_in_view 
 func _on_int_wall_timer_timeout():
-	var object_in_view =ray_cast_3d.get_collider()
+	object_in_view =ray_cast_3d.get_collider()
 	if object_in_view != null:
+		last_object_in_view=object_in_view
 		if wall_position_marker != object_in_view.wall_position_marker:
 			wall_position_marker=object_in_view.wall_position_marker
-	else:
-		wall_position_marker=null
 		
 	blueprint_display_manager()
 		
@@ -52,20 +58,11 @@ func load_blueprint(blueprint:PackedScene):
 	CUSTOM.clear_node_children(pointer_marker)
 	pointer_marker.rotation = Vector3.ZERO
 	pointer_marker.rotation.x = deg_to_rad(90)
-	
 	pointer_marker.add_child(blueprint.instantiate())
 	current_blueprint=pointer_marker.get_child(-1)
-	
 
-func update_pointer_pos():
-	var spaceState=player.get_world_3d().direct_space_state
-	var mousePos = Vector2(1366,768)/2
-	var camera = get_tree().root.get_camera_3d()
-	var rayOrigin = camera.project_ray_origin(mousePos)
-	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) *2000
-	var Parameters = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd,CUSTOM.array_to_hex([7]))
-	var rayArray = spaceState.intersect_ray(Parameters)
-	#print(rayArray.position)
-	if rayArray.has("position"):
-		return rayArray["position"]
-	return Vector3.ZERO
+func place_blueprint():
+	if last_object_in_view != null :
+		print(last_object_in_view)
+		last_object_in_view.add_construction(METAL_PLATE_WALL)
+

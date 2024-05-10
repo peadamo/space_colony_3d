@@ -1,5 +1,7 @@
 extends Node3D
 @onready var building_construction_controls = $building_construction_controls
+@onready var building_collision = $building_collision
+@onready var collision_shape_3d = $building_collision/CollisionShape3D
 
 @onready var meshes = $mesh
 

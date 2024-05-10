@@ -6,21 +6,24 @@ extends Node3D
 
 var object_meshes:Array=[]
 
-
 @export var is_active = true
+@onready var blueprint_area_col_detector : Area3D = $blueprint_area_col_detector
 
 func _ready():
-	if is_active:
-		process_object_meshes()
-		set_mesh_material_override(PROP_BLUEPRINT_GREEN)
-		blueprint_area_col_detector.monitoring = true
+	process_object_meshes()
 	
+	if is_active:
+		set_mesh_material_override(PROP_BLUEPRINT_GREEN)
+		blueprint_area_col_detector.monitorable = true
+		blueprint_area_col_detector.monitoring =true
+		
 	
 const PROP_BLUEPRINT_GREEN = preload("res://shaders_and_materials/prop_blueprint_green.tres")
 const PROP_BLUEPRINT_RED = preload("res://shaders_and_materials/prop_blueprint_red.tres")
 const PROP_BLUEPRINT_SKYBLUE = preload("res://shaders_and_materials/prop_blueprint_skyblue.tres")
 const PROP_BLUEPRINT_WHITE = preload("res://shaders_and_materials/prop_blueprint_white.tres")
 func process_object_meshes():
+	
 	if mesh_container != null:
 		var meshInstances=mesh_container.get_children()
 		for meshInstance:MeshInstance3D in meshInstances:
@@ -37,20 +40,23 @@ func process_object_meshes():
 			object_meshes.append(meshInstance)
 
 func set_mesh_material_override(new_material):
+	
 	for object_mesh in object_meshes:
 		object_mesh.material_override=new_material
 
 func resalt_mesh_withe():
+	
 	set_mesh_material_override(PROP_BLUEPRINT_WHITE)
 	$Timer.start()
 
-@onready var blueprint_area_col_detector : Area3D = $blueprint_area_col_detector
 
-func _on_blueprint_area_col_detector_body_entered(_body):
-	set_mesh_material_override(PROP_BLUEPRINT_RED)
-	building.can_be_build=false
+func _on_blueprint_area_col_detector_body_entered(body):
+		print(body)
+		set_mesh_material_override(PROP_BLUEPRINT_RED)
+		building.can_be_build=false
 	
 func _on_blueprint_area_col_detector_body_exited(_body):
+	
 	var colliding_bodies = blueprint_area_col_detector.get_overlapping_bodies()
 	
 	if colliding_bodies.size() == 0:
@@ -62,12 +68,16 @@ func _on_blueprint_area_col_detector_body_exited(_body):
 @onready var building_collision : StaticBody3D= $"../building_collision"
 		
 func blueprint_placed():
+	
 	blueprint_area_col_detector.monitoring = false
 	set_mesh_material_override(PROP_BLUEPRINT_SKYBLUE)
+	building.collision_shape_3d.disabled = false
+	building_collision.set_collision_layer_value(1,false)
 	building_collision.set_collision_layer_value(2,true)
 
 
 func _on_timer_timeout():
+	
 	set_mesh_material_override(PROP_BLUEPRINT_SKYBLUE)
 	
 func build_the_thing():
@@ -77,4 +87,6 @@ func build_the_thing():
 	building_collision.set_collision_layer_value(2,false)
 	building_collision.set_collision_layer_value(1,true)
 	
-	
+func config_wall_layers():
+	building_collision.set_collision_layer_value(2,false)
+	building_collision.set_collision_layer_value(3,true)

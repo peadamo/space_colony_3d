@@ -51,6 +51,7 @@ func turn_off():
 	cancel_blueprint_display()
 	$"../../head/head_camera/player_arms2".store_gun()
 	disable_placed_blueprint_interactions()
+	build_raycast_checker.stop()
 
 @onready var pointer_marker_pos_updater :Timer = $pointer_marker_pos_updater
 
